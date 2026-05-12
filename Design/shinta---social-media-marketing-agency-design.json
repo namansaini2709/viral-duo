@@ -1,0 +1,175 @@
+{
+  "color": {
+    "color-1": {
+      "$type": "color",
+      "$value": "#000000",
+      "$description": "Frequency rank #1 (1772 occurrences)"
+    },
+    "color-2": {
+      "$type": "color",
+      "$value": "#0000ee",
+      "$description": "Frequency rank #2 (678 occurrences)"
+    },
+    "color-3": {
+      "$type": "color",
+      "$value": "#1c1917",
+      "$description": "Frequency rank #3 (372 occurrences)"
+    },
+    "color-4": {
+      "$type": "color",
+      "$value": "#78716c",
+      "$description": "Frequency rank #4 (72 occurrences)"
+    },
+    "color-5": {
+      "$type": "color",
+      "$value": "#ffffff",
+      "$description": "Frequency rank #5 (67 occurrences)"
+    },
+    "color-6": {
+      "$type": "color",
+      "$value": "#9967ff",
+      "$description": "Frequency rank #6 (66 occurrences)"
+    },
+    "color-7": {
+      "$type": "color",
+      "$value": "#44403c",
+      "$description": "Frequency rank #7 (62 occurrences)"
+    },
+    "color-8": {
+      "$type": "color",
+      "$value": "#f4f4f3",
+      "$description": "Frequency rank #8 (56 occurrences)"
+    },
+    "color-9": {
+      "$type": "color",
+      "$value": "#ffa8f2",
+      "$description": "Frequency rank #9 (42 occurrences)"
+    },
+    "color-10": {
+      "$type": "color",
+      "$value": "#ffa952",
+      "$description": "Frequency rank #10 (30 occurrences)"
+    }
+  },
+  "typography": {
+    "type-1": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "sans-serif",
+        "fontSize": "12px",
+        "fontWeight": 400,
+        "lineHeight": "normal",
+        "letterSpacing": "normal"
+      },
+      "$description": "Frequency rank #1"
+    },
+    "type-2": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Open Sauce One",
+        "fontSize": "64px",
+        "fontWeight": 700,
+        "lineHeight": "70.4px",
+        "letterSpacing": "-2.56px"
+      },
+      "$description": "Frequency rank #2"
+    },
+    "type-3": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Open Sauce One",
+        "fontSize": "12px",
+        "fontWeight": 600,
+        "lineHeight": "16.8px",
+        "letterSpacing": "0.96px"
+      },
+      "$description": "Frequency rank #3"
+    },
+    "type-4": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Open Sauce One",
+        "fontSize": "18px",
+        "fontWeight": 400,
+        "lineHeight": "27px",
+        "letterSpacing": "normal"
+      },
+      "$description": "Frequency rank #4"
+    },
+    "type-5": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "system-ui",
+        "fontSize": "32px",
+        "fontWeight": 300,
+        "lineHeight": "normal",
+        "letterSpacing": "normal"
+      },
+      "$description": "Frequency rank #5"
+    }
+  },
+  "spacing": {
+    "space-1": {
+      "$type": "dimension",
+      "$value": "10px"
+    },
+    "space-2": {
+      "$type": "dimension",
+      "$value": "16px"
+    },
+    "space-3": {
+      "$type": "dimension",
+      "$value": "2px"
+    },
+    "space-4": {
+      "$type": "dimension",
+      "$value": "12px"
+    },
+    "space-5": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "space-6": {
+      "$type": "dimension",
+      "$value": "8px"
+    },
+    "space-7": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "space-8": {
+      "$type": "dimension",
+      "$value": "20px"
+    },
+    "space-9": {
+      "$type": "dimension",
+      "$value": "32px"
+    },
+    "space-10": {
+      "$type": "dimension",
+      "$value": "11px"
+    }
+  },
+  "borderRadius": {
+    "radius-1": {
+      "$type": "dimension",
+      "$value": "24px"
+    },
+    "radius-2": {
+      "$type": "dimension",
+      "$value": "50px"
+    },
+    "radius-3": {
+      "$type": "dimension",
+      "$value": "4px"
+    },
+    "radius-4": {
+      "$type": "dimension",
+      "$value": "40px"
+    },
+    "radius-5": {
+      "$type": "dimension",
+      "$value": "32px"
+    }
+  }
+}

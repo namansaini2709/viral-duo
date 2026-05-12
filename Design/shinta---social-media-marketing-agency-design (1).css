@@ -1,0 +1,57 @@
+:root {
+  /* Colors */
+  --color-color-1: #000000;
+  --color-color-2: #0000ee;
+  --color-color-3: #1c1917;
+  --color-color-4: #78716c;
+  --color-color-5: #ffffff;
+  --color-color-6: #9967ff;
+  --color-color-7: #44403c;
+  --color-color-8: #f4f4f3;
+  --color-color-9: #ffa8f2;
+  --color-color-10: #ffa952;
+
+  /* Typography */
+  --font-type-1-family: sans-serif;
+  --font-type-1-size: 12px;
+  --font-type-1-weight: 400;
+  --font-type-1-line-height: normal;
+  --font-type-2-family: Open Sauce One;
+  --font-type-2-size: 64px;
+  --font-type-2-weight: 700;
+  --font-type-2-line-height: 70.4px;
+  --font-type-2-letter-spacing: -2.56px;
+  --font-type-3-family: Open Sauce One;
+  --font-type-3-size: 12px;
+  --font-type-3-weight: 600;
+  --font-type-3-line-height: 16.8px;
+  --font-type-3-letter-spacing: 0.96px;
+  --font-type-4-family: Open Sauce One;
+  --font-type-4-size: 18px;
+  --font-type-4-weight: 400;
+  --font-type-4-line-height: 27px;
+  --font-type-5-family: system-ui;
+  --font-type-5-size: 32px;
+  --font-type-5-weight: 300;
+  --font-type-5-line-height: normal;
+
+  /* Spacing */
+  --spacing-space-1: 10px;
+  --spacing-space-2: 16px;
+  --spacing-space-3: 2px;
+  --spacing-space-4: 12px;
+  --spacing-space-5: 24px;
+  --spacing-space-6: 8px;
+  --spacing-space-7: 4px;
+  --spacing-space-8: 20px;
+  --spacing-space-9: 32px;
+  --spacing-space-10: 11px;
+
+  /* Border Radius */
+  --radius-radius-1: 24px;
+  --radius-radius-2: 50px;
+  --radius-radius-3: 4px;
+  --radius-radius-4: 40px;
+  --radius-radius-5: 32px;
+
+}
