@@ -72,7 +72,9 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
 
         <div className="footerBottom">
           <div className="footerLogoContainer">
-            <div className="footerLogoIcon">V</div>
+            <div className="footerLogoIcon">
+              <img src="/logo-v2.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+            </div>
             <h1 className="footerLogo">The Viral Duo</h1>
           </div>
           <div className="footerBottomRow">

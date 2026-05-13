@@ -5,11 +5,23 @@ export default function BrandStrip() {
   return (
     <section className="brandStrip">
       <div className="brandContent">
-        <p className="brandTitle">30+ BRANDS LEVELED UP THEIR CONTENT GAME</p>
+        <p className="brandTitle">15+ BRANDS LEVELED UP THEIR CONTENT GAME</p>
         <div className="brandMarqueeContainer">
           <div className="brandMarquee">
             {[...brandLogos, ...brandLogos, ...brandLogos, ...brandLogos].map((logo, i) => (
-              <div key={i} className="brandItem">
+              <div key={i} className="brandItem" style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '0 20px' }}>
+                <img 
+                  src={logo.src} 
+                  alt={logo.name} 
+                  style={{ 
+                    width: '32px', 
+                    height: '32px', 
+                    borderRadius: '50%', 
+                    objectFit: 'contain', 
+                    background: '#fff',
+                    padding: '2px'
+                  }} 
+                />
                 <span>{logo.name}</span>
               </div>
             ))}

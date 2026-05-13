@@ -60,7 +60,9 @@ export default function CompareSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h3>
-            <div className="theViralDuoLogo">V</div>
+            <div className="theViralDuoLogo">
+              <img src="/logo-v2.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+            </div>
             The Viral Duo
           </h3>
           <div className="compareList">

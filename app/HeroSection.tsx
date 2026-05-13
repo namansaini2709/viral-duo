@@ -30,15 +30,15 @@ export default function HeroSection() {
       </div>
       <HeroStack slides={[img.hero, img.work1, img.work2, img.work3, img.work4]} />
       <div className="heroProject">
-        <img src={img.team[0]} alt="" />
+        <img src="/logos/Sharma ji ke bhature.JPG" alt="" style={{ borderRadius: '50%', objectFit: 'contain', background: '#fff', padding: '4px' }} />
         <div>
           <p>NEW PROJECT!</p>
-          <b>Making Rama unmistakable on social</b>
+          <b>Making Sharma Ji Ke Bhature viral on social</b>
         </div>
       </div>
       <div className="heroIntroCopy">
         <p>The Viral Duo helps brands create content that truly connects with their audience, consistently and strategically across social media.</p>
-        <ShiftButton dark href="#contact" large leftIconColor="#A78BFA" rightIconColor="#F472B6" style={{ marginLeft: '60px' }}>Book a call</ShiftButton>
+        <ShiftButton dark href="#contact" large leftIconColor="#A78BFA" rightIconColor="#F472B6">Book a call</ShiftButton>
       </div>
     </section>
   );

@@ -68,7 +68,7 @@ export default function TeamSection() {
 
       <div className="teamFooter">
         <p>The Viral Duo helped us turn ideas into consistent, high-performing social content.</p>
-        <ShiftButton href="/about" dark large leftIconColor="#A78BFA" rightIconColor="#F472B6" style={{ marginLeft: '60px' }}>More About Us</ShiftButton>
+        <ShiftButton href="/about" dark large leftIconColor="#A78BFA" rightIconColor="#F472B6">More About Us</ShiftButton>
       </div>
     </section>
   );

@@ -27,7 +27,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           position: "fixed",
           top: 0,
           left: 0,
-          width: "100vw",
+          width: "100%",
           height: "100vh",
           backgroundColor: "#ffa8f2",
           zIndex: 99999,
@@ -42,6 +42,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
           exit: { opacity: 0, y: -20 },
         }}
         transition={{ duration: 0.6, delay: 0.2 }}
+        style={{ width: '100%' }}
       >
         {children}
       </motion.div>

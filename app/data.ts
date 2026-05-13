@@ -84,3 +84,50 @@ export const brandLogos = [
   { name: "ms classes", src: "/logos/ms classes.JPG" },
   { name: "saral gym", src: "/logos/saral gym logo.jpg" },
 ];
+
+export const testimonials = [
+  {
+    featured: true,
+    videoImg: "/photo.png",
+    title: "Hamara sales 3x badh gaya!",
+    text: "The Viral Duo ki reels dekh kar log door-door se aa rahe hain. Content quality ekdum premium hai aur engagement toh kamaal ki hai. Best decision for our business growth!",
+    name: "Amit Sharma",
+    role: "Owner, Sharma Ji Ke Bhature",
+    avatar: "/logos/Sharma ji ke bhature.JPG"
+  },
+  {
+    title: "Best for Indian Audience",
+    text: "Inko pata hai ki Indian audience ko kya pasand hai. Hamari jewellery collections ki reach ab poore India mein hai. Highly recommended!",
+    name: "Rahul Krishna",
+    role: "Director, Shri Radhey Krishna Jewellers",
+    avatar: "/logos/Shri radhey Krishna  jewellers.JPG"
+  },
+  {
+    title: "Engagement is unbelievable",
+    text: "Pehle hum khud post karte the par koi response nahi milta tha. Ab har reel viral ja rahi hai. Fitnesa brand ki visibility ab ek alag level par hai.",
+    name: "Vikram Singh",
+    role: "Founder, FOF Fitnesa",
+    avatar: "/logos/FOF Fitnesa logo.jpeg"
+  },
+  {
+    title: "Strategic Growth",
+    text: "Our travel bookings increased significantly. They handle everything from strategy to posting. Global Holidays is now a recognized brand online.",
+    name: "Priya Verma",
+    role: "Marketing Head, Global Holidays",
+    avatar: "/logos/Global Holidays.PNG"
+  },
+  {
+    title: "Kamaal ka kaam hai!",
+    text: "Career Launcher ke liye lead generation ab bohot easy ho gaya hai. Educational content ko itna interesting banaya ki students khud connect kar rahe hain.",
+    name: "Ankit Gupta",
+    role: "Center Manager, Career Launcher",
+    avatar: "/logos/carrer launcher.JPG"
+  },
+  {
+    title: "Real Results",
+    text: "MS Classes has seen a massive spike in student inquiries. The Viral Duo's approach is very professional and results-oriented.",
+    name: "Sandeep Malik",
+    role: "Founder, MS Classes",
+    avatar: "/logos/ms classes.JPG"
+  }
+];

@@ -22,7 +22,19 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  overflow-x: clip; /* Clip horizontal overflow without breaking scroll animations */
+}
+
+html {
+  width: 100%;
+  overflow-x: clip;
+}
+
+main {
+  display: block;
+  width: 100%;
 }
 
 a {
@@ -373,6 +385,10 @@ img {
   font-size: 14px;
 }
 
+.menuToggle {
+  display: none;
+}
+
 .button {
   align-items: center;
   background: var(--lime);
@@ -479,6 +495,7 @@ img {
 .section {
   margin: 0 auto;
   max-width: 1200px;
+  width: 100%;
   padding: 88px 18px;
 }
 
@@ -768,7 +785,6 @@ footer h2 {
   height: 100vh;
   isolation: isolate;
   justify-items: center;
-  overflow: hidden;
   position: sticky;
   top: 0;
 }
@@ -1231,16 +1247,15 @@ footer h2 {
 }
 
 .theViralDuoLogo {
-  width: 36px;
-  height: 36px;
-  background: var(--ink);
-  color: #fff;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  font-size: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .compareList {
@@ -1635,7 +1650,7 @@ footer h2 {
   position: absolute;
   top: 45%;
   left: 50%;
-  width: 100vw;
+  width: 100%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
@@ -2000,11 +2015,11 @@ footer h2 {
 
 .heroRibbonContainer {
   height: 200px;
-  left: -5%;
-  overflow: visible;
+  left: 0;
+  overflow: hidden;
   position: absolute;
   top: 25%;
-  width: 110%;
+  width: 100%;
   z-index: 4;
   pointer-events: none;
 }
@@ -2373,13 +2388,16 @@ footer h2 {
 
 .footer {
   background: #E699FF;
-  padding: 24px;
+  padding: 160px 40px 80px; /* Increased top padding significantly */
   color: #000;
   /* Ensure the footer content is visible during the reveal */
   position: relative;
   z-index: 1;
   width: 100%;
   overflow: hidden;
+  min-height: 100vh; /* Make footer full height to cover previous section */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Make sure the main content above footer has a solid background and higher z-index */
@@ -2387,8 +2405,9 @@ footer h2 {
   background: var(--paper);
   position: relative;
   z-index: 2;
-  margin-bottom: 0; /* Margin will be applied if fixed positioning is used, but Framer uses sticky on a wrapper. Let's try sticky on the footer's parent, and z-index trick. */
-  /* Actually, to make a sticky footer reveal, we need the main wrapper to be z-index 2 and margin-bottom 0. The footer wrapper is sticky bottom 0 z-index 0. This works perfectly if the DOM structure is right! */
+  margin-bottom: 0;
+  width: 100%;
+  min-width: 100%;
 }
 
 
@@ -2397,6 +2416,7 @@ footer h2 {
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
+  margin-top: -60px; /* Pulling content up as requested */
 }
 
 .footerLinksGrid {
@@ -2404,7 +2424,7 @@ footer h2 {
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   margin-left: 10vw;
-  margin-top: 40px;
+  margin-top: 0px; /* Removed margin to let it move up */
 }
 
 .footerLinksGrid .footerCol:first-child {
@@ -2510,7 +2530,7 @@ footer h2 {
 .footerNewsletter {
   position: absolute;
   right: 40px;
-  bottom: 80px;
+  bottom: 160px; /* Moved up to match other content */
   width: 300px; 
   background: #f5f5f5; 
   border-radius: 24px; 
@@ -2599,19 +2619,16 @@ footer h2 {
 }
 
 .footerLogoIcon {
-  font-size: 4vw;
-  font-weight: 800;
-  line-height: 0.8;
-  color: #000;
-  letter-spacing: -0.04em;
   background: transparent;
-  border: 0.2vw solid #000;
+  border: 1px solid #000;
   border-radius: 50%;
-  width: 5vw;
-  height: 5vw;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .footerLogo {
@@ -2644,33 +2661,55 @@ footer h2 {
 
 @media (max-width: 1200px) {
   .footerLinksGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 60px !important;
   }
-}
-
-@media (max-width: 900px) {
   .footerNewsletter {
     position: relative;
     right: auto;
     bottom: auto;
     width: 100%;
-    margin-bottom: 40px;
+    margin-top: 60px;
     box-shadow: none;
+    padding: 0;
+    background: transparent;
+  }
+  .footerSocials {
+    justify-content: flex-start !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .footerMain {
+    padding: 80px 40px;
   }
   .footerBottom {
-    border-top: none;
-    padding-top: 0;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footerLinksGrid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    margin-left: 0;
+    margin-top: 40px;
+    padding: 0;
+  }
+  .footerCol {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+  .footerNav {
+    align-items: flex-start !important;
+  }
+  .footerSocials {
+    justify-content: flex-start !important;
   }
 }
 
 @media (max-width: 600px) {
-  .footerLinksGrid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    margin-left: 0;
-    margin-top: 60px;
-    padding: 0 20px;
-  }
   .footerLinksGrid .footerCol:first-child,
   .footerLinksGrid .footerCol:nth-child(2),
   .footerLinksGrid .footerCol:nth-child(3),
@@ -2688,9 +2727,6 @@ footer h2 {
   }
   .newsletterForm {
     flex-direction: column;
-  }
-  .footerLogo {
-    font-size: 20vw;
   }
 }
 
@@ -2863,33 +2899,7 @@ details p {
   }
 
   .painCard {
-    width: min(30vw, 230px);
-  }
-
-  .painCardOne {
-    left: 5vw;
-    top: 17vh;
-  }
-
-  .painCardTwo {
-    right: 5vw;
-    top: 15vh;
-  }
-
-  .painCardThree {
-    left: 36vw;
-    top: 72vh;
-  }
-
-  .painCardFour {
-    left: 8vw;
-    top: 58vh;
-  }
-
-  .painCardFive {
-    right: 8vw;
-    top: 53vh;
-    width: min(32vw, 250px);
+    width: 230px;
   }
 
   .logoStrip,
@@ -3103,7 +3113,7 @@ details p {
   .painCard {
     border-radius: 10px;
     padding: 14px 15px 16px;
-    width: 43vw;
+    width: 90vw !important;
   }
 
   .painCard span {
@@ -3114,32 +3124,6 @@ details p {
 
   .painCard p {
     font-size: 17px;
-  }
-
-  .painCardOne {
-    left: 5vw;
-    top: 13vh;
-  }
-
-  .painCardTwo {
-    right: 5vw;
-    top: 19vh;
-  }
-
-  .painCardThree {
-    left: 8vw;
-    top: 76vh;
-  }
-
-  .painCardFour {
-    left: 5vw;
-    top: 58vh;
-  }
-
-  .painCardFive {
-    right: 5vw;
-    top: 64vh;
-    width: 45vw;
   }
 
   .nav {
@@ -3504,8 +3488,6 @@ details p {
 }
 
 @media (max-width: 800px) {
-  .servicesWrapper { height: auto; }
-  .serviceCardSticky { height: auto; position: relative; top: 0; padding: 20px 0; }
   .serviceCard { flex-direction: column; height: auto; min-height: 800px; border-radius: 40px; }
   .serviceImage { height: 400px; width: 100%; }
 }
@@ -3743,11 +3725,11 @@ details p {
   gap: 100px;
   width: max-content;
   align-items: center;
-  animation: scrollMarquee 500s linear infinite;
+  animation: scrollMarquee 100s linear infinite;
   will-change: transform;
 }
 
-.brandStrip:hover .brandMarquee {
+.brandMarqueeContainer:hover .brandMarquee {
   animation-play-state: paused;
 }
 
@@ -4092,142 +4074,581 @@ details p {
 
 /* Responsive Overrides */
 @media (max-width: 1024px) {
-  .section {
-    padding: 60px 16px;
+  .section, .aboutHero, .aboutVision, .aboutGallery, .aboutTeam, .aboutCTA, .testimonials, .process, .blog, .faq, .servicesSection, .hero, .aboutPage section {
+    padding: 40px 16px !important; /* Standardized mobile padding */
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    overflow-x: clip !important;
+  }
+  
+  .mainContentWrapper, .aboutPage {
+    width: 100% !important;
+    background: var(--paper) !important;
+    position: relative;
+    z-index: 2;
+    overflow-x: clip !important;
+    border-bottom-left-radius: 40px !important;
+    border-bottom-right-radius: 40px !important;
+    overflow-y: visible !important;
+  }
+
+  .heroRibbonContainer {
+    width: 100% !important;
+    left: 0 !important;
+  }
+
+  /* Hero Section Stacking */
+  .heroContainer, .aboutHero .heroContainer {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .heroText h1, .aboutHero .heroLine h1 {
+    font-size: 10vw !important;
+    line-height: 1.1;
+  }
+
+  .heroImageWrapper, .visionImage {
+    width: 100% !important;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Vision Section Stacking */
+  .visionContent {
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+  
+  .visionText, .visionImage {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* About Gallery Stacking - Crucial Fix */
+  .galleryGrid {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 20px !important;
+    position: relative !important;
+  }
+  
+  .galleryItem {
+    position: relative !important;
+    width: 100% !important;
+    height: 400px !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin-bottom: 20px;
+  }
+  
+  .galleryItem.centerMain {
+    width: 100% !important;
+    height: 500px !important;
+    order: -1; /* Keep main one at top */
+  }
+
+  /* Team Stacking */
+  .teamGrid, .aboutTeam .teamGrid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  
+  .aboutTeamMember {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* CTA Stacking */
+  .aboutCTA .ctaContent {
+    padding: 60px 24px !important;
+    border-radius: 24px !important;
+  }
+  
+  .aboutCTA h2 {
+    font-size: 32px !important;
   }
   
   .hero {
-    padding: 100px 16px 40px;
+    padding: 120px 20px 60px !important;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
-  .logoStrip {
-    grid-template-columns: repeat(3, 1fr);
+  .heroTitle {
+    max-width: 100%;
+    margin-bottom: 50px;
   }
   
-  .footerLinksGrid {
+  .heroTitle h1 {
+    font-size: clamp(48px, 10vw, 72px) !important;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  
+  .heroStack {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 40px auto !important;
+    width: min(85vw, 320px) !important;
+    height: 440px !important;
+    transform: none !important;
+  }
+  
+  .heroIntroCopy {
+    position: relative !important;
+    margin: 40px auto 0 !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+
+  .heroIntroCopy p {
+    text-align: center !important;
+    max-width: 90% !important;
+    margin: 0 auto 20px !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  .cta {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
     gap: 20px;
-    margin-left: 0;
+  }
+
+  .ctaCard {
+    min-height: 420px;
+  }
+
+  .workGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .workCard.wide {
+    grid-column: span 1;
+  }
+
+  .serviceCardBody {
+    flex-direction: column !important;
+    gap: 40px;
+    padding: 30px 20px;
+  }
+
+  .serviceContent {
+    max-width: 100% !important;
+    text-align: center;
+  }
+
+  .serviceImage {
+    width: 100% !important;
+    height: 300px !important;
+  }
+
+  .compareGrid {
+    flex-direction: column !important;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .compareCard {
+    width: 100% !important;
+    max-width: 450px;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  .footerMain {
+    flex-direction: column !important;
+    gap: 60px !important;
+    align-items: flex-start !important;
+  }
+
+  .footerLinksGrid {
+    grid-template-columns: 1fr 1fr !important; /* Two columns on tablet/mobile is often better than one */
+    gap: 40px !important;
+    width: 100% !important;
+  }
+
+  @media (max-width: 600px) {
+    .footerLinksGrid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  .footerNewsletter {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 40px 0 0 !important;
+    border-radius: 24px !important;
+  }
+
+  .footerBottom {
+    padding-top: 40px !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footerLogoContainer {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .footerBottomRow {
+    flex-direction: column !important;
+    gap: 12px !important;
   }
 }
 
 @media (max-width: 768px) {
   .nav {
-    padding: 12px 16px !important;
-    gap: 12px;
+    padding: 10px 16px !important;
+    width: 95%;
   }
-  
-  .navLinks {
-    display: none; /* We will use a hamburger menu */
-  }
-  
-  .hero {
-    min-height: auto;
-    padding: 120px 16px 40px;
-  }
-  
+
   .heroTitle h1 {
-    font-size: clamp(40px, 12vw, 64px);
+    font-size: clamp(34px, 10vw, 48px);
   }
-  
+
   .heroStack {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 100%;
-    height: 400px;
-    margin-top: 40px;
+    width: min(90vw, 260px) !important;
+    height: 380px !important;
+    left: auto !important;
+    top: auto !important;
+    margin: 30px auto !important;
   }
-  
-  .heroCard {
-    position: absolute;
-    transform: none !important;
+
+  .sectionHead h2, .mission h2, .compare h2, .process h2, .testimonials h2, .team h2, .pricing h2, .faq h2, .cta h2, footer h2, .servicesSection h2 {
+    font-size: clamp(28px, 8vw, 38px);
   }
-  
-  .heroProject, .heroIntroCopy, .heroMini, .heroSwipe {
-    display: none !important; /* Hide complex floating elements on mobile for clean look */
+
+  .sectionHead {
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
   }
-  
-  .logoStrip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .sectionHead h2, .mission h2, .compare h2, .process h2, .testimonials h2, .team h2, .pricing h2, .faq h2, .cta h2, footer h2 {
-    font-size: clamp(32px, 8vw, 48px);
-  }
-  
-  .compareGrid, .servicesGrid, .processGrid, .teamGrid, .testimonialsGrid {
+
+  .testimonialGrid, .blogGrid, .teamGrid, .servicesGrid, .workGrid {
     grid-template-columns: 1fr !important;
-    flex-direction: column !important;
     gap: 24px;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .workCard.wide {
+    grid-column: span 1 !important;
+  }
+
+  .workCard {
+    height: 440px !important;
+    width: 100% !important;
+  }
+
+  .testimonialCard {
+    width: 100% !important;
+    padding: 30px 20px !important;
+    border-radius: 32px !important;
+    box-sizing: border-box !important;
+  }
+
+  .testimonialCard.featured {
+    flex-direction: column !important;
+    padding: 20px !important;
+    gap: 24px !important;
+    grid-column: span 1 !important;
+    align-items: center !important;
+  }
+
+  .testimonialVideo {
+    width: 100% !important;
+    height: 380px !important;
+    flex-shrink: 1 !important;
+    border-radius: 20px !important;
+  }
+
+  .featuredContent {
+    width: 100% !important;
+    padding: 0 !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .testimonialProfile {
+    justify-content: center !important;
+  }
+
+  .testimonialContent h3 {
+    font-size: 24px !important;
+  }
+
+  .testimonialContent p {
+    font-size: 15px !important;
+  }
+
+  /* Team Section Responsiveness */
+  .teamGridCluttered {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    padding: 60px 16px !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .teamGridCluttered .teamCard {
+    margin-left: 0 !important;
+    transform: none !important;
+    width: calc(50% - 16px) !important;
+    max-width: 150px !important;
+    height: auto !important;
+    aspect-ratio: 1/1 !important;
+  }
+
+  .teamFooter {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 24px !important;
+    padding: 40px 20px !important;
+  }
+
+  .teamFooter p {
+    max-width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  /* CTA Section Responsiveness */
+  .cta {
+    grid-template-columns: 1fr !important;
+    padding: 0 16px !important;
+    gap: 16px !important;
+    margin-bottom: 60px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .ctaCard {
+    min-height: 440px !important;
+    border-radius: 40px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .ctaCardDark {
+    padding: 60px 24px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .ctaCardDark h2 {
+    font-size: 32px !important;
+    margin-bottom: 16px !important;
+    line-height: 1.1 !important;
+  }
+
+  .ctaCardDark p {
+    font-size: 16px !important;
+    margin-bottom: 32px !important;
+    opacity: 0.8 !important;
+    max-width: 100% !important;
+  }
+
+  .ctaWavyDecor {
+    width: 60px !important;
+    top: 24px !important;
+    right: 24px !important;
+  }
+
+  .ctaCardImage {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Mission Section Responsiveness */
+  .missionBlocks {
+    gap: 100px !important;
+  }
+
+  .missionBlock, .missionBlock.reverse {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 0 16px !important;
+  }
+
+  .missionBlock.reverse {
+    flex-direction: column-reverse !important;
+  }
+
+  .missionImage {
+    max-width: 300px !important;
+    margin: 0 auto !important;
+  }
+
+  .missionMetric {
+    padding: 12px 20px !important;
+    min-width: 150px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: -20px !important;
+  }
+
+  .missionMetric.pink, .missionMetric.purple {
+    left: 50% !important;
+    top: -30px !important;
+    right: auto !important;
+  }
+
+  .missionText h3 {
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .missionText p {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  .missionLine {
+    left: -5% !important;
+    right: -5% !important;
+    top: -50px !important;
+    bottom: -50px !important;
+    width: 110% !important;
+    opacity: 0.5 !important;
+  }
+
+  .missionLine svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .processGrid {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+
+  .processCard {
+    height: 320px !important;
+    min-width: 0 !important;
+  }
+
+  .serviceCard {
+    width: calc(100% - 32px) !important;
+    margin: 0 16px !important;
+    border-radius: 32px !important;
+    height: 80vh !important;
+    overflow: hidden;
   }
   
-  /* Footer */
+  .servicesWrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .painCard {
+    width: 48vw !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+  
+  .painCard p {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .footer {
+    padding: 60px 20px 30px;
+  }
+
   .footerMain {
-    flex-direction: column;
-    margin-bottom: 20px;
+    gap: 30px;
   }
-  
+
   .footerLinksGrid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
   }
-  
-  .footerLinksGrid .footerCol:first-child,
-  .footerLinksGrid .footerCol:nth-child(2),
-  .footerLinksGrid .footerCol:nth-child(3),
-  .footerLinksGrid .footerCol:last-child {
-    margin-left: 0;
-    padding-left: 0;
-    padding-top: 0;
-    text-align: left;
-    align-items: flex-start;
-    transform: none;
-  }
-  
-  .footerLinksGrid .footerCol:last-child .footerNav {
-    align-items: flex-start;
-  }
-  
-  .socialCol {
-    margin-top: 0;
-    text-align: left;
-  }
-  
-  .footerSocials {
-    justify-content: flex-start;
-  }
-  
+
   .footerNewsletter {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: 100%;
-    margin-top: 40px;
-    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 20px;
   }
-  
+
   .footerBottom {
-    padding-top: 40px;
+    padding-top: 30px;
   }
-  
+
+  .footerLogoIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+
+  .footerLogo {
+    font-size: clamp(32px, 10vw, 56px) !important;
+    white-space: normal !important;
+    text-align: center !important;
+    line-height: 1.1 !important;
+    max-width: 100% !important;
+  }
+
   .footerLogoContainer {
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+    margin-bottom: 30px !important;
   }
-  
-  .footerBottomRow {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-    align-items: center;
+
+  /* Explore More Responsiveness */
+  .seeMoreRow {
+    flex-direction: column !important;
+    gap: 20px !important;
+    align-items: center !important;
   }
-  
-  .nav .menuToggle {
-    display: block !important;
+
+  .seeMoreContent h2 {
+    font-size: clamp(32px, 8vw, 48px) !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
   }
-  
-  .nav button:not(.menuToggle) {
-    display: none !important;
+
+  .seeMoreArrowWrap {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .seeMoreBtn {
+    width: 64px !important;
+    height: 64px !important;
+    font-size: 28px !important;
+    position: relative !important; /* Changed from absolute to allow stacking */
+    top: auto !important;
+    left: auto !important;
   }
 }

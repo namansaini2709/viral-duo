@@ -27,7 +27,7 @@ export default function Home() {
   const [navTheme, setNavTheme] = useState<'dark' | 'light'>('dark');
   const footerRef = useRef<HTMLDivElement>(null);
   const [footerHeight, setFooterHeight] = useState(0);
-  const [isRevealFixed, setIsRevealFixed] = useState(true);
+  const [isRevealFixed, setIsRevealFixed] = useState(false);
   const [isOverFooter, setIsOverFooter] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,8 @@ export default function Home() {
         if (footerRef.current) {
           const height = footerRef.current.offsetHeight;
           setFooterHeight(height);
-          setIsRevealFixed(true);
+          // Disable fixed reveal on mobile/tablet for better UX
+          setIsRevealFixed(window.innerWidth > 1024);
         }
       };
 
@@ -100,7 +101,9 @@ export default function Home() {
           boxShadow: isRevealFixed ? '0 20px 40px rgba(0,0,0,0.2)' : 'none',
           borderBottomLeftRadius: '40px',
           borderBottomRightRadius: '40px',
-          paddingBottom: '15px'
+          paddingBottom: '15px',
+          width: '100%',
+          minWidth: '100%',
         }}
       >
         <HeroSection />

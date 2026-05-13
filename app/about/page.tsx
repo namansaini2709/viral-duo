@@ -58,7 +58,10 @@ export default function AboutPage() {
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <a className="brand" href="/" style={{ color: 'inherit' }}>The Viral Duo</a>
+        <a className="brand" href="/" style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+          The Viral Duo
+        </a>
         <div className="navLinks" style={{ color: 'inherit' }}>
           <a href="/#work">Projects</a>
           <a href="/about" className="active">About Us</a>
@@ -125,7 +128,10 @@ export default function AboutPage() {
             viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="pill pink">OUR VISION</span>
+            <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <img src="/logo-v2.png" alt="" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
+              OUR VISION
+            </span>
             <h2>What We Stand For</h2>
             <p>
               Social media moves fast. Audiences are sharp. They know when they're being sold to, 
@@ -187,7 +193,10 @@ export default function AboutPage() {
                 <img src={src} alt={`Team Member ${i + 1}`} />
               </div>
               <div className="memberInfo">
-                <h3>The Viral Duo</h3>
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <img src="/logo-v2.png" alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
+                  The Viral Duo
+                </h3>
                 <p>Social Experts</p>
               </div>
             </motion.div>
