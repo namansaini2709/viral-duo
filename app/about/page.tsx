@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import ShiftButton from "../ShiftButton";
+import AboutGallery from "./AboutGallery";
 
 const img = {
   team: [
@@ -12,7 +13,7 @@ const img = {
     "https://framerusercontent.com/images/ZsEIaooNaf9TIZjuTEevCpMqEe8.jpg?width=790&height=936",
     "https://framerusercontent.com/images/5gXitsm3iI0zoj6mry7iO1T3Xo.jpg?width=790&height=936",
   ],
-  vision: "https://framerusercontent.com/images/coxQ8PcmIiNjz4jsGum1gSLeT0A.jpg",
+  vision: "/photo.png",
 };
 
 export default function AboutPage() {
@@ -68,33 +69,49 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <section className="aboutHero">
-        <div className="overflow-hidden">
-          <motion.p 
-            className="eyebrow"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        <div className="heroContainer">
+          <div className="heroText">
+            <div className="overflow-hidden">
+              <motion.p 
+                className="pill pink"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
+                ABOUT US
+              </motion.p>
+            </div>
+            <div className="heroLine">
+              <motion.h1
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                Built by people who won’t
+              </motion.h1>
+            </div>
+            <div className="heroLine">
+              <motion.h1
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                ship content they’d skip
+              </motion.h1>
+            </div>
+          </div>
+          
+          <motion.div 
+            className="heroImageWrapper"
+            initial={{ opacity: 0, scale: 0.8, x: 40 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            ABOUT US
-          </motion.p>
-        </div>
-        <div className="heroLine">
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Built by people who won’t
-          </motion.h1>
-        </div>
-        <div className="heroLine">
-          <motion.h1
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            ship content they’d skip
-          </motion.h1>
+            <img 
+              src="/photo.png" 
+              alt="Creativity" 
+            />
+          </motion.div>
         </div>
       </section>
 
@@ -103,9 +120,9 @@ export default function AboutPage() {
         <div className="visionContent">
           <motion.div 
             className="visionText"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink">OUR VISION</span>
@@ -123,9 +140,9 @@ export default function AboutPage() {
           </motion.div>
           <motion.div 
             className="visionImage"
-            initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, scale: 0.8, y: 60 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <img src={img.vision} alt="Our Vision" />
@@ -133,19 +150,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Goal */}
-      <section className="aboutGoal">
-        <motion.div 
-          className="goalContainer"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="pill dark">WHAT WE’RE HERE TO DO</span>
-          <h2>Building content that matters.</h2>
-        </motion.div>
-      </section>
+      {/* Our Goal Gallery */}
+      <AboutGallery />
 
       {/* Team Section */}
       <section className="aboutTeam">

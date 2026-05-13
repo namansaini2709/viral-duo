@@ -27,8 +27,8 @@ function MissionBlockWithLine({
     offset: ["start end", "end start"]
   });
 
-  const pathLength = useScrollProgressTransform(scrollYProgress, [0.1, 0.5], [0, 1]);
-  const opacity = useScrollProgressTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
+  const pathLength = useTransform(scrollYProgress, [0.15, 0.85], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
 
   return (
     <motion.article
@@ -81,9 +81,9 @@ export default function MissionSection() {
         <MissionBlockWithLine
           className="missionBlock"
           lineColor="#ffa8f2"
-          path="M 1000,50 C 1000,150 800,150 750,300 C 650,450 400,450 350,500 C 150,550 100,700 150,850"
-          strokeWidth={8}
-          viewBox="0 0 2000 1000"
+          path="M -100,200 C 0,350 250,100 200,300 C 150,500 0,400 50,600 C 100,800 250,750 200,900 C 150,1050 0,900 50,750"
+          strokeWidth={22}
+          viewBox="0 0 1000 1000"
         >
           <div className="missionImage">
             <img src={img.phone1} alt="Growth" />
@@ -107,8 +107,9 @@ export default function MissionSection() {
         <MissionBlockWithLine
           className="missionBlock reverse"
           lineColor="#9967ff"
-          path="M 600,600 C 800,700 1000,900 800,1200"
-          strokeWidth={4}
+          path="M 1100,200 C 1000,350 750,100 800,300 C 850,500 1000,400 950,600 C 900,800 750,750 800,900 C 850,1050 1000,900 950,750"
+          strokeWidth={16}
+          viewBox="0 0 1000 1000"
         >
           <div className="missionText">
             <h3>Creator-led content, long-term growth.</h3>
