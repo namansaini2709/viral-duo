@@ -5,7 +5,7 @@ import { img } from './data';
 
 export default function HeroSection() {
   return (
-    <section className="hero section">
+    <section className="hero section" id="home">
       <div className="heroTitle">
         <h1>UGC that grows your brand.</h1>
         <ul>

@@ -3,6 +3,14 @@ import { motion } from 'framer-motion';
 
 export default function CompareSection() {
   const [hoveredCard, setHoveredCard] = useState<null | 'agencies' | 'theViralDuo'>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section className="section compare">
@@ -22,8 +30,8 @@ export default function CompareSection() {
           onMouseLeave={() => setHoveredCard(null)}
           initial={{ opacity: 0, x: -50, rotate: 0 }}
           animate={{
-            x: hoveredCard === 'agencies' ? 0 : (hoveredCard === 'theViralDuo' ? -120 : 40),
-            rotate: hoveredCard === 'agencies' ? 0 : -4,
+            x: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : (hoveredCard === 'theViralDuo' ? -120 : 40)),
+            rotate: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : -4),
             scale: hoveredCard === 'agencies' ? 1.02 : 1,
             zIndex: hoveredCard === 'agencies' ? 10 : 1,
             boxShadow: hoveredCard === 'agencies' ? "0 20px 40px rgba(0,0,0,0.05)" : "none"
@@ -49,8 +57,8 @@ export default function CompareSection() {
           onMouseLeave={() => setHoveredCard(null)}
           initial={{ opacity: 0, x: 50, rotate: 0 }}
           animate={{
-            x: hoveredCard === 'theViralDuo' ? 0 : (hoveredCard === 'agencies' ? 120 : -40),
-            rotate: hoveredCard === 'theViralDuo' ? 0 : 4,
+            x: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : (hoveredCard === 'agencies' ? 120 : -40)),
+            rotate: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : 4),
             scale: hoveredCard === 'theViralDuo' ? 1.05 : 1,
             zIndex: hoveredCard === 'theViralDuo' ? 10 : 2,
             boxShadow: hoveredCard === 'theViralDuo' ? "0 40px 80px rgba(0,0,0,0.15)" : "0 20px 40px rgba(0,0,0,0.05)"

@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import ShiftButton from './ShiftButton';
 import FlyingIconsButton from './FlyingIconsButton';
+import WiggleButton from './WiggleButton';
 
 interface FooterSectionProps {
   isRevealFixed: boolean;
@@ -31,19 +32,19 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
             <div className="footerCol">
               <h3>NAVIGATION</h3>
               <div className="footerNav">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="#404">404</a>
+                <WiggleButton href="/">Home</WiggleButton>
+                <WiggleButton href="/#work">Projects</WiggleButton>
+                <WiggleButton href="/about">About</WiggleButton>
+                <WiggleButton href="/#contact">Contact</WiggleButton>
+                <WiggleButton href="/#faq">FAQ</WiggleButton>
               </div>
             </div>
 
             <div className="footerCol">
               <h3>LEGAL</h3>
               <div className="footerNav">
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms & Condition</a>
+                <WiggleButton href="/privacy">Privacy Policy</WiggleButton>
+                <WiggleButton href="/terms">Terms & Condition</WiggleButton>
               </div>
             </div>
 

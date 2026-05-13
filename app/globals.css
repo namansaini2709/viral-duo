@@ -4264,15 +4264,26 @@ details p {
 
   .compareGrid {
     flex-direction: column !important;
-    gap: 40px;
-    align-items: center;
+    gap: 40px !important;
+    align-items: center !important;
+    height: auto !important;
+    padding: 40px 20px !important;
+    display: flex !important;
   }
 
   .compareCard {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
     width: 100% !important;
-    max-width: 450px;
+    max-width: 450px !important;
     transform: none !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    padding: 40px 20px !important;
+    box-sizing: border-box !important;
   }
 
   .footerMain {
