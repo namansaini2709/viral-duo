@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import ShiftButton from './ShiftButton';
+import FlyingIconsButton from './FlyingIconsButton';
 
 interface FooterSectionProps {
   isRevealFixed: boolean;
@@ -84,7 +85,7 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
           <p>Sign up for our newsletter to stay up to date with the latest motion design & studio news.</p>
           <form className="newsletterForm">
             <input type="email" placeholder="Email address" required />
-            <ShiftButton type="submit" fullWidth>Subscribe</ShiftButton>
+            <FlyingIconsButton type="submit" fullWidth label="Subscribe" />
           </form>
         </div>
       </footer>
