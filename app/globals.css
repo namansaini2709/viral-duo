@@ -352,7 +352,7 @@ img {
   align-items: center;
   backdrop-filter: blur(18px);
   display: flex;
-  gap: 28px;
+  gap: 24px;
   justify-content: space-between;
   left: 50%;
   position: fixed;
@@ -362,13 +362,13 @@ img {
 }
 
 .brand {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
 }
 
 .navLinks {
   display: flex;
-  gap: 26px;
+  gap: 24px;
   color: #393530;
   font-size: 14px;
 }
@@ -2373,7 +2373,7 @@ footer h2 {
 
 .footer {
   background: #E699FF;
-  padding: 40px 40px 40px;
+  padding: 24px;
   color: #000;
   /* Ensure the footer content is visible during the reveal */
   position: relative;
@@ -2396,15 +2396,15 @@ footer h2 {
 .footerMain {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .footerLinksGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
-  margin-left: 15vw;
-  margin-top: 80px; /* Reduced from 160px */
+  gap: 40px;
+  margin-left: 10vw;
+  margin-top: 40px;
 }
 
 .footerLinksGrid .footerCol:first-child {
@@ -2509,22 +2509,22 @@ footer h2 {
 
 .footerNewsletter {
   position: absolute;
-  right: 60px;
-  bottom: 180px;
-  width: 340px; 
+  right: 40px;
+  bottom: 80px;
+  width: 300px; 
   background: #f5f5f5; 
-  border-radius: 40px; 
-  padding: 40px;
+  border-radius: 24px; 
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   z-index: 10;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
   text-align: center; /* Centering everything */
 }
 
 .footerNewsletter h3 {
-  font-size: 42px; /* Reduced from 64px */
+  font-size: 28px;
   font-weight: 800;
   margin: 0;
   letter-spacing: -0.04em;
@@ -2585,11 +2585,11 @@ footer h2 {
 
 .footerBottom {
   border-top: 1px solid rgba(0,0,0,0.1);
-  padding-top: 60px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 16px;
 }
 
 .footerLogoContainer {
@@ -2599,23 +2599,23 @@ footer h2 {
 }
 
 .footerLogoIcon {
-  font-size: 8vw;
+  font-size: 4vw;
   font-weight: 800;
   line-height: 0.8;
   color: #000;
   letter-spacing: -0.04em;
   background: transparent;
-  border: 0.4vw solid #000;
+  border: 0.2vw solid #000;
   border-radius: 50%;
-  width: 10vw;
-  height: 10vw;
+  width: 5vw;
+  height: 5vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .footerLogo {
-  font-size: clamp(32px, 10vw, 90px);
+  font-size: clamp(24px, 5vw, 48px);
   font-weight: 800;
   line-height: 0.8;
   margin: 0;
@@ -4088,4 +4088,146 @@ details p {
   object-fit: cover;
   opacity: 1;
   transition: all 0.4s ease;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .section {
+    padding: 60px 16px;
+  }
+  
+  .hero {
+    padding: 100px 16px 40px;
+  }
+  
+  .logoStrip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .footerLinksGrid {
+    gap: 20px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 12px 16px !important;
+    gap: 12px;
+  }
+  
+  .navLinks {
+    display: none; /* We will use a hamburger menu */
+  }
+  
+  .hero {
+    min-height: auto;
+    padding: 120px 16px 40px;
+  }
+  
+  .heroTitle h1 {
+    font-size: clamp(40px, 12vw, 64px);
+  }
+  
+  .heroStack {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: 400px;
+    margin-top: 40px;
+  }
+  
+  .heroCard {
+    position: absolute;
+    transform: none !important;
+  }
+  
+  .heroProject, .heroIntroCopy, .heroMini, .heroSwipe {
+    display: none !important; /* Hide complex floating elements on mobile for clean look */
+  }
+  
+  .logoStrip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .sectionHead h2, .mission h2, .compare h2, .process h2, .testimonials h2, .team h2, .pricing h2, .faq h2, .cta h2, footer h2 {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+  
+  .compareGrid, .servicesGrid, .processGrid, .teamGrid, .testimonialsGrid {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    gap: 24px;
+  }
+  
+  /* Footer */
+  .footerMain {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .footerLinksGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .footerLinksGrid .footerCol:first-child,
+  .footerLinksGrid .footerCol:nth-child(2),
+  .footerLinksGrid .footerCol:nth-child(3),
+  .footerLinksGrid .footerCol:last-child {
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 0;
+    text-align: left;
+    align-items: flex-start;
+    transform: none;
+  }
+  
+  .footerLinksGrid .footerCol:last-child .footerNav {
+    align-items: flex-start;
+  }
+  
+  .socialCol {
+    margin-top: 0;
+    text-align: left;
+  }
+  
+  .footerSocials {
+    justify-content: flex-start;
+  }
+  
+  .footerNewsletter {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 40px;
+    box-sizing: border-box;
+  }
+  
+  .footerBottom {
+    padding-top: 40px;
+  }
+  
+  .footerLogoContainer {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .footerBottomRow {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .nav .menuToggle {
+    display: block !important;
+  }
+  
+  .nav button:not(.menuToggle) {
+    display: none !important;
+  }
 }

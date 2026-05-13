@@ -16,6 +16,7 @@ interface ShiftButtonProps {
   rel?: string;
   showIcon?: boolean;
   large?: boolean;
+  small?: boolean;
   light?: boolean;
   leftIconColor?: string;
   rightIconColor?: string;
@@ -40,15 +41,16 @@ export default function ShiftButton({
   rel,
   showIcon = true,
   large = false,
+  small = false,
   light = false,
   leftIconColor,
   rightIconColor,
 }: ShiftButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const baseHeight = large ? 60 : 48;
-  const fontSize = large ? "20px" : "16px";
-  const paddingX = large ? "80px" : "24px";
+  const baseHeight = large ? 60 : small ? 42 : 48;
+  const fontSize = large ? "20px" : small ? "14px" : "16px";
+  const paddingX = large ? "80px" : small ? "20px" : "24px";
 
   // Default colors
   let defaultBg = dark ? "#000" : "#0048A1";
