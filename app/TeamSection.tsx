@@ -20,11 +20,11 @@ function TeamLineAnimation() {
     }
   });
 
-  const path = "M -500 300 C 0 100, 500 500, 1000 300 S 2000 100, 2500 300 S 3000 500, 3500 300";
+  const path = "M 0 300 C 500 100, 1500 500, 2000 300";
 
   return (
-    <div ref={ref} style={{ width: '100%', height: '100%' }}>
-      <svg viewBox="-500 0 4000 600" fill="none" preserveAspectRatio="none" style={{ width: '100%', height: '100%' }}>
+    <div ref={ref} style={{ width: '80%', height: '100%', margin: '0 auto' }}>
+      <svg viewBox="0 0 2000 600" fill="none" preserveAspectRatio="none" style={{ width: '100%', height: '100%' }}>
         <motion.path
           d={path}
           stroke="#fbb6ed"

@@ -6,12 +6,9 @@ import AboutGallery from "./AboutGallery";
 
 const img = {
   team: [
-    "https://framerusercontent.com/images/zcV8VMLW2UaiLm9AJM8MPiwdlw.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/o6duUa9OkHlf9DhOgeIlWNcRGY.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/Q4PeZp2Qx7rmA1hYjx2r2TeGlQ.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/DDCUixRHvKkrC3Ij9VowKTydSFE.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/ZsEIaooNaf9TIZjuTEevCpMqEe8.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/5gXitsm3iI0zoj6mry7iO1T3Xo.jpg?width=790&height=936",
+    "/team/pushkar.jpeg",
+    "/team/shubham.jpeg",
+    "/team/third bhai.jpeg",
   ],
   vision: "/photo.png",
 };
@@ -180,27 +177,30 @@ export default function AboutPage() {
           </motion.h2>
         </div>
         <div className="teamGrid">
-          {img.team.map((src, i) => (
-            <motion.div 
-              key={i} 
-              className="teamMember"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="memberImage">
-                <img src={src} alt={`Team Member ${i + 1}`} />
-              </div>
-              <div className="memberInfo">
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <img src="/logo-v2.png" alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
-                  The Viral Duo
-                </h3>
-                <p>Social Experts</p>
-              </div>
-            </motion.div>
-          ))}
+          {img.team.map((src, i) => {
+            const names = ["Pushkar Sharma", "Shubham Goel", "Neer Mittal"];
+            return (
+              <motion.div 
+                key={i} 
+                className="teamMember"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="memberImage">
+                  <img src={src} alt={names[i]} />
+                </div>
+                <div className="memberInfo">
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <img src="/logo-v2.png" alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
+                    {names[i]}
+                  </h3>
+                  <p>Social Expert</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
