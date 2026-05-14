@@ -33,6 +33,8 @@ export default function WiggleButton({ children, href, className, onClick }: Wig
             } else {
               window.location.hash = id;
             }
+          } else if (href === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         }
         
