@@ -4103,17 +4103,19 @@ details p {
 
   .heroRibbonContainer {
     top: 42% !important;
-    height: 100px !important;
-    z-index: 0 !important; /* Move behind hero stack */
+    height: 150px !important; /* Increased height for larger text */
+    z-index: 0 !important;
     opacity: 1 !important;
   }
 
   .heroRibbonSvg use {
-    stroke-width: 16px !important;
+    stroke-width: 38px !important; /* Thicker stroke */
   }
 
   .heroRibbonText {
-    font-size: 8px !important;
+    font-size: 20px !important; /* Much larger font size */
+    font-weight: 900 !important;
+    letter-spacing: 0.05em !important;
   }
 
   /* Hero Section Stacking */
@@ -4348,8 +4350,29 @@ details p {
 
 @media (max-width: 768px) {
   .nav {
-    padding: 10px 16px !important;
-    width: 95%;
+    padding: 8px 12px !important;
+    width: 95% !important;
+    gap: 10px !important;
+    justify-content: space-between !important;
+  }
+
+  .brand {
+    white-space: nowrap !important;
+    font-size: 14px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .brand img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .nav .menuToggle {
+    display: flex !important;
+    order: 3 !important;
   }
 
   .heroTitle h1 {
