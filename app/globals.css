@@ -4104,7 +4104,7 @@ details p {
   .heroRibbonContainer {
     top: 42% !important;
     height: 100px !important;
-    z-index: 100 !important;
+    z-index: 0 !important; /* Move behind hero stack */
     opacity: 1 !important;
   }
 
