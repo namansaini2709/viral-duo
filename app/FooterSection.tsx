@@ -25,8 +25,9 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
           <div className="footerLinksGrid">
             <div className="footerCol">
               <h3>CONTACT</h3>
-              <a href="mailto:contact@theViralDuo.com" className="footerContactText">contact@theViralDuo.com</a>
-              <p className="footerContactText">+12 345 678</p>
+              <a href="mailto:theviralduo0923@gmail.com" className="footerContactText">theviralduo0923@gmail.com</a>
+              <p className="footerContactText">+91 77019 18603</p>
+              <p className="footerContactText">+91 92051 97949</p>
             </div>
 
             <div className="footerCol">
@@ -85,7 +86,7 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
 
         <div className="footerNewsletter">
           <h3>Newsletter</h3>
-          <p>Sign up for our newsletter to stay up to date with the latest motion design & studio news.</p>
+          <p>Sign up for our newsletter to stay up to date with the latest viral ideas and content.</p>
           <form className="newsletterForm">
             <input type="email" placeholder="Email address" required />
             <FlyingIconsButton type="submit" fullWidth label="Subscribe" />
