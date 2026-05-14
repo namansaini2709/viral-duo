@@ -4102,8 +4102,18 @@ details p {
   }
 
   .heroRibbonContainer {
-    width: 100% !important;
-    left: 0 !important;
+    top: 42% !important;
+    height: 100px !important;
+    z-index: 100 !important;
+    opacity: 1 !important;
+  }
+
+  .heroRibbonSvg use {
+    stroke-width: 16px !important;
+  }
+
+  .heroRibbonText {
+    font-size: 8px !important;
   }
 
   /* Hero Section Stacking */
@@ -4449,6 +4459,18 @@ details p {
     padding: 40px 20px !important;
   }
 
+  .teamLine {
+    top: 0% !important;
+    height: 100% !important;
+    opacity: 0.8 !important; /* Slightly lower for better layering */
+    z-index: 0 !important; /* Move behind content */
+  }
+
+  .teamLine path {
+    stroke-width: 18px !important;
+    opacity: 1 !important;
+  }
+
   .teamFooter p {
     max-width: 100% !important;
     font-size: 16px !important;
@@ -4553,17 +4575,23 @@ details p {
   }
 
   .missionLine {
-    left: -5% !important;
-    right: -5% !important;
-    top: -50px !important;
-    bottom: -50px !important;
-    width: 110% !important;
-    opacity: 0.5 !important;
+    left: -15% !important;
+    right: -15% !important;
+    top: -100px !important;
+    bottom: -100px !important;
+    width: 130% !important;
+    opacity: 0.8 !important;
+    z-index: 0 !important; /* Move behind content */
   }
 
   .missionLine svg {
     width: 100% !important;
     height: 100% !important;
+  }
+
+  .missionLine path {
+    stroke-width: 18px !important;
+    opacity: 1 !important;
   }
 
   .processGrid {
@@ -4577,17 +4605,88 @@ details p {
   }
 
   .serviceCard {
-    width: calc(100% - 32px) !important;
-    margin: 0 16px !important;
+    width: calc(100% - 40px) !important;
+    margin: 0 20px !important;
     border-radius: 32px !important;
-    height: 80vh !important;
-    overflow: hidden;
+    height: 520px !important; /* Fixed height for all cards on mobile */
+    overflow: visible;
   }
-  
+
+  .serviceCardBody {
+    flex-direction: column !important;
+    height: 100% !important; /* Fill fixed card height */
+    border-radius: 32px !important;
+  }
+
+  .serviceContent {
+    padding: 50px 24px 20px !important;
+    text-align: center !important;
+    align-items: center !important;
+    flex: 1.5 !important;
+  }
+
+  .serviceContent h2 {
+    font-size: 26px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .serviceContent p {
+    font-size: 14px !important;
+    margin: 0 auto !important;
+    line-height: 1.4 !important;
+  }
+
+  .serviceImage {
+    height: 200px !important; /* Fixed image height on mobile */
+    width: 100% !important;
+    flex: 1 !important;
+  }
+
+  .serviceCard.color1 .serviceTab,
+  .serviceCard.color2 .serviceTab,
+  .serviceCard.color3 .serviceTab,
+  .serviceCard.color4 .serviceTab {
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+
+  .serviceTab {
+    position: absolute !important;
+    top: 0 !important;
+    width: 140px !important;
+    min-width: 0 !important;
+    height: 48px !important;
+    font-size: 12px !important;
+    border-radius: 20px 20px 0 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 30 !important;
+  }
+
+  .serviceCardSticky {
+    top: 180px !important; /* Much larger offset to clear heading */
+    height: 600px !important; /* Consistent sticky height */
+  }
+
+  .servicesSection .sectionHead {
+    padding: 0 20px !important;
+    margin-bottom: 150px !important; /* Even more space to clear sticky cards */
+  }
+
+  .servicesSection h2 {
+    font-size: clamp(28px, 8vw, 42px) !important;
+  }
+
   .servicesWrapper {
     max-width: 100% !important;
     width: 100% !important;
     padding: 0 !important;
+    padding-top: 20px !important;
+    height: 2600px !important; /* Fixed height track for 4 cards (650px per card) */
   }
 
   .painCard {
