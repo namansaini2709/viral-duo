@@ -28,7 +28,7 @@ export default function HeroSection() {
           </text>
         </svg>
       </div>
-      <HeroStack slides={[img.hero, img.work1, img.work2, img.work3, img.work4]} />
+      <HeroStack slides={['/videos/anytime.mp4', '/videos/VDMC.mp4', '/videos/makeyourtrips.mp4', '/videos/MOTO MANIA.mp4', '/videos/skb video.mp4', '/videos/shreeradhey.mp4']} />
       <div className="heroProject">
         <img src="/logos/Sharma ji ke bhature.JPG" alt="" style={{ borderRadius: '50%', objectFit: 'contain', background: '#fff', padding: '4px' }} />
         <div>
