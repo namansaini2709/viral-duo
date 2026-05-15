@@ -6,12 +6,10 @@ import AboutGallery from "./AboutGallery";
 
 const img = {
   team: [
-    "https://framerusercontent.com/images/zcV8VMLW2UaiLm9AJM8MPiwdlw.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/o6duUa9OkHlf9DhOgeIlWNcRGY.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/Q4PeZp2Qx7rmA1hYjx2r2TeGlQ.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/DDCUixRHvKkrC3Ij9VowKTydSFE.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/ZsEIaooNaf9TIZjuTEevCpMqEe8.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/5gXitsm3iI0zoj6mry7iO1T3Xo.jpg?width=790&height=936",
+    "/team/pushkar.jpeg",
+    "/team/shubham.jpeg",
+    "/team/yogita.jpeg",
+    "/team/third-bhai.jpeg",
   ],
   vision: "/photo.png",
 };
@@ -34,7 +32,7 @@ export default function AboutPage() {
       lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -58,7 +56,10 @@ export default function AboutPage() {
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <a className="brand" href="/" style={{ color: 'inherit' }}>The Viral Duo</a>
+        <a className="brand" href="/" style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+          The Viral Duo
+        </a>
         <div className="navLinks" style={{ color: 'inherit' }}>
           <a href="/#work">Projects</a>
           <a href="/about" className="active">About Us</a>
@@ -125,7 +126,10 @@ export default function AboutPage() {
             viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="pill pink">OUR VISION</span>
+            <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <img src="/logo-v2.png" alt="" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
+              OUR VISION
+            </span>
             <h2>What We Stand For</h2>
             <p>
               Social media moves fast. Audiences are sharp. They know when they're being sold to, 
@@ -174,24 +178,39 @@ export default function AboutPage() {
           </motion.h2>
         </div>
         <div className="teamGrid">
-          {img.team.map((src, i) => (
-            <motion.div 
-              key={i} 
-              className="teamMember"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="memberImage">
-                <img src={src} alt={`Team Member ${i + 1}`} />
-              </div>
-              <div className="memberInfo">
-                <h3>The Viral Duo</h3>
-                <p>Social Experts</p>
-              </div>
-            </motion.div>
-          ))}
+          {img.team.map((src, i) => {
+            const teamData = [
+              { name: "Pushkar Sharma", role: "Co-Founder" },
+              { name: "Shubham Goel", role: "Founder" },
+              { name: "Yogita Goel", role: "Manager" },
+              { name: "Neer Mittal", role: "Content Head" }
+            ];
+            return (
+              <motion.div 
+                key={i} 
+                className="teamMember"
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: (i % 4) * 0.1, 
+                  ease: [0.16, 1, 0.3, 1] 
+                }}
+              >
+                <div className="memberImage">
+                  <img src={src} alt={teamData[i].name} />
+                </div>
+                <div className="memberInfo">
+                  <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <img src="/logo-v2.png" alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
+                    {teamData[i].name}
+                  </h3>
+                  <p>{teamData[i].role}</p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 

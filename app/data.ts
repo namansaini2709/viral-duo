@@ -12,12 +12,10 @@ export const img = {
   service3: "https://framerusercontent.com/images/0PyfpdelnqpVBXmeBrq2XN1HQo.png?width=904&height=1200",
   service4: "https://framerusercontent.com/images/Uudgqm4mIOJ5tmvqSyQYtVA0I.png?width=1200&height=1200",
   team: [
-    "https://framerusercontent.com/images/zcV8VMLW2UaiLm9AJM8MPiwdlw.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/o6duUa9OkHlf9DhOgeIlWNcRGY.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/Q4PeZp2Qx7rmA1hYjx2r2TeGlQ.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/DDCUixRHvKkrC3Ij9VowKTydSFE.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/ZsEIaooNaf9TIZjuTEevCpMqEe8.jpg?width=790&height=936",
-    "https://framerusercontent.com/images/5gXitsm3iI0zoj6mry7iO1T3Xo.jpg?width=790&height=936",
+    { name: "Pushkar", avatar: "/team/pushkar.jpeg", role: "Co-Founder" },
+    { name: "Shubham", avatar: "/team/shubham.jpeg", role: "Founder" },
+    { name: "Yogita", avatar: "/team/yogita.jpeg", role: "Manager" },
+    { name: "Neer Mittal", avatar: "/team/third-bhai.jpeg", role: "Content Head" },
   ],
   blog1: "https://framerusercontent.com/images/cNhxMCAtBg1pCkLonOn6wBwPzA.jpg?width=822&height=616",
   blog2: "https://framerusercontent.com/images/r2x5juiviagvZesFV13a9pVaR4.jpg?width=822&height=616",
@@ -83,4 +81,51 @@ export const brandLogos = [
   { name: "carrer launcher", src: "/logos/carrer launcher.JPG" },
   { name: "ms classes", src: "/logos/ms classes.JPG" },
   { name: "saral gym", src: "/logos/saral gym logo.jpg" },
+];
+
+export const testimonials = [
+  {
+    featured: true,
+    videoImg: "/photo.png",
+    title: "Hamara sales 3x badh gaya!",
+    text: "The Viral Duo ki reels dekh kar log door-door se aa rahe hain. Content quality ekdum premium hai aur engagement toh kamaal ki hai. Best decision for our business growth!",
+    name: "Amit Sharma",
+    role: "Owner, Sharma Ji Ke Bhature",
+    avatar: "/logos/Sharma ji ke bhature.JPG"
+  },
+  {
+    title: "Best for Indian Audience",
+    text: "Inko pata hai ki Indian audience ko kya pasand hai. Hamari jewellery collections ki reach ab poore India mein hai. Highly recommended!",
+    name: "Rahul Krishna",
+    role: "Director, Shri Radhey Krishna Jewellers",
+    avatar: "/logos/Shri radhey Krishna  jewellers.JPG"
+  },
+  {
+    title: "Engagement is unbelievable",
+    text: "Pehle hum khud post karte the par koi response nahi milta tha. Ab har reel viral ja rahi hai. Fitnesa brand ki visibility ab ek alag level par hai.",
+    name: "Vikram Singh",
+    role: "Founder, FOF Fitnesa",
+    avatar: "/logos/FOF Fitnesa logo.jpeg"
+  },
+  {
+    title: "Strategic Growth",
+    text: "Our travel bookings increased significantly. They handle everything from strategy to posting. Global Holidays is now a recognized brand online.",
+    name: "Priya Verma",
+    role: "Marketing Head, Global Holidays",
+    avatar: "/logos/Global Holidays.PNG"
+  },
+  {
+    title: "Kamaal ka kaam hai!",
+    text: "Career Launcher ke liye lead generation ab bohot easy ho gaya hai. Educational content ko itna interesting banaya ki students khud connect kar rahe hain.",
+    name: "Ankit Gupta",
+    role: "Center Manager, Career Launcher",
+    avatar: "/logos/carrer launcher.JPG"
+  },
+  {
+    title: "Real Results",
+    text: "MS Classes has seen a massive spike in student inquiries. The Viral Duo's approach is very professional and results-oriented.",
+    name: "Sandeep Malik",
+    role: "Founder, MS Classes",
+    avatar: "/logos/ms classes.JPG"
+  }
 ];

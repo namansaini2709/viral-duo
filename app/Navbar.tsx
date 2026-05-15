@@ -37,7 +37,10 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <a className="brand" href="#" style={{ color: 'inherit' }}>The Viral Duo</a>
+      <a className="brand" href="/" style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+        The Viral Duo
+      </a>
       <div className="navLinks" style={{ color: 'inherit' }}>
         <a href="#work">Projects</a>
         <a href="#services">Services</a>
@@ -48,7 +51,8 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       <button 
         className="menuToggle" 
         onClick={() => setIsMobileMenuOpen(true)}
-        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', display: 'none' }}
+        aria-label="Open menu"
+        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit' }}
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -64,6 +68,8 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
+          role="dialog"
+          aria-modal="true"
           style={{
             position: 'fixed',
             inset: 0,
@@ -76,9 +82,13 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px' }}>
-            <span style={{ fontWeight: 900, fontSize: '18px' }}>The Viral Duo</span>
+            <span style={{ fontWeight: 900, fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+              The Viral Duo
+            </span>
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Close menu"
               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px' }}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -3,6 +3,14 @@ import { motion } from 'framer-motion';
 
 export default function CompareSection() {
   const [hoveredCard, setHoveredCard] = useState<null | 'agencies' | 'theViralDuo'>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section className="section compare">
@@ -22,8 +30,8 @@ export default function CompareSection() {
           onMouseLeave={() => setHoveredCard(null)}
           initial={{ opacity: 0, x: -50, rotate: 0 }}
           animate={{
-            x: hoveredCard === 'agencies' ? 0 : (hoveredCard === 'theViralDuo' ? -120 : 40),
-            rotate: hoveredCard === 'agencies' ? 0 : -4,
+            x: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : (hoveredCard === 'theViralDuo' ? -80 : 20)),
+            rotate: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : -2),
             scale: hoveredCard === 'agencies' ? 1.02 : 1,
             zIndex: hoveredCard === 'agencies' ? 10 : 1,
             boxShadow: hoveredCard === 'agencies' ? "0 20px 40px rgba(0,0,0,0.05)" : "none"
@@ -33,10 +41,10 @@ export default function CompareSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h3>Other Agencies</h3>
-          <div className="compareList">
+          <div className="compareList" role="list">
             {["Ad-like, brand-heavy", "Posting volume", "Based on follower count", "Trend-chasing", "Basic metrics"].map(x => (
-              <div key={x} className="compareItem">
-                <span className="icon">✕</span>
+              <div key={x} className="compareItem" role="listitem">
+                <span className="icon" aria-hidden="true">✕</span>
                 {x}
               </div>
             ))}
@@ -49,8 +57,8 @@ export default function CompareSection() {
           onMouseLeave={() => setHoveredCard(null)}
           initial={{ opacity: 0, x: 50, rotate: 0 }}
           animate={{
-            x: hoveredCard === 'theViralDuo' ? 0 : (hoveredCard === 'agencies' ? 120 : -40),
-            rotate: hoveredCard === 'theViralDuo' ? 0 : 4,
+            x: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : (hoveredCard === 'agencies' ? 80 : -20)),
+            rotate: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : 2),
             scale: hoveredCard === 'theViralDuo' ? 1.05 : 1,
             zIndex: hoveredCard === 'theViralDuo' ? 10 : 2,
             boxShadow: hoveredCard === 'theViralDuo' ? "0 40px 80px rgba(0,0,0,0.15)" : "0 20px 40px rgba(0,0,0,0.05)"
@@ -60,13 +68,15 @@ export default function CompareSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h3>
-            <div className="theViralDuoLogo">V</div>
+            <div className="theViralDuoLogo">
+              <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+            </div>
             The Viral Duo
           </h3>
-          <div className="compareList">
+          <div className="compareList" role="list">
             {["Platform-native, organic-first", "Engagement & relevance", "Performance-based selection", "Strategic & brand-aligned", "Clear insights & learnings"].map(x => (
-              <div key={x} className="compareItem">
-                <span className="icon">✓</span>
+              <div key={x} className="compareItem" role="listitem">
+                <span className="icon" aria-hidden="true">✓</span>
                 {x}
               </div>
             ))}

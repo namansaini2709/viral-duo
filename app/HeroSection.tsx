@@ -5,7 +5,7 @@ import { img } from './data';
 
 export default function HeroSection() {
   return (
-    <section className="hero section">
+    <section className="hero section" id="home">
       <div className="heroTitle">
         <h1>UGC that grows your brand.</h1>
         <ul>
@@ -30,10 +30,10 @@ export default function HeroSection() {
       </div>
       <HeroStack slides={[img.hero, img.work1, img.work2, img.work3, img.work4]} />
       <div className="heroProject">
-        <img src={img.team[0]} alt="" />
+        <img src="/logos/Sharma ji ke bhature.JPG" alt="" style={{ borderRadius: '50%', objectFit: 'contain', background: '#fff', padding: '4px' }} />
         <div>
           <p>NEW PROJECT!</p>
-          <b>Making Rama unmistakable on social</b>
+          <b>Making Sharma Ji Ke Bhature viral on social</b>
         </div>
       </div>
       <div className="heroIntroCopy">

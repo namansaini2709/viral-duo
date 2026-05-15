@@ -12,16 +12,16 @@ export default function FeaturedProjects() {
 
       <div className="workGrid">
         {[
-          [img.hero, "Rama", "100% Follower growth"],
-          [img.work1, "Pandawa", "150% Follower growth"],
-          [img.work2, "Kresna", "+75% Conversion Rate"],
-          [img.work3, "Sadewa", "2x Increase Leads"],
-          [img.work4, "Bima", "100% Follower growth"]
-        ].map(([src, name, result], i) => (
+          [img.hero, "Shri Radhey Krishna Jewellers", "100% Sales growth", "/logos/Shri radhey Krishna  jewellers.JPG"],
+          [img.work1, "FOF Fitnesa", "150% Member growth", "/logos/FOF Fitnesa logo.jpeg"],
+          [img.work2, "Global Holidays", "+75% Booking Rate", "/logos/Global Holidays.PNG"],
+          [img.work3, "Career Launcher", "2x Student Leads", "/logos/carrer launcher.JPG"],
+          [img.work4, "MS Classes", "100% Growth in Inquiries", "/logos/ms classes.JPG"]
+        ].map(([src, name, result, logo], i) => (
           <motion.a
             className={i === 0 ? "workCard wide" : "workCard"}
             key={name}
-            href="#"
+            href="/#work"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
@@ -29,6 +29,19 @@ export default function FeaturedProjects() {
           >
             <img src={src} alt={`${name} project`} />
             <div className="cardInfo">
+              <img 
+                src={logo} 
+                alt="" 
+                style={{ 
+                  width: '32px', 
+                  height: '32px', 
+                  borderRadius: '50%', 
+                  objectFit: 'contain', 
+                  background: '#fff', 
+                  padding: '2px',
+                  marginRight: '8px'
+                }} 
+              />
               <b>{name}</b>
               <span>/ {result}</span>
               <div className="cardArrow">↗</div>

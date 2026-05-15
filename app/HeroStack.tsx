@@ -75,8 +75,8 @@ export default function HeroStack({ slides }: { slides: string[] }) {
         setDrag({ active: false, startX: 0, currentX: 0 });
       }}
     >
-      <img className="heroCard heroCardThird" src={getSlide(2)} alt="" draggable={false} />
-      <img className="heroCard heroCardSecond" src={getSlide(1)} alt="" draggable={false} />
+      <img className="heroCard heroCardThird" src={getSlide(2)} alt="Previous content slide" draggable={false} />
+      <img className="heroCard heroCardSecond" src={getSlide(1)} alt="Next content slide" draggable={false} />
       <img
         className={drag.active ? "heroCard heroCardMain isDragging" : "heroCard heroCardMain"}
         src={getSlide(0)}
@@ -89,6 +89,7 @@ export default function HeroStack({ slides }: { slides: string[] }) {
       <div
         className={cursor.visible ? "heroSwipe isVisible" : "heroSwipe"}
         style={{ left: cursor.x, top: cursor.y }}
+        aria-hidden="true"
       >
         <span>←</span>
         <b>Swipe</b>

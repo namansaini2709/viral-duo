@@ -71,7 +71,9 @@ export default function ExploreMore() {
 
       <div className="seeMoreContent">
         <motion.a 
-          href="#work" 
+          href="https://www.instagram.com/theviralduo/?hl=en" 
+          target="_blank"
+          rel="noopener noreferrer"
           className="seeMoreRow"
           initial="initial"
           whileHover="hover"
