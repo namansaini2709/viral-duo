@@ -38,7 +38,7 @@ export default function HeroSection() {
       </div>
       <div className="heroIntroCopy">
         <p>The Viral Duo helps brands create content that truly connects with their audience, consistently and strategically across social media.</p>
-        <ShiftButton dark href="#contact" large leftIconColor="#A78BFA" rightIconColor="#F472B6" style={{ marginLeft: '60px' }}>Book a call</ShiftButton>
+        <ShiftButton dark dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' large leftIconColor="#A78BFA" rightIconColor="#F472B6" style={{ marginLeft: '60px' }}>Book a call</ShiftButton>
       </div>
     </section>
   );

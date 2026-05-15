@@ -64,7 +64,7 @@ export default function AboutPage() {
           <a href="/about" className="active">About Us</a>
           <a href="/#faq">FAQ</a>
         </div>
-        <ShiftButton dark={!isAtTop} href="#contact" showIcon={false}>Book a call</ShiftButton>
+        <ShiftButton dark={!isAtTop} dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' showIcon={false}>Book a call</ShiftButton>
       </motion.nav>
 
       {/* Hero Section */}
@@ -205,7 +205,7 @@ export default function AboutPage() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2>Let’s grow through content!</h2>
-          <ShiftButton dark large href="#contact">Book a Call</ShiftButton>
+          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}'>Book a Call</ShiftButton>
         </motion.div>
       </section>
     </main>

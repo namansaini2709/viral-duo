@@ -43,7 +43,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
         <a href="#services">Services</a>
         <a href="#faq">FAQ</a>
       </div>
-      <ShiftButton small={true} dark={isAtTop ? false : (navTheme === 'light')} href="#contact" showIcon={false}>Book a call</ShiftButton>
+      <ShiftButton small={true} dark={isAtTop ? false : (navTheme === 'light')} dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' showIcon={false}>Book a call</ShiftButton>
       
       <button 
         className="menuToggle" 
