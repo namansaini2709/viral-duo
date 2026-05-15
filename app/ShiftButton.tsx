@@ -21,6 +21,8 @@ interface ShiftButtonProps {
   leftIconColor?: string;
   rightIconColor?: string;
   disabled?: boolean;
+  dataCalLink?: string;
+  dataCalConfig?: string;
 }
 
 const springTransition = {
@@ -47,6 +49,8 @@ export default function ShiftButton({
   leftIconColor,
   rightIconColor,
   disabled = false,
+  dataCalLink,
+  dataCalConfig,
 }: ShiftButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -191,6 +195,8 @@ export default function ShiftButton({
         style={wrapperStyle}
         target={target}
         rel={rel}
+        data-cal-link={dataCalLink}
+        data-cal-config={dataCalConfig}
       >
         {buttonContent}
       </a>
@@ -204,6 +210,8 @@ export default function ShiftButton({
       disabled={disabled}
       className={className}
       style={wrapperStyle}
+      data-cal-link={dataCalLink}
+      data-cal-config={dataCalConfig}
     >
       {buttonContent}
     </button>

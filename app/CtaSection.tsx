@@ -12,7 +12,8 @@ export default function CtaSection() {
         <h2>UGC that grows your brand.</h2>
         <p>The Viral Duo helps brands create content that earns attention, builds engagement, and drives real growth.</p>
         <ShiftButton 
-          href="#contact" 
+          dataCalLink="theviralduo/15min" 
+          dataCalConfig='{"layout":"month_view"}'
           light 
           large 
           leftIconColor="#E699FF" 
