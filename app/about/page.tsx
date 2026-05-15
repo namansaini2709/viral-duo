@@ -179,7 +179,12 @@ export default function AboutPage() {
         </div>
         <div className="teamGrid">
           {img.team.map((src, i) => {
-            const names = ["Pushkar Sharma", "Shubham Goel", "Yogita Goel", "Neer Mittal"];
+            const teamData = [
+              { name: "Pushkar Sharma", role: "Co-Founder" },
+              { name: "Shubham Goel", role: "Founder" },
+              { name: "Yogita Goel", role: "Manager" },
+              { name: "Neer Mittal", role: "Content Head" }
+            ];
             return (
               <motion.div 
                 key={i} 
@@ -194,14 +199,14 @@ export default function AboutPage() {
                 }}
               >
                 <div className="memberImage">
-                  <img src={src} alt={names[i]} />
+                  <img src={src} alt={teamData[i].name} />
                 </div>
                 <div className="memberInfo">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <img src="/logo-v2.png" alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
-                    {names[i]}
+                    {teamData[i].name}
                   </h3>
-                  <p>Social Expert</p>
+                  <p>{teamData[i].role}</p>
                 </div>
               </motion.div>
             );
