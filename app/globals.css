@@ -2431,14 +2431,6 @@ footer h2 {
   padding-top: 40px;
 }
 
-.footerLinksGrid .footerCol:nth-child(2) {
-}
-
-.footerLinksGrid .footerCol:nth-child(3) {
-}
-
-.footerLinksGrid .footerCol:last-child {
-}
 
 .footerLinksGrid .footerCol:last-child .footerNav {
   align-items: flex-start;

@@ -21,7 +21,7 @@ export default function FeaturedProjects() {
           <motion.a
             className={i === 0 ? "workCard wide" : "workCard"}
             key={name}
-            href="#"
+            href="/#work"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: i * 0.1 }}

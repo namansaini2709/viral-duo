@@ -28,6 +28,7 @@ interface FlyingIconsButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   fullWidth?: boolean;
+  disabled?: boolean;
 }
 
 export default function FlyingIconsButton({
@@ -47,6 +48,7 @@ export default function FlyingIconsButton({
   className = "",
   type = "button",
   fullWidth = false,
+  disabled = false,
 }: FlyingIconsButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [icons, setIcons] = useState<IconData[]>([]);
@@ -109,6 +111,7 @@ export default function FlyingIconsButton({
       <button
         ref={buttonRef}
         type={type}
+        disabled={disabled}
         className={className}
         style={{
           position: "relative",
@@ -118,9 +121,10 @@ export default function FlyingIconsButton({
           padding: padding,
           borderRadius: borderRadius,
           border: "none",
-          cursor: "pointer",
+          cursor: disabled ? "not-allowed" : "pointer",
+          opacity: disabled ? 0.6 : 1,
           overflow: "visible",
-          transition: "background-color 0.2s ease, color 0.2s ease",
+          transition: "background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease",
           fontSize: "16px",
           fontWeight: 600,
           zIndex: 2,

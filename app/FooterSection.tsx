@@ -87,15 +87,68 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
         <div className="footerNewsletter">
           <h3>Newsletter</h3>
           <p>Sign up for our newsletter to stay up to date with the latest viral ideas and content.</p>
-          <form className="newsletterForm">
-            <input type="email" placeholder="Email address" required />
-            <FlyingIconsButton type="submit" fullWidth label="Subscribe" />
-          </form>
+          <NewsletterForm />
         </div>
       </footer>
     </div>
   );
 });
+
+function NewsletterForm() {
+  const [email, setEmail] = React.useState('');
+  const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [honeypot, setHoneypot] = React.useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (honeypot) return; // Silent fail for bots
+    
+    setStatus('loading');
+    
+    // Simulate API call
+    setTimeout(() => {
+      setStatus('success');
+      setEmail('');
+    }, 1500);
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="newsletterSuccess" style={{ color: '#fbb6ed', padding: '10px 0' }}>
+        Thanks for subscribing! Stay viral.
+      </div>
+    );
+  }
+
+  return (
+    <form className="newsletterForm" onSubmit={handleSubmit}>
+      <input 
+        type="email" 
+        placeholder="Email address" 
+        required 
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        aria-label="Email for newsletter"
+      />
+      {/* Honeypot field - hidden from users */}
+      <div style={{ display: 'none' }} aria-hidden="true">
+        <input 
+          type="text" 
+          value={honeypot} 
+          onChange={(e) => setHoneypot(e.target.value)} 
+          tabIndex={-1} 
+          autoComplete="off" 
+        />
+      </div>
+      <FlyingIconsButton 
+        type="submit" 
+        fullWidth 
+        label={status === 'loading' ? 'Subscribing...' : 'Subscribe'} 
+        disabled={status === 'loading'}
+      />
+    </form>
+  );
+}
 
 FooterSection.displayName = 'FooterSection';
 

@@ -20,6 +20,7 @@ interface ShiftButtonProps {
   light?: boolean;
   leftIconColor?: string;
   rightIconColor?: string;
+  disabled?: boolean;
 }
 
 const springTransition = {
@@ -45,6 +46,7 @@ export default function ShiftButton({
   light = false,
   leftIconColor,
   rightIconColor,
+  disabled = false,
 }: ShiftButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -74,6 +76,8 @@ export default function ShiftButton({
         gap: "6px",
         height: baseHeight,
         width: fullWidth ? "100%" : "auto",
+        opacity: disabled ? 0.6 : 1,
+        pointerEvents: disabled ? "none" : "auto",
       }}
     >
       {/* LEFT ICON (Visible only on hover) */}
@@ -197,6 +201,7 @@ export default function ShiftButton({
     <button
       type={type || "button"}
       onClick={onClick}
+      disabled={disabled}
       className={className}
       style={wrapperStyle}
     >

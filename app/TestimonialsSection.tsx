@@ -21,13 +21,13 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }
         transition={{ duration: 0.6 }}
       >
         <div className="testimonialVideo">
-          <img src={videoImg} alt="Testimonial" />
-          <div className="playBtn">▶</div>
+          <img src={videoImg} alt={`Video testimonial from ${name}`} />
+          <button className="playBtn" aria-label="Play video testimonial">▶</button>
         </div>
         <div className="featuredContent">
-          <div className="stars">
+          <div className="stars" aria-label="5 out of 5 stars">
             {[...Array(5)].map((_, i) => (
-              <span key={i} className="star">★</span>
+              <span key={i} className="star" aria-hidden="true">★</span>
             ))}
           </div>
           <div className="testimonialContent" style={{ marginTop: '24px' }}>
@@ -35,7 +35,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }
             <p>{text}</p>
           </div>
           <div className="testimonialProfile" style={{ marginTop: '40px' }}>
-            <img src={avatar} alt={name} style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
+            <img src={avatar} alt={`${name}'s avatar`} style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
             <div className="profileInfo">
               <b>{name}</b>
               <span>{role}</span>
@@ -54,9 +54,9 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      <div className="stars">
+      <div className="stars" aria-label="5 out of 5 stars">
         {[...Array(5)].map((_, i) => (
-          <span key={i} className="star">★</span>
+          <span key={i} className="star" aria-hidden="true">★</span>
         ))}
       </div>
       <div className="testimonialContent">
@@ -64,7 +64,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }
         <p>{text}</p>
       </div>
       <div className="testimonialProfile">
-        <img src={avatar} alt={name} style={{ objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
+        <img src={avatar} alt={`${name}'s avatar`} style={{ objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
         <div className="profileInfo">
           <b>{name}</b>
           <span>{role}</span>
