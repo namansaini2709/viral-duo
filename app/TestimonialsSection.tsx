@@ -64,7 +64,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }
         <p>{text}</p>
       </div>
       <div className="testimonialProfile">
-        <img src={avatar} alt={`${name}'s avatar`} style={{ objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
+        <img src={avatar} alt={`${name}'s avatar`} style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
         <div className="profileInfo">
           <b>{name}</b>
           <span>{role}</span>

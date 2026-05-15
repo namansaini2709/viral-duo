@@ -24,7 +24,7 @@ function TeamLineAnimation() {
 
   return (
     <div ref={ref} style={{ width: '80%', height: '100%', margin: '0 auto' }}>
-      <svg viewBox="0 0 2000 600" fill="none" preserveAspectRatio="none" style={{ width: '100%', height: '100%' }}>
+      <svg viewBox="0 0 2000 600" fill="none" preserveAspectRatio="none" aria-hidden="true" style={{ width: '100%', height: '100%' }}>
         <motion.path
           d={path}
           stroke="#fbb6ed"
@@ -51,7 +51,7 @@ export default function TeamSection() {
         </div>
 
         <div className="teamGridCluttered">
-          {img.team.map((avatar, i) => (
+          {img.team.map((member, i) => (
             <motion.div
               key={i}
               className="teamCard"
@@ -60,7 +60,7 @@ export default function TeamSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
             >
-              <img src={avatar} alt={`Team member ${i + 1}`} />
+              <img src={member.avatar} alt={`Team member ${member.name}`} />
             </motion.div>
           ))}
         </div>
