@@ -27,6 +27,22 @@ body {
   overflow-x: clip; /* Clip horizontal overflow without breaking scroll animations */
 }
 
+/* Prevent scroll when modal is open */
+body.modal-open, 
+html.modal-open {
+  overflow: hidden !important;
+  height: 100% !important;
+  touch-action: none;
+}
+
+/* Apply blur and dim to content wrapper when modal is open */
+body.modal-open #content-wrapper {
+  filter: blur(15px) brightness(0.6);
+  pointer-events: none;
+  user-select: none;
+  transition: all 0.4s ease;
+}
+
 html {
   width: 100%;
   overflow-x: clip;
