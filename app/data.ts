@@ -14,6 +14,7 @@ export const img = {
   team: [
     "/team/pushkar.jpeg",
     "/team/shubham.jpeg",
+    "/team/yogita.jpeg",
     "/team/third bhai.jpeg",
   ],
   blog1: "https://framerusercontent.com/images/cNhxMCAtBg1pCkLonOn6wBwPzA.jpg?width=822&height=616",
