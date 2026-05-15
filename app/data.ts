@@ -15,7 +15,7 @@ export const img = {
     { name: "Pushkar", avatar: "/team/pushkar.jpeg" },
     { name: "Shubham", avatar: "/team/shubham.jpeg" },
     { name: "Yogita", avatar: "/team/yogita.jpeg" },
-    { name: "Third Bhai", avatar: "/team/third-bhai.jpeg" },
+    { name: "Neer Mittal", avatar: "/team/third-bhai.jpeg" },
   ],
   blog1: "https://framerusercontent.com/images/cNhxMCAtBg1pCkLonOn6wBwPzA.jpg?width=822&height=616",
   blog2: "https://framerusercontent.com/images/r2x5juiviagvZesFV13a9pVaR4.jpg?width=822&height=616",
