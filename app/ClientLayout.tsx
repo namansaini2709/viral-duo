@@ -25,15 +25,25 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     } else {
       const scrollY = body.style.top;
       body.removeAttribute('data-modal-open');
+      
+      // Force instant jump by disabling smooth scroll temporarily
+      html.style.scrollBehavior = 'auto';
+      
       body.style.position = '';
       body.style.top = '';
       body.style.width = '';
       body.style.overflow = '';
       body.style.touchAction = '';
       html.style.overflow = '';
+      
       if (scrollY) {
         window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
+
+      // Restore smooth scroll behavior for the rest of the site
+      requestAnimationFrame(() => {
+        html.style.scrollBehavior = '';
+      });
     }
   }, [isModalOpen]);
 
