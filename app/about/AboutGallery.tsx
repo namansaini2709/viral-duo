@@ -25,7 +25,7 @@ export default function AboutGallery() {
   const yBottomRight = useTransform(scrollYProgress, [0, 1], [250, -700]);
 
   return (
-    <section className="aboutGallery" ref={containerRef}>
+    <section className="aboutGallery" ref={containerRef} id="gallery">
       <div className="galleryContainer">
         <motion.div 
           className="galleryHeader"

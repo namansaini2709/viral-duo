@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import ShiftButton from './ShiftButton';
 
 interface NavbarProps {
@@ -11,6 +12,8 @@ interface NavbarProps {
 
 export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isAboutPage = pathname === '/about';
 
   return (
     <>
@@ -42,9 +45,20 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
         The Viral Duo
       </a>
       <div className="navLinks" style={{ color: 'inherit' }}>
-        <a href="#work">Projects</a>
-        <a href="#services">Services</a>
-        <a href="#faq">FAQ</a>
+        <a href="/">Home</a>
+        {isAboutPage ? (
+          <>
+            <a href="#vision">Vision</a>
+            <a href="#gallery">Glimpse</a>
+            <a href="#team">Team</a>
+          </>
+        ) : (
+          <>
+            <a href="/#work">Projects</a>
+            <a href="/#services">Services</a>
+            <a href="/about">About Us</a>
+          </>
+        )}
       </div>
       <ShiftButton small={true} dark={isAtTop ? false : (navTheme === 'light')} dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' showIcon={false}>Book a call</ShiftButton>
       
@@ -98,10 +112,21 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
             </button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', fontSize: '32px', fontWeight: 700 }}>
-            <a href="#work" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
-            <a href="#services" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
-            <a href="#faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
-            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+            <a href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+            {isAboutPage ? (
+              <>
+                <a href="#vision" onClick={() => setIsMobileMenuOpen(false)}>Vision</a>
+                <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Glimpse</a>
+                <a href="#team" onClick={() => setIsMobileMenuOpen(false)}>Team</a>
+              </>
+            ) : (
+              <>
+                <a href="/#work" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
+                <a href="/#services" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
+                <a href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+              </>
+            )}
+            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
           </div>
         </motion.div>
       )}
