@@ -574,14 +574,15 @@ img {
   top: 52%;
   transform: translate(-50%, -50%);
   width: min(27vw, 340px);
-  z-index: 5;
+  z-index: 10;
   touch-action: pan-y;
   user-select: none;
 }
 
 .heroCard {
+  background: #eee;
   border-radius: 24px;
-  box-shadow: none;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   height: 100%;
   inset: 0;
   object-position: center;

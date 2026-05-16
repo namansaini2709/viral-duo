@@ -112,7 +112,9 @@ function SlideItem({ src, className, style, alt, isActive }: { src: string, clas
     }
   }, [isActive, src]);
 
-  if (src.endsWith('.mp4') || src.endsWith('.webm')) {
+  const isVideo = src.toLowerCase().includes('.mp4') || src.toLowerCase().includes('.webm');
+
+  if (isVideo) {
     return (
       <video
         ref={videoRef}
