@@ -9,7 +9,7 @@ const img = {
     "/team/pushkar.jpeg",
     "/team/shubham.jpeg",
     "/team/yogita.jpeg",
-    "/team/third-bhai.jpeg",
+    "/team/neer.jpeg",
   ],
   vision: "/photo.png",
 };
