@@ -15,7 +15,7 @@ export const img = {
     { name: "Pushkar", avatar: "/team/pushkar.jpeg", role: "Co-Founder" },
     { name: "Shubham", avatar: "/team/shubham.jpeg", role: "Founder" },
     { name: "Yogita", avatar: "/team/yogita.jpeg", role: "Manager" },
-    { name: "Neer Mittal", avatar: "/team/third-bhai.jpeg", role: "Content Head" },
+    { name: "Neer Mittal", avatar: "/team/neer.jpeg", role: "Content Head" },
   ],
   blog1: "https://framerusercontent.com/images/cNhxMCAtBg1pCkLonOn6wBwPzA.jpg?width=822&height=616",
   blog2: "https://framerusercontent.com/images/r2x5juiviagvZesFV13a9pVaR4.jpg?width=822&height=616",
