@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 type Cursor = {
   x: number;
@@ -75,13 +75,13 @@ export default function HeroStack({ slides }: { slides: string[] }) {
         setDrag({ active: false, startX: 0, currentX: 0 });
       }}
     >
-      <img className="heroCard heroCardThird" src={getSlide(2)} alt="Previous content slide" draggable={false} />
-      <img className="heroCard heroCardSecond" src={getSlide(1)} alt="Next content slide" draggable={false} />
-      <img
+      <SlideItem className="heroCard heroCardThird" src={getSlide(2)} alt="Previous content slide" isActive={false} />
+      <SlideItem className="heroCard heroCardSecond" src={getSlide(1)} alt="Next content slide" isActive={false} />
+      <SlideItem
         className={drag.active ? "heroCard heroCardMain isDragging" : "heroCard heroCardMain"}
         src={getSlide(0)}
         alt="Featured social media campaign"
-        draggable={false}
+        isActive={true}
         style={{
           transform: `translateX(${dragOffset}px) rotate(${rotation}deg)`,
         }}
@@ -97,4 +97,33 @@ export default function HeroStack({ slides }: { slides: string[] }) {
       </div>
     </div>
   );
+}
+
+function SlideItem({ src, className, style, alt, isActive }: { src: string, className: string, style?: React.CSSProperties, alt?: string, isActive?: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isActive) {
+        videoRef.current.play().catch(e => console.log('Playback error:', e));
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isActive, src]);
+
+  if (src.endsWith('.mp4') || src.endsWith('.webm')) {
+    return (
+      <video
+        ref={videoRef}
+        className={className}
+        style={{ ...style, objectFit: 'cover' }}
+        src={src}
+        muted
+        loop
+        playsInline
+      />
+    );
+  }
+  return <img className={className} src={src} alt={alt} draggable={false} style={style} />;
 }
