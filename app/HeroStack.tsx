@@ -133,14 +133,14 @@ function SlideItem({ src, className, style, alt, isActive }: { src: string, clas
       {isVideo ? (
         <video
           ref={videoRef}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
           src={src}
           muted
           loop
           playsInline
         />
       ) : (
-        <img style={{ width: '100%', height: '100%', objectFit: 'cover' }} src={src} alt={alt} draggable={false} />
+        <img style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} src={src} alt={alt} draggable={false} />
       )}
       
       {/* Show play/pause button ONLY on the active card */}
