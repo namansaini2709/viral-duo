@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { img, testimonials } from './data';
 
-function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }: {
+function TestimonialCard({ title, text, name, role, avatar, featured, videoImg, videoUrl }: {
   title: string;
   text: string;
   name: string;
@@ -10,7 +10,10 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }
   avatar: string;
   featured?: boolean;
   videoImg?: string;
+  videoUrl?: string;
 }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   if (featured) {
     return (
       <motion.div
@@ -20,9 +23,37 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg }
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <div className="testimonialVideo">
-          <img src={videoImg} alt={`Video testimonial from ${name}`} />
-          <button className="playBtn" aria-label="Play video testimonial">▶</button>
+        <div 
+          className="testimonialVideo" 
+          style={{ cursor: 'pointer', overflow: 'hidden', position: 'relative' }} 
+          onClick={() => setIsPlaying(true)}
+        >
+          <AnimatePresence mode="wait">
+            {isPlaying && videoUrl ? (
+              <motion.video
+                key="video"
+                src={videoUrl}
+                controls
+                autoPlay
+                playsInline
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            ) : (
+              <motion.div
+                key="placeholder"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                style={{ width: '100%', height: '100%', position: 'relative' }}
+              >
+                <img src={videoImg} alt={`Video testimonial from ${name}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <button className="playBtn" aria-label="Play video testimonial">▶</button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         <div className="featuredContent">
           <div className="stars" aria-label="5 out of 5 stars">
@@ -79,7 +110,7 @@ export default function TestimonialsSection() {
     <section className="section testimonials">
       <div className="testimonialsHeader">
         <p className="eyebrow">testimonials</p>
-        <h2>Trusted by 40+ <br /> Companies</h2>
+        <h2>Trusted by 15+ <br /> Companies</h2>
       </div>
       <div className="testimonialGrid">
         {testimonials.map((t, i) => (

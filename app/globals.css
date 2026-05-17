@@ -541,18 +541,49 @@ img {
 
 .heroTitle {
   animation: introWords 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  max-width: min(39vw, 480px);
+  max-width: min(32vw, 390px);
   position: relative;
   z-index: 4;
 }
 
 .heroTitle h1 {
   color: #11110f;
-  font-size: clamp(52px, 5.7vw, 86px);
+  font-size: clamp(38px, 3.8vw, 52px);
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 0.92;
+  line-height: 1.05;
   margin: 0;
+}
+
+.hero-ugc-container {
+  display: inline-flex;
+  align-items: baseline;
+  vertical-align: baseline;
+}
+
+.hero-ugc-word {
+  display: inline-flex;
+  align-items: baseline;
+  vertical-align: baseline;
+}
+
+.hero-ugc-cap {
+  font-size: 1.15em;
+  font-weight: 700;
+  display: inline-block;
+  vertical-align: baseline;
+  color: #11110f;
+}
+
+.hero-ugc-sub {
+  font-size: 0.55em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  display: inline-block;
+  vertical-align: baseline;
+  opacity: 0.95;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .heroTitle ul {
@@ -671,8 +702,9 @@ img {
 }
 
 .heroProject img {
-  aspect-ratio: 1;
-  border-radius: 18px;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+  object-fit: contain !important;
   width: 96px;
 }
 
@@ -2961,7 +2993,7 @@ details p {
   }
 
   .heroTitle {
-    max-width: 45vw;
+    max-width: 44vw;
   }
 
   .heroStack {
@@ -2972,16 +3004,19 @@ details p {
   }
 
   .heroProject {
-    grid-template-columns: 70px 170px;
-    right: -60px;
+    grid-template-columns: 64px 1fr !important;
+    right: 16px !important;
+    top: 76px !important;
+    max-width: 290px !important;
+    width: auto !important;
   }
 
   .heroProject img {
-    width: 70px;
+    width: 64px !important;
   }
 
   .heroProject b {
-    font-size: 16px;
+    font-size: 14px !important;
   }
 
   .heroIntroCopy {
@@ -3137,11 +3172,11 @@ details p {
   }
 
   .heroTitle {
-    max-width: 76vw;
+    max-width: 90vw;
   }
 
   .heroTitle h1 {
-    font-size: 44px;
+    font-size: clamp(24px, 7vw, 36px) !important;
   }
 
   .heroTitle ul {
@@ -3164,7 +3199,36 @@ details p {
   }
 
   .heroProject {
-    display: none;
+    display: grid !important;
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    margin: 24px auto 0 !important;
+    max-width: 320px !important;
+    width: 92% !important;
+    grid-template-columns: 56px 1fr !important;
+    gap: 12px !important;
+    padding: 6px 10px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0,0,0,0.03) !important;
+    z-index: 5 !important;
+  }
+
+  .heroProject img {
+    width: 56px !important;
+    border-radius: 50% !important;
+  }
+
+  .heroProject b {
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+  }
+
+  .heroProject p {
+    font-size: 10px !important;
+    margin-bottom: 3px !important;
   }
 
   .heroRibbon {
@@ -3182,8 +3246,8 @@ details p {
   }
 
   .heroTitle h1 {
-    font-size: 48px;
-    line-height: 1;
+    font-size: clamp(30px, 4.5vw, 40px) !important;
+    line-height: 1.1;
   }
   
   .heroTitle ul {
@@ -3552,6 +3616,8 @@ details p {
   flex: 1;
   padding: 40px;
   height: 100%;
+  border-radius: 40px;
+  overflow: hidden;
 }
 
 .serviceImage img {
@@ -3874,13 +3940,20 @@ details p {
   aspect-ratio: 1/1;
   border-radius: 48px;
   overflow: hidden;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+  box-shadow: none;
 }
 
-.heroImageWrapper img {
+.aboutHero .heroImageWrapper {
+  margin-top: 84px;
+}
+
+.heroImageWrapper img,
+.heroImageWrapper video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  border-radius: inherit;
 }
 
 .aboutHero .pill.pink {
@@ -4311,7 +4384,7 @@ details p {
   }
   
   .heroTitle h1 {
-    font-size: clamp(48px, 10vw, 72px) !important;
+    font-size: clamp(24px, 7vw, 36px) !important;
     line-height: 1.1;
     margin-bottom: 24px;
   }
@@ -4476,7 +4549,7 @@ details p {
   }
 
   .heroTitle h1 {
-    font-size: clamp(34px, 10vw, 48px);
+    font-size: clamp(24px, 7vw, 36px) !important;
   }
 
   .heroStack {

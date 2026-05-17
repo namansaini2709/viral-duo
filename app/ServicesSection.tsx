@@ -73,14 +73,29 @@ export default function ServicesSection() {
                 </div>
 
                 <div className="serviceImage">
-                  <motion.img
-                    src={service.img}
-                    alt={service.title}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 1 }}
-                    viewport={{ once: true }}
-                  />
+                  {service.videoUrl ? (
+                    <motion.video
+                      src={service.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      whileInView={{ opacity: 0.68, scale: 1 }}
+                      transition={{ delay: 0.3, duration: 1 }}
+                      viewport={{ once: true }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '40px', display: 'block' }}
+                    />
+                  ) : (
+                    <motion.img
+                      src={service.img}
+                      alt={service.title}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3, duration: 1 }}
+                      viewport={{ once: true }}
+                    />
+                  )}
                 </div>
               </motion.div>
             </motion.div>

@@ -28,10 +28,11 @@ export const services = [
     id: "01",
     title: "Short-Form Production",
     desc: "We craft high-impact vertical content designed to stop the scroll and drive massive engagement across TikTok, Reels, and Shorts.",
-    metric: "50M+",
+    metric: "5M+",
     unit: "Total Impressions",
     color: "color1",
-    img: img.service1
+    img: img.service1,
+    videoUrl: "/Ilustrated videos/short.mp4"
   },
   {
     id: "02",
@@ -40,7 +41,8 @@ export const services = [
     metric: "150%",
     unit: "Avg. ROI Increase",
     color: "color2",
-    img: img.service2
+    img: img.service2,
+    videoUrl: "/Ilustrated videos/2nd card.mp4"
   },
   {
     id: "03",
@@ -49,7 +51,8 @@ export const services = [
     metric: "10K+",
     unit: "Daily Interactions",
     color: "color3",
-    img: img.service3
+    img: img.service3,
+    videoUrl: "/Ilustrated videos/management.mp4"
   },
   {
     id: "04",
@@ -58,7 +61,8 @@ export const services = [
     metric: "500+",
     unit: "Successful Collabs",
     color: "color4",
-    img: img.service4
+    img: img.service4,
+    videoUrl: "/Ilustrated videos/Partnership.mp4"
   }
 ];
 
@@ -87,6 +91,7 @@ export const testimonials = [
   {
     featured: true,
     videoImg: "/photo.png",
+    videoUrl: "/videos-optimized/Sharma ji ke bhature.mp4",
     title: "Hamara sales 3x badh gaya!",
     text: "The Viral Duo ki reels dekh kar log door-door se aa rahe hain. Content quality ekdum premium hai aur engagement toh kamaal ki hai. Best decision for our business growth!",
     name: "Amit Sharma",
