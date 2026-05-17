@@ -16,7 +16,7 @@ export default function FeaturedProjects() {
           ["/videos/MOTO MANIA.mp4", "FOF Fitnesa", "150% Member growth", "/logos/FOF Fitnesa logo.jpeg"],
           ["/videos/Global 2 (1).mp4", "Global Holidays", "+75% Booking Rate", "/logos/Global Holidays.PNG"],
           ["/videos/career launcher.mp4", "Career Launcher", "2x Student Leads", "/logos/carrer launcher.JPG"],
-          ["/videos/VDMC.mp4", "VDMC", "100% Growth in Inquiries", "/logos/Vdmc logo.JPG"]
+          ["/videos/VDMC.mp4", "VDMC", "3x Increase in Daily Orders", "/logos/Vdmc logo.JPG"]
         ].map(([src, name, result, logo], i) => (
           <motion.a
             className={i === 0 ? "workCard wide" : "workCard"}
