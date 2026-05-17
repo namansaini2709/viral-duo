@@ -86,7 +86,7 @@ export default function MissionSection() {
           viewBox="0 0 1000 1000"
         >
           <div className="missionImage">
-            <video src="/videos/kawaali.mp4" autoPlay loop muted playsInline />
+            <video src="/videos/DAB4D12D-088C-42AD-A6F6-1B74217B2F8F.mp4" autoPlay loop muted playsInline />
             <motion.div
               className="missionMetric pink"
               initial={{ x: -20, opacity: 0 }}
