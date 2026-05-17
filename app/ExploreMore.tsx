@@ -41,7 +41,7 @@ function ArcCard({ src }: { src: string }) {
       whileHover={{ scale: scale + 0.1, zIndex: 20 }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
-      <img src={src} alt="Project" />
+      <video src={src} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
     </motion.div>
   );
 }
@@ -62,8 +62,20 @@ export default function ExploreMore() {
           style={{ display: 'flex', gap: '32px' }}
         >
           {[...Array(18)].map((_, i) => {
-            const images = [img.work1, img.work2, img.work3, img.work4, img.hero, img.phone1];
-            const src = images[i % images.length];
+            const videos = [
+              "/videos/Global 2 (1).mp4",
+              "/videos/MOTO MANIA.mp4",
+              "/videos/VDMC.mp4",
+              "/videos/anytime.mp4",
+              "/videos/career launcher.mp4",
+              "/videos/city gym.mp4",
+              "/videos/inderchahal.mp4",
+              "/videos/kawaali.mp4",
+              "/videos/makeyourtrips.mp4",
+              "/videos/shreeradhey.mp4",
+              "/videos/skb video.mp4"
+            ];
+            const src = videos[i % videos.length];
             return <ArcCard key={i} src={src} />;
           })}
         </motion.div>

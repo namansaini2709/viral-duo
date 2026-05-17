@@ -86,7 +86,7 @@ export default function MissionSection() {
           viewBox="0 0 1000 1000"
         >
           <div className="missionImage">
-            <img src={img.phone1} alt="Growth" />
+            <video src="/videos/kawaali.mp4" autoPlay loop muted playsInline />
             <motion.div
               className="missionMetric pink"
               initial={{ x: -20, opacity: 0 }}
@@ -116,7 +116,7 @@ export default function MissionSection() {
             <p>We source and test creators across niches and communities, focusing on those who naturally align with your brand.</p>
           </div>
           <div className="missionImage">
-            <img src={img.phone2} alt="Impact" />
+            <video src="/videos/inderchahal.mp4" autoPlay loop muted playsInline />
             <motion.div
               className="missionMetric purple"
               initial={{ x: 20, opacity: 0 }}
