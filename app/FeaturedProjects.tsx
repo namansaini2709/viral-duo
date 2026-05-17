@@ -5,20 +5,29 @@ import { motion } from 'framer-motion';
 
 function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster: string, name: string, result: string, logo: string, i: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
 
   useEffect(() => {
-    const checkTouch = () => {
-      setIsTouchDevice(
-        ('ontouchstart' in window) ||
-        (navigator.maxTouchPoints > 0)
-      );
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      
+      if (width < 768) {
+        setDeviceType('mobile');
+      } else if (isTouch) {
+        setDeviceType('tablet');
+      } else {
+        setDeviceType('desktop');
+      }
     };
-    checkTouch();
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
-    if (!isTouchDevice) return;
+    if (deviceType !== 'tablet') return;
 
     const el = videoRef.current;
     if (!el) return;
@@ -27,7 +36,7 @@ function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster:
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            el.play().catch(e => console.log("Play failed", e));
+            el.play().catch(e => console.log("Play failed on tablet", e));
           } else {
             el.pause();
           }
@@ -44,15 +53,15 @@ function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster:
     return () => {
       observer.unobserve(el);
     };
-  }, [isTouchDevice]);
+  }, [deviceType]);
 
   const handleMouseEnter = () => {
-    if (isTouchDevice) return;
-    videoRef.current?.play().catch(e => console.log("Play failed", e));
+    if (deviceType !== 'desktop') return;
+    videoRef.current?.play().catch(e => console.log("Play failed on desktop", e));
   };
 
   const handleMouseLeave = () => {
-    if (isTouchDevice) return;
+    if (deviceType !== 'desktop') return;
     if (videoRef.current) {
       videoRef.current.pause();
       // Reset the video so the poster thumbnail shows again
