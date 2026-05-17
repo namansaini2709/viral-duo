@@ -3943,9 +3943,10 @@ details p {
 .heroImageWrapper {
   width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 48px;
+  border-radius: 64px;
   overflow: hidden;
   box-shadow: none;
+  clip-path: inset(0 round 64px);
 }
 
 .aboutHero .heroImageWrapper {
@@ -4002,6 +4003,10 @@ details p {
   line-height: 1.1;
 }
 
+.visionText {
+  grid-column: 2;
+}
+
 .visionText p {
   font-size: 22px;
   color: #555;
@@ -4010,6 +4015,8 @@ details p {
 
 .visionImage {
   padding-top: 40px;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .visionImage img {
@@ -4323,6 +4330,14 @@ details p {
   .visionText, .visionImage {
     width: 100% !important;
     max-width: 100% !important;
+  }
+
+  .visionImage {
+    order: 1;
+  }
+
+  .visionText {
+    order: 2;
   }
 
   /* About Gallery Stacking - Crucial Fix */

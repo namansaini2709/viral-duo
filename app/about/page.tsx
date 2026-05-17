@@ -87,7 +87,7 @@ export default function AboutPage() {
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <video
-              src="/Ilustrated videos/About us.mp4"
+              src="/Ilustrated videos/Animation.mp4"
               autoPlay
               loop
               muted
@@ -105,7 +105,7 @@ export default function AboutPage() {
             className="visionText"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -128,7 +128,7 @@ export default function AboutPage() {
             className="visionImage"
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <img src={img.vision} alt="Our Vision" />
