@@ -86,9 +86,13 @@ export default function AboutPage() {
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <img 
-              src="/photo.png" 
-              alt="Creativity" 
+            <video
+              src="/Ilustrated videos/About us.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label="Creativity"
             />
           </motion.div>
         </div>

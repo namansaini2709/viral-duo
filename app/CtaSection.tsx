@@ -1,6 +1,5 @@
 import React from 'react';
 import ShiftButton from './ShiftButton';
-import { img } from './data';
 
 export default function CtaSection() {
   return (
@@ -24,7 +23,14 @@ export default function CtaSection() {
       </div>
 
       <div className="ctaCard">
-        <img src={img.hero} alt="Creative process" className="ctaCardImage" />
+        <video
+          src="/Ilustrated videos/bottom 2.mp4"
+          className="ctaCardImage"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
       </div>
     </section>
   );

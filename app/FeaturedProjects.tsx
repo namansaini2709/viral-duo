@@ -124,11 +124,11 @@ export default function FeaturedProjects() {
 
       <div className="workGrid">
         {[
-          ["/videos-optimized/shreeradhey.mp4", "/Cover pages/Shri Radhey Krishna Cover.PNG", "Shri Radhey Krishna Jewellers", "100% Sales growth", "/logos/Shri radhey Krishna  jewellers.JPG"],
-          ["/videos-optimized/MOTO MANIA.mp4", "/Cover pages/Fof fitness.png", "FOF Fitnesa", "150% Member growth", "/logos/FOF Fitnesa logo.jpeg"],
-          ["/videos-optimized/Global 2 (1).mp4", "/Cover pages/Global Holidays.png", "Global Holidays", "+75% Booking Rate", "/logos/Global Holidays.PNG"],
-          ["/videos-optimized/Career launcher.mp4", "/Cover pages/Career Launcher cover.jpg", "Career Launcher", "2x Student Leads", "/logos/carrer launcher.JPG"],
-          ["/videos-optimized/VDMC.mp4", "/Cover pages/Vdmc.PNG", "VDMC", "3x Increase in Daily Orders", "/logos/Vdmc logo.JPG"]
+          ["/videos-optimized/shreeradhey.mp4", "/Cover pages/Shri Radhey Krishna Cover.PNG", "Shri Radhey Krishna Jewellers", "+112% Sales Growth", "/logos/Shri radhey Krishna  jewellers.JPG"],
+          ["/videos-optimized/MOTO MANIA.mp4", "/Cover pages/Fof fitness.png", "FOF Fitnesa", "+154% Member Growth", "/logos/FOF Fitnesa logo.jpeg"],
+          ["/videos-optimized/Global 2 (1).mp4", "/Cover pages/Global Holidays.png", "Global Holidays", "+84% Booking Growth", "/logos/Global Holidays.PNG"],
+          ["/videos-optimized/Career launcher.mp4", "/Cover pages/Career Launcher cover.jpg", "Career Launcher", "+180% Student Leads", "/logos/carrer launcher.JPG"],
+          ["/videos-optimized/VDMC.mp4", "/Cover pages/Vdmc.PNG", "VDMC", "+220% Daily Orders", "/logos/Vdmc logo.JPG"]
         ].map(([src, poster, name, result, logo], i) => (
           <WorkCard
             key={name}
