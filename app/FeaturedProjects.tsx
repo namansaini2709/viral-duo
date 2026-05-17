@@ -3,65 +3,47 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster: string, name: string, result: string, logo: string, i: number }) {
+function WorkCard({ 
+  src, 
+  poster, 
+  name, 
+  result, 
+  logo, 
+  i,
+  activePlayingIndex,
+  setActivePlayingIndex
+}: { 
+  src: string; 
+  poster: string; 
+  name: string; 
+  result: string; 
+  logo: string; 
+  i: number;
+  activePlayingIndex: number | null;
+  setActivePlayingIndex: React.Dispatch<React.SetStateAction<number | null>>;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  const [hasTouched, setHasTouched] = useState(false);
+  const isPlaying = activePlayingIndex === i;
 
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-      
-      if (width < 768) {
-        setDeviceType('mobile');
-      } else if (isTouch) {
-        setDeviceType('tablet');
-      } else {
-        setDeviceType('desktop');
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (deviceType !== 'tablet') return;
-
-    const el = videoRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            el.play().catch(e => console.log("Play failed on tablet", e));
-          } else {
-            el.pause();
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '100px',
-        threshold: 0.05
-      }
-    );
-
-    observer.observe(el);
-    return () => {
-      observer.unobserve(el);
-    };
-  }, [deviceType]);
+    if (!videoRef.current) return;
+    
+    if (isPlaying) {
+      videoRef.current.play().catch(e => console.log("Touch play failed", e));
+    } else {
+      videoRef.current.pause();
+      videoRef.current.load(); // Reset to show the cover page poster
+    }
+  }, [isPlaying]);
 
   const handleMouseEnter = () => {
-    if (deviceType !== 'desktop') return;
-    videoRef.current?.play().catch(e => console.log("Play failed on desktop", e));
+    if (hasTouched) return;
+    videoRef.current?.play().catch(e => console.log("Play failed", e));
   };
 
   const handleMouseLeave = () => {
-    if (deviceType !== 'desktop') return;
+    if (hasTouched) return;
     if (videoRef.current) {
       videoRef.current.pause();
       // Reset the video so the poster thumbnail shows again
@@ -69,10 +51,25 @@ function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster:
     }
   };
 
+  const handleTouchStart = () => {
+    setHasTouched(true);
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (hasTouched) {
+      if (!isPlaying) {
+        e.preventDefault(); // Prevent immediate navigation
+        setActivePlayingIndex(i); // Play this video, pause and reset all other videos
+      }
+    }
+  };
+
   return (
     <motion.a
       className={i === 0 ? "workCard wide" : "workCard"}
       href="/#work"
+      onClick={handleClick}
+      onTouchStart={handleTouchStart}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: i * 0.1 }}
@@ -82,7 +79,17 @@ function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster:
       onFocus={handleMouseEnter}
       onBlur={handleMouseLeave}
     >
-      <video ref={videoRef} src={src} poster={poster} loop muted playsInline className="workCardMedia" style={{ objectPosition: 'top' }} preload="metadata" />
+      <video 
+        ref={videoRef} 
+        src={src} 
+        poster={poster} 
+        loop 
+        muted 
+        playsInline 
+        className="workCardMedia" 
+        style={{ objectPosition: 'top' }} 
+        preload="metadata" 
+      />
       <div className="cardInfo">
         <img 
           src={logo} 
@@ -106,6 +113,8 @@ function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster:
 }
 
 export default function FeaturedProjects() {
+  const [activePlayingIndex, setActivePlayingIndex] = useState<number | null>(null);
+
   return (
     <section className="section" id="work" style={{ paddingTop: '160px' }}>
       <div className="sectionHead">
@@ -129,6 +138,8 @@ export default function FeaturedProjects() {
             result={result}
             logo={logo}
             i={i}
+            activePlayingIndex={activePlayingIndex}
+            setActivePlayingIndex={setActivePlayingIndex}
           />
         ))}
       </div>
