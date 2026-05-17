@@ -1,16 +1,58 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster: string, name: string, result: string, logo: string, i: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsTouchDevice(
+        ('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0)
+      );
+    };
+    checkTouch();
+  }, []);
+
+  useEffect(() => {
+    if (!isTouchDevice) return;
+
+    const el = videoRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            el.play().catch(e => console.log("Play failed", e));
+          } else {
+            el.pause();
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '100px',
+        threshold: 0.05
+      }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.unobserve(el);
+    };
+  }, [isTouchDevice]);
 
   const handleMouseEnter = () => {
+    if (isTouchDevice) return;
     videoRef.current?.play().catch(e => console.log("Play failed", e));
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return;
     if (videoRef.current) {
       videoRef.current.pause();
       // Reset the video so the poster thumbnail shows again
@@ -31,7 +73,7 @@ function WorkCard({ src, poster, name, result, logo, i }: { src: string, poster:
       onFocus={handleMouseEnter}
       onBlur={handleMouseLeave}
     >
-      <video ref={videoRef} src={src} poster={poster} loop muted playsInline className="workCardMedia" style={{ objectPosition: 'top' }} />
+      <video ref={videoRef} src={src} poster={poster} loop muted playsInline className="workCardMedia" style={{ objectPosition: 'top' }} preload="metadata" />
       <div className="cardInfo">
         <img 
           src={logo} 
