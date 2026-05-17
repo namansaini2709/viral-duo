@@ -4870,3 +4870,66 @@ details p {
     left: auto !important;
   }
 }
+
+/* HeroStack Play Button UI */
+.heroPlayBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(11, 11, 10, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.heroPlayBtn:hover {
+  background: rgba(11, 11, 10, 0.6);
+  color: #E699FF;
+  border-color: #E699FF;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 10px 30px rgba(230, 153, 255, 0.3);
+}
+
+.heroPlayBtn:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.playBtnInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Interactive play/pause toggle animation */
+.heroPlayBtn.playing .playBtnInner {
+  transform: scale(0.9);
+  opacity: 0.6;
+}
+
+.heroPlayBtn.paused .playBtnInner {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Pulse animation to draw attention when paused */
+.heroPlayBtn.paused {
+  animation: pulsePlayBtn 2.5s infinite;
+}
+
+@keyframes pulsePlayBtn {
+  0% { box-shadow: 0 0 0 0 rgba(230, 153, 255, 0.4); }
+  70% { box-shadow: 0 0 0 25px rgba(230, 153, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(230, 153, 255, 0); }
+}
