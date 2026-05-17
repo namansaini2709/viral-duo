@@ -40,8 +40,11 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <a className="brand" href="/" onClick={(e) => { 
-        if (pathname === '/') {
+      <a className="brand" href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
+        if (isAboutPage && pathname === '/about') {
+          e.preventDefault(); 
+          window.scrollTo({ top: 0, behavior: 'smooth' }); 
+        } else if (!isAboutPage && pathname === '/') {
           e.preventDefault(); 
           window.scrollTo({ top: 0, behavior: 'smooth' }); 
         }
@@ -101,8 +104,11 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px' }}>
-            <a href="/" onClick={(e) => { 
-              if (pathname === '/') {
+            <a href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
+              if (isAboutPage && pathname === '/about') {
+                e.preventDefault(); 
+                window.scrollTo({ top: 0, behavior: 'smooth' }); 
+              } else if (!isAboutPage && pathname === '/') {
                 e.preventDefault(); 
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
               }
