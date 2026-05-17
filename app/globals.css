@@ -601,6 +601,7 @@ img {
   inset: 0;
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
   transform: translateZ(0);
   object-position: center;
   position: absolute;
@@ -3927,6 +3928,10 @@ details p {
   font-size: 22px;
   color: #555;
   line-height: 1.6;
+}
+
+.visionImage {
+  padding-top: 40px;
 }
 
 .visionImage img {
