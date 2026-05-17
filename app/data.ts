@@ -12,8 +12,8 @@ export const img = {
   service3: "https://framerusercontent.com/images/0PyfpdelnqpVBXmeBrq2XN1HQo.png?width=904&height=1200",
   service4: "https://framerusercontent.com/images/Uudgqm4mIOJ5tmvqSyQYtVA0I.png?width=1200&height=1200",
   team: [
-    { name: "Pushkar", avatar: "/team/pushkar.jpeg", role: "Co-Founder" },
     { name: "Shubham", avatar: "/team/shubham.jpeg", role: "Founder" },
+    { name: "Pushkar", avatar: "/team/pushkar.jpeg", role: "Co-Founder" },
     { name: "Yogita", avatar: "/team/yogita.jpeg", role: "Manager" },
     { name: "Neer Mittal", avatar: "/team/neer.jpeg", role: "Content Head" },
   ],

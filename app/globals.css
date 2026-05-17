@@ -4214,6 +4214,7 @@ details p {
 
   /* Vision Section Stacking */
   .visionContent {
+    display: flex !important;
     flex-direction: column !important;
     gap: 40px !important;
   }

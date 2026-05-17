@@ -7,8 +7,8 @@ import Navbar from "../Navbar";
 
 const img = {
   team: [
-    "/team/pushkar.jpeg",
     "/team/shubham.jpeg",
+    "/team/pushkar.jpeg",
     "/team/yogita.jpeg",
     "/team/neer.jpeg",
   ],
@@ -99,10 +99,10 @@ export default function AboutPage() {
         <div className="visionContent">
           <motion.div 
             className="visionText"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
               <img src="/logo-v2.png" alt="" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
@@ -122,10 +122,10 @@ export default function AboutPage() {
           </motion.div>
           <motion.div 
             className="visionImage"
-            initial={{ opacity: 0, scale: 0.8, y: 60 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <img src={img.vision} alt="Our Vision" />
           </motion.div>
@@ -158,8 +158,8 @@ export default function AboutPage() {
         <div className="teamGrid">
           {img.team.map((src, i) => {
             const teamData = [
-              { name: "Pushkar Sharma", role: "Co-Founder" },
               { name: "Shubham Goel", role: "Founder" },
+              { name: "Pushkar Sharma", role: "Co-Founder" },
               { name: "Yogita Goel", role: "Manager" },
               { name: "Neer Mittal", role: "Content Head" }
             ];
