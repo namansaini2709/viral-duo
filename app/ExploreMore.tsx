@@ -4,6 +4,7 @@ import { img } from './data';
 
 function ArcCard({ src }: { src: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [rotation, setRotation] = useState(0);
   const [yOffset, setYOffset] = useState(0);
   const [scale, setScale] = useState(1);
@@ -25,6 +26,19 @@ function ArcCard({ src }: { src: string }) {
       setRotation(angle);
 
       setScale(0.9);
+
+      // Play video if near center, pause otherwise
+      if (videoRef.current) {
+        if (Math.abs(distanceFromCenter) < window.innerWidth * 0.2) {
+          if (videoRef.current.paused) {
+            videoRef.current.play().catch(() => {});
+          }
+        } else {
+          if (!videoRef.current.paused) {
+            videoRef.current.pause();
+          }
+        }
+      }
     }
   });
 
@@ -41,7 +55,7 @@ function ArcCard({ src }: { src: string }) {
       whileHover={{ scale: scale + 0.1, zIndex: 20 }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
-      <video src={src} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
+      <video ref={videoRef} src={src} loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
     </motion.div>
   );
 }
