@@ -40,10 +40,23 @@ function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
   );
 }
 
+const brandLinks = {
+  anytimeFitness: "https://www.instagram.com/anytimefitnessshahdaradelhi/?hl=en",
+  vdmc: "https://www.instagram.com/vdmc_malai_chaap_nsfood/?hl=en",
+  makeYourTripPossible: "https://www.instagram.com/makeyourtrippossible/?hl=en",
+  fofFitnesa: "https://www.instagram.com/foffitnesa/?hl=en",
+  sharmaKeBhature: "https://www.instagram.com/sharma_ke_bhature/?hl=en",
+  shriRadheyKrishnaJewellers: "https://www.instagram.com/shri_radheykrishnajewellers/?hl=en",
+  globalHolidays: "https://www.instagram.com/globalholidays78/?hl=en",
+  cityGym: "https://www.instagram.com/citygym.16/?hl=en",
+  saral: "https://www.instagram.com/_saralgym_/?hl=en",
+  careerLauncher: "https://www.instagram.com/cl_ashokvihar/?hl=en",
+};
+
 export default function ExploreMore() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const hoveredIndexRef = useRef<number | null>(null);
   const scalesRef = useRef<number[]>([]);
   const scrollXRef = useRef(0);
@@ -52,11 +65,11 @@ export default function ExploreMore() {
   const isInView = useInView(sectionRef, { once: false, margin: "200px" });
 
   const items = [
-    { src: "/videos-optimized/Anytime fitness.mp4", poster: "/logos/anytime. fitness logos.JPG" },
-    { src: "/videos-optimized/Saral gym.mp4", poster: "/logos/saral gym logo.jpg" },
-    { src: "/videos-optimized/global 3.mp4", poster: "/logos/Global Holidays.PNG" },
-    { src: "/videos-optimized/makeyourtrips.mp4", poster: "/logos/Make your trip possible.jpg" },
-    { src: "/videos-optimized/Sharma ji ke bhature.mp4", poster: "/logos/Sharma ji ke bhature.JPG" }
+    { name: "Anytime Fitness", src: "/videos-optimized/Anytime fitness.mp4", poster: "/logos/anytime. fitness logos.JPG", href: brandLinks.anytimeFitness },
+    { name: "Saral Gym", src: "/videos-optimized/Saral gym.mp4", poster: "/logos/saral gym logo.jpg", href: brandLinks.saral },
+    { name: "Global Holidays", src: "/videos-optimized/global 3.mp4", poster: "/logos/Global Holidays.PNG", href: brandLinks.globalHolidays },
+    { name: "Make Your Trip Possible", src: "/videos-optimized/makeyourtrips.mp4", poster: "/logos/Make your trip possible.jpg", href: brandLinks.makeYourTripPossible },
+    { name: "Sharma Ke Bhature", src: "/videos-optimized/Sharma ji ke bhature.mp4", poster: "/logos/Sharma ji ke bhature.JPG", href: brandLinks.sharmaKeBhature }
   ];
 
   // Three loops keep the marquee full while cutting per-frame transform work.
@@ -170,10 +183,14 @@ export default function ExploreMore() {
             const item = items[i % items.length];
             const isPlaying = playingStates[i] || false;
             return (
-              <div
+              <a
                 key={i}
                 ref={(el) => { cardRefs.current[i] = el; }}
                 className="arcCard"
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${item.name} on Instagram`}
                 onMouseEnter={() => { hoveredIndexRef.current = i; }}
                 onMouseLeave={() => { hoveredIndexRef.current = null; }}
                 style={{
@@ -202,7 +219,7 @@ export default function ExploreMore() {
                 )}
                 {/* Foreground Layer: Videos stay mounted, only center cards play. */}
                 <ArcCardVideo src={item.src} isPlaying={isPlaying} />
-              </div>
+              </a>
             );
           })}
         </div>

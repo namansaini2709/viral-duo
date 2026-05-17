@@ -9,6 +9,7 @@ function WorkCard({
   name, 
   result, 
   logo, 
+  href,
   i,
   activePlayingIndex,
   setActivePlayingIndex
@@ -18,6 +19,7 @@ function WorkCard({
   name: string; 
   result: string; 
   logo: string; 
+  href: string;
   i: number;
   activePlayingIndex: number | null;
   setActivePlayingIndex: React.Dispatch<React.SetStateAction<number | null>>;
@@ -67,7 +69,10 @@ function WorkCard({
   return (
     <motion.a
       className={i === 0 ? "workCard wide" : "workCard"}
-      href="/#work"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Open ${name} on Instagram`}
       onClick={handleClick}
       onTouchStart={handleTouchStart}
       initial={{ opacity: 0, y: 40 }}
@@ -112,6 +117,19 @@ function WorkCard({
   );
 }
 
+const brandLinks = {
+  anytimeFitness: "https://www.instagram.com/anytimefitnessshahdaradelhi/?hl=en",
+  vdmc: "https://www.instagram.com/vdmc_malai_chaap_nsfood/?hl=en",
+  makeYourTripPossible: "https://www.instagram.com/makeyourtrippossible/?hl=en",
+  fofFitnesa: "https://www.instagram.com/foffitnesa/?hl=en",
+  sharmaKeBhature: "https://www.instagram.com/sharma_ke_bhature/?hl=en",
+  shriRadheyKrishnaJewellers: "https://www.instagram.com/shri_radheykrishnajewellers/?hl=en",
+  globalHolidays: "https://www.instagram.com/globalholidays78/?hl=en",
+  cityGym: "https://www.instagram.com/citygym.16/?hl=en",
+  saral: "https://www.instagram.com/_saralgym_/?hl=en",
+  careerLauncher: "https://www.instagram.com/cl_ashokvihar/?hl=en",
+};
+
 export default function FeaturedProjects() {
   const [activePlayingIndex, setActivePlayingIndex] = useState<number | null>(null);
 
@@ -124,12 +142,12 @@ export default function FeaturedProjects() {
 
       <div className="workGrid">
         {[
-          ["/videos-optimized/shreeradhey.mp4", "/Cover pages/Shri Radhey Krishna Cover.PNG", "Shri Radhey Krishna Jewellers", "+112% Sales Growth", "/logos/Shri radhey Krishna  jewellers.JPG"],
-          ["/videos-optimized/MOTO MANIA.mp4", "/Cover pages/Fof fitness.png", "FOF Fitnesa", "+154% Member Growth", "/logos/FOF Fitnesa logo.jpeg"],
-          ["/videos-optimized/Global 2 (1).mp4", "/Cover pages/Global Holidays.png", "Global Holidays", "+84% Booking Growth", "/logos/Global Holidays.PNG"],
-          ["/videos-optimized/Career launcher.mp4", "/Cover pages/Career Launcher cover.jpg", "Career Launcher", "+180% Student Leads", "/logos/carrer launcher.JPG"],
-          ["/videos-optimized/VDMC.mp4", "/Cover pages/Vdmc.PNG", "VDMC", "+220% Daily Orders", "/logos/Vdmc logo.JPG"]
-        ].map(([src, poster, name, result, logo], i) => (
+          ["/videos-optimized/shreeradhey.mp4", "/Cover pages/Shri Radhey Krishna Cover.PNG", "Shri Radhey Krishna Jewellers", "+112% Sales Growth", "/logos/Shri radhey Krishna  jewellers.JPG", brandLinks.shriRadheyKrishnaJewellers],
+          ["/videos-optimized/MOTO MANIA.mp4", "/Cover pages/Fof fitness.png", "FOF Fitnesa", "+154% Member Growth", "/logos/FOF Fitnesa logo.jpeg", brandLinks.fofFitnesa],
+          ["/videos-optimized/Global 2 (1).mp4", "/Cover pages/Global Holidays.png", "Global Holidays", "+84% Booking Growth", "/logos/Global Holidays.PNG", brandLinks.globalHolidays],
+          ["/videos-optimized/Career launcher.mp4", "/Cover pages/Career Launcher cover.jpg", "Career Launcher", "+180% Student Leads", "/logos/carrer launcher.JPG", brandLinks.careerLauncher],
+          ["/videos-optimized/VDMC.mp4", "/Cover pages/Vdmc.PNG", "VDMC", "+220% Daily Orders", "/logos/Vdmc logo.JPG", brandLinks.vdmc]
+        ].map(([src, poster, name, result, logo, href], i) => (
           <WorkCard
             key={name}
             src={src}
@@ -137,6 +155,7 @@ export default function FeaturedProjects() {
             name={name}
             result={result}
             logo={logo}
+            href={href}
             i={i}
             activePlayingIndex={activePlayingIndex}
             setActivePlayingIndex={setActivePlayingIndex}
