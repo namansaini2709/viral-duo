@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, useAnimationFrame } from 'framer-motion';
+import { motion, useAnimationFrame, useInView } from 'framer-motion';
 import { img } from './data';
 
 function ArcCard({ src, poster }: { src: string, poster?: string }) {
@@ -9,7 +9,15 @@ function ArcCard({ src, poster }: { src: string, poster?: string }) {
   const [yOffset, setYOffset] = useState(0);
   const [scale, setScale] = useState(1);
 
+  const isInView = useInView(ref, { once: false, margin: "100px" });
+
   useAnimationFrame(() => {
+    if (!isInView) {
+      if (videoRef.current && !videoRef.current.paused) {
+        videoRef.current.pause();
+      }
+      return;
+    }
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
       const centerX = window.innerWidth / 2;

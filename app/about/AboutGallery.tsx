@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import LazyVideo from "../LazyVideo";
 
 const videos = [
   "/videos-optimized/VDMC.mp4",
@@ -48,7 +49,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.1 }}
           >
-            <video src={videos[0]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <LazyVideo src={videos[0]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Top Right */}
@@ -60,7 +61,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.2 }}
           >
-            <video src={videos[1]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <LazyVideo src={videos[1]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Center Main */}
@@ -72,7 +73,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.5 }}
           >
-            <video src={videos[2]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <LazyVideo src={videos[2]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Bottom Left */}
@@ -84,7 +85,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.3 }}
           >
-            <video src={videos[3]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <LazyVideo src={videos[3]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Bottom Right */}
@@ -96,7 +97,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.4 }}
           >
-            <video src={videos[4]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <LazyVideo src={videos[4]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
         </div>
       </div>

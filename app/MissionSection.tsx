@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { img } from './data';
+import LazyVideo from './LazyVideo';
 
 function useScrollProgressTransform(progress: any, range: number[], output: number[]) {
   return useTransform(progress, range, output);
@@ -92,7 +93,7 @@ export default function MissionSection() {
               rel="noopener noreferrer"
               style={{ display: 'block', width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
             >
-              <video src="/videos-optimized/DAB4D12D-088C-42AD-A6F6-1B74217B2F8F.mp4" autoPlay loop muted playsInline />
+              <LazyVideo src="/videos-optimized/DAB4D12D-088C-42AD-A6F6-1B74217B2F8F.mp4" autoPlay loop muted playsInline />
             </a>
             <motion.div
               className="missionMetric pink"
@@ -129,7 +130,7 @@ export default function MissionSection() {
               rel="noopener noreferrer"
               style={{ display: 'block', width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
             >
-              <video src="/videos-optimized/inderchahal.mp4" autoPlay loop muted playsInline />
+              <LazyVideo src="/videos-optimized/inderchahal.mp4" autoPlay loop muted playsInline />
             </a>
             <motion.div
               className="missionMetric purple"

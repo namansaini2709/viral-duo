@@ -53,6 +53,20 @@ main {
   width: 100%;
 }
 
+/* GPU Hardware Acceleration & Paint Optimization for Low-End Devices */
+video, img {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.galleryItem, .missionImage, .arcCard, .workCard {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
 a {
   color: inherit;
   text-decoration: none;
