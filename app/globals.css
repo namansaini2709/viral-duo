@@ -3974,7 +3974,8 @@ details p {
   z-index: 1;
 }
 
-.galleryItem img {
+.galleryItem img,
+.galleryItem video {
   width: 100%;
   height: 100%;
   object-fit: cover;

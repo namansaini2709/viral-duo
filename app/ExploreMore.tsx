@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useAnimationFrame } from 'framer-motion';
 import { img } from './data';
 
-function ArcCard({ src }: { src: string }) {
+function ArcCard({ src, poster }: { src: string, poster?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [rotation, setRotation] = useState(0);
@@ -36,6 +36,7 @@ function ArcCard({ src }: { src: string }) {
         } else {
           if (!videoRef.current.paused) {
             videoRef.current.pause();
+            videoRef.current.load();
           }
         }
       }
@@ -55,7 +56,7 @@ function ArcCard({ src }: { src: string }) {
       whileHover={{ scale: scale + 0.1, zIndex: 20 }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
-      <video ref={videoRef} src={src} loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
+      <video ref={videoRef} src={src} poster={poster} loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
     </motion.div>
   );
 }
@@ -71,26 +72,20 @@ export default function ExploreMore() {
       <div className="arcGallery">
         <motion.div
           className="arcMarquee"
-          animate={{ x: ["0%", "-33.333%"] }}
+          animate={{ x: ["0%", "-33.333333%"] }}
           transition={{ duration: 30, ease: "linear", repeat: Infinity }}
           style={{ display: 'flex', gap: '32px' }}
         >
-          {[...Array(18)].map((_, i) => {
-            const videos = [
-              "/videos/Global 2 (1).mp4",
-              "/videos/MOTO MANIA.mp4",
-              "/videos/VDMC.mp4",
-              "/videos/anytime.mp4",
-              "/videos/career launcher.mp4",
-              "/videos/city gym.mp4",
-              "/videos/inderchahal.mp4",
-              "/videos/kawaali.mp4",
-              "/videos/makeyourtrips.mp4",
-              "/videos/shreeradhey.mp4",
-              "/videos/skb video.mp4"
+          {[...Array(15)].map((_, i) => {
+            const items = [
+              { src: "/videos-optimized/Anytime fitness.mp4", poster: "/logos/anytime. fitness logos.JPG" },
+              { src: "/videos-optimized/Saral gym.mp4", poster: "/logos/saral gym logo.jpg" },
+              { src: "/videos-optimized/global 3.mp4", poster: "/logos/Global Holidays.PNG" },
+              { src: "/videos-optimized/makeyourtrips.mp4", poster: "/logos/Make your trip possible.jpg" },
+              { src: "/videos-optimized/Sharma ji ke bhature.mp4", poster: "/logos/Sharma ji ke bhature.JPG" }
             ];
-            const src = videos[i % videos.length];
-            return <ArcCard key={i} src={src} />;
+            const item = items[i % items.length];
+            return <ArcCard key={i} src={item.src} poster={item.poster} />;
           })}
         </motion.div>
       </div>

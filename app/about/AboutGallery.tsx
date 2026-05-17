@@ -2,12 +2,12 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const images = [
-  "https://framerusercontent.com/images/zcV8VMLW2UaiLm9AJM8MPiwdlw.jpg?width=790&height=936",
-  "https://framerusercontent.com/images/o6duUa9OkHlf9DhOgeIlWNcRGY.jpg?width=790&height=936",
-  "https://framerusercontent.com/images/Q4PeZp2Qx7rmA1hYjx2r2TeGlQ.jpg?width=790&height=936",
-  "https://framerusercontent.com/images/DDCUixRHvKkrC3Ij9VowKTydSFE.jpg?width=790&height=936",
-  "https://framerusercontent.com/images/ZsEIaooNaf9TIZjuTEevCpMqEe8.jpg?width=790&height=936",
+const videos = [
+  "/videos-optimized/VDMC.mp4",
+  "/videos-optimized/Anytime fitness.mp4",
+  "/videos-optimized/Sharma ji ke bhature.mp4",
+  "/videos-optimized/inderchahal.mp4",
+  "/videos-optimized/shreeradhey.mp4",
 ];
 
 export default function AboutGallery() {
@@ -48,7 +48,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.1 }}
           >
-            <img src={images[0]} alt="Gallery 1" />
+            <video src={videos[0]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Top Right */}
@@ -60,7 +60,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.2 }}
           >
-            <img src={images[1]} alt="Gallery 2" />
+            <video src={videos[1]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Center Main */}
@@ -72,7 +72,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.5 }}
           >
-            <img src={images[2]} alt="Gallery Main" />
+            <video src={videos[2]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Bottom Left */}
@@ -84,7 +84,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.3 }}
           >
-            <img src={images[3]} alt="Gallery 3" />
+            <video src={videos[3]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
 
           {/* Bottom Right */}
@@ -96,7 +96,7 @@ export default function AboutGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.4 }}
           >
-            <img src={images[4]} alt="Gallery 4" />
+            <video src={videos[4]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
         </div>
       </div>
