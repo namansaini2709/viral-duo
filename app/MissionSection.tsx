@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { img } from './data';
+import LazyVideo from './LazyVideo';
 
 function useScrollProgressTransform(progress: any, range: number[], output: number[]) {
   return useTransform(progress, range, output);
@@ -86,7 +87,14 @@ export default function MissionSection() {
           viewBox="0 0 1000 1000"
         >
           <div className="missionImage">
-            <img src={img.phone1} alt="Growth" />
+            <a 
+              href="https://www.instagram.com/reel/DWo2N73k1Qu/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ display: 'block', width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
+            >
+              <LazyVideo src="/videos-optimized/DAB4D12D-088C-42AD-A6F6-1B74217B2F8F.mp4" autoPlay loop muted playsInline />
+            </a>
             <motion.div
               className="missionMetric pink"
               initial={{ x: -20, opacity: 0 }}
@@ -94,8 +102,8 @@ export default function MissionSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <strong>200%</strong>
-              <span>Organic Follower Growth</span>
+              <strong>2.2M</strong>
+              <span>Organic Views</span>
             </motion.div>
           </div>
           <div className="missionText">
@@ -112,11 +120,18 @@ export default function MissionSection() {
           viewBox="0 0 1000 1000"
         >
           <div className="missionText">
-            <h3>Creator-led content, long-term growth.</h3>
-            <p>We source and test creators across niches and communities, focusing on those who naturally align with your brand.</p>
+            <h3>New Era</h3>
+            <p>It was more than just a project—it was our very first live event. The sleepless nights, the raw energy, and the anxiety of seeing our dream take shape in the real world. When the crowd roared and connected with every moment, it was an emotional breakthrough that proved anything is possible. This is where the spark truly ignited.</p>
           </div>
           <div className="missionImage">
-            <img src={img.phone2} alt="Impact" />
+            <a 
+              href="https://www.instagram.com/reel/DVWkhxsEtib/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ display: 'block', width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
+            >
+              <LazyVideo src="/videos-optimized/inderchahal.mp4" autoPlay loop muted playsInline />
+            </a>
             <motion.div
               className="missionMetric purple"
               initial={{ x: 20, opacity: 0 }}
@@ -124,8 +139,8 @@ export default function MissionSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <strong>4.2M</strong>
-              <span>Impressions</span>
+              <strong>Our 1st</strong>
+              <span>Hit Event</span>
             </motion.div>
           </div>
         </MissionBlockWithLine>

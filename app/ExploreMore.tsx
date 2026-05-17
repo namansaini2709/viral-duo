@@ -1,14 +1,23 @@
 import React, { useRef, useState } from 'react';
-import { motion, useAnimationFrame } from 'framer-motion';
+import { motion, useAnimationFrame, useInView } from 'framer-motion';
 import { img } from './data';
 
-function ArcCard({ src }: { src: string }) {
+function ArcCard({ src, poster }: { src: string, poster?: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [rotation, setRotation] = useState(0);
   const [yOffset, setYOffset] = useState(0);
   const [scale, setScale] = useState(1);
 
+  const isInView = useInView(ref, { once: false, margin: "100px" });
+
   useAnimationFrame(() => {
+    if (!isInView) {
+      if (videoRef.current && !videoRef.current.paused) {
+        videoRef.current.pause();
+      }
+      return;
+    }
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
       const centerX = window.innerWidth / 2;
@@ -25,6 +34,20 @@ function ArcCard({ src }: { src: string }) {
       setRotation(angle);
 
       setScale(0.9);
+
+      // Play video if near center, pause otherwise
+      if (videoRef.current) {
+        if (Math.abs(distanceFromCenter) < window.innerWidth * 0.2) {
+          if (videoRef.current.paused) {
+            videoRef.current.play().catch(() => {});
+          }
+        } else {
+          if (!videoRef.current.paused) {
+            videoRef.current.pause();
+            videoRef.current.load();
+          }
+        }
+      }
     }
   });
 
@@ -41,7 +64,7 @@ function ArcCard({ src }: { src: string }) {
       whileHover={{ scale: scale + 0.1, zIndex: 20 }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
-      <img src={src} alt="Project" />
+      <video ref={videoRef} src={src} poster={poster} loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} />
     </motion.div>
   );
 }
@@ -57,14 +80,20 @@ export default function ExploreMore() {
       <div className="arcGallery">
         <motion.div
           className="arcMarquee"
-          animate={{ x: ["0%", "-33.333%"] }}
+          animate={{ x: ["0%", "-33.333333%"] }}
           transition={{ duration: 30, ease: "linear", repeat: Infinity }}
           style={{ display: 'flex', gap: '32px' }}
         >
-          {[...Array(18)].map((_, i) => {
-            const images = [img.work1, img.work2, img.work3, img.work4, img.hero, img.phone1];
-            const src = images[i % images.length];
-            return <ArcCard key={i} src={src} />;
+          {[...Array(15)].map((_, i) => {
+            const items = [
+              { src: "/videos-optimized/Anytime fitness.mp4", poster: "/logos/anytime. fitness logos.JPG" },
+              { src: "/videos-optimized/Saral gym.mp4", poster: "/logos/saral gym logo.jpg" },
+              { src: "/videos-optimized/global 3.mp4", poster: "/logos/Global Holidays.PNG" },
+              { src: "/videos-optimized/makeyourtrips.mp4", poster: "/logos/Make your trip possible.jpg" },
+              { src: "/videos-optimized/Sharma ji ke bhature.mp4", poster: "/logos/Sharma ji ke bhature.JPG" }
+            ];
+            const item = items[i % items.length];
+            return <ArcCard key={i} src={item.src} poster={item.poster} />;
           })}
         </motion.div>
       </div>

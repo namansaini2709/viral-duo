@@ -25,10 +25,11 @@ export default function HeroStack({ slides }: { slides: string[] }) {
 
   function updateCursor(event: React.PointerEvent<HTMLDivElement>, visible = true) {
     const rect = event.currentTarget.getBoundingClientRect();
+    const isHoveringButton = !!(event.target as HTMLElement).closest('.heroPlayBtn');
     setCursor({
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
-      visible,
+      visible: visible && !isHoveringButton,
     });
   }
 
@@ -101,29 +102,67 @@ export default function HeroStack({ slides }: { slides: string[] }) {
 
 function SlideItem({ src, className, style, alt, isActive }: { src: string, className: string, style?: React.CSSProperties, alt?: string, isActive?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(isActive);
 
   useEffect(() => {
     if (videoRef.current) {
-      if (isActive) {
+      if (isActive && isPlaying) {
         videoRef.current.play().catch(e => console.log('Playback error:', e));
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isActive, src]);
+  }, [isActive, src, isPlaying]);
 
-  if (src.endsWith('.mp4') || src.endsWith('.webm')) {
-    return (
-      <video
-        ref={videoRef}
-        className={className}
-        style={{ ...style, objectFit: 'cover' }}
-        src={src}
-        muted
-        loop
-        playsInline
-      />
-    );
-  }
-  return <img className={className} src={src} alt={alt} draggable={false} style={style} />;
+  useEffect(() => {
+    // Reset to play when it becomes active
+    if (isActive) {
+      setIsPlaying(true);
+    }
+  }, [isActive]);
+
+  const isVideo = src.toLowerCase().includes('.mp4') || src.toLowerCase().includes('.webm');
+
+  const togglePlay = (e: React.PointerEvent) => {
+    e.stopPropagation(); // Prevent swiping when clicking the button
+    setIsPlaying(!isPlaying);
+  };
+
+  return (
+    <div className={`${className} videoSlideWrapper`} style={{ ...style, overflow: 'hidden' }}>
+      {isVideo ? (
+        <video
+          ref={videoRef}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
+          src={src}
+          muted
+          loop
+          playsInline
+        />
+      ) : (
+        <img style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} src={src} alt={alt} draggable={false} />
+      )}
+      
+      {/* Show play/pause button ONLY on the active card */}
+      {isActive && (
+        <button 
+          className={`heroPlayBtn ${isPlaying ? 'playing' : 'paused'}`}
+          onPointerDown={togglePlay}
+          aria-label={isPlaying ? 'Pause video' : 'Play video'}
+        >
+          <div className="playBtnInner">
+            {isPlaying ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style={{ marginLeft: '4px' }}>
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            )}
+          </div>
+        </button>
+      )}
+    </div>
+  );
 }

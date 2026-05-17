@@ -3,11 +3,12 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import ShiftButton from "../ShiftButton";
 import AboutGallery from "./AboutGallery";
+import Navbar from "../Navbar";
 
 const img = {
   team: [
-    "/team/pushkar.jpeg",
     "/team/shubham.jpeg",
+    "/team/pushkar.jpeg",
     "/team/yogita.jpeg",
     "/team/neer.jpeg",
   ],
@@ -38,35 +39,12 @@ export default function AboutPage() {
 
   return (
     <main className="aboutPage">
-      {/* Navigation */}
-      <motion.nav
-        className="navbar"
-        initial={false}
-        animate={{
-          width: isAtTop ? "100%" : "calc(100% - 36px)",
-          maxWidth: isAtTop ? "100%" : "1180px",
-          borderRadius: isAtTop ? "0px" : "999px",
-          top: isAtTop ? "0px" : (isHidden ? "-100px" : "18px"),
-          x: "-50%",
-          left: "50%",
-          background: isAtTop ? "rgba(244, 240, 232, 0)" : "rgba(244, 240, 232, 0.95)",
-          borderColor: isAtTop ? "rgba(0,0,0,0)" : "rgba(11, 11, 10, 0.1)",
-          padding: isAtTop ? "12px 40px" : "6px 10px 6px 20px",
-          color: "#0b0b0a",
-        }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <a className="brand" href="/" style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
-          The Viral Duo
-        </a>
-        <div className="navLinks" style={{ color: 'inherit' }}>
-          <a href="/#work">Projects</a>
-          <a href="/about" className="active">About Us</a>
-          <a href="/#faq">FAQ</a>
-        </div>
-        <ShiftButton dark={!isAtTop} dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' showIcon={false}>Book a call</ShiftButton>
-      </motion.nav>
+      <Navbar 
+        isAtTop={isAtTop} 
+        isHidden={isHidden} 
+        navTheme="light" 
+        isOverFooter={false} 
+      />
 
       {/* Hero Section */}
       <section className="aboutHero">
@@ -117,14 +95,14 @@ export default function AboutPage() {
       </section>
 
       {/* Our Vision */}
-      <section className="aboutVision">
+      <section className="aboutVision" id="vision">
         <div className="visionContent">
           <motion.div 
             className="visionText"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
               <img src="/logo-v2.png" alt="" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
@@ -144,10 +122,10 @@ export default function AboutPage() {
           </motion.div>
           <motion.div 
             className="visionImage"
-            initial={{ opacity: 0, scale: 0.8, y: 60 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: false, margin: "-50px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <img src={img.vision} alt="Our Vision" />
           </motion.div>
@@ -158,7 +136,7 @@ export default function AboutPage() {
       <AboutGallery />
 
       {/* Team Section */}
-      <section className="aboutTeam">
+      <section className="aboutTeam" id="team">
         <div className="teamHeader">
           <motion.span 
             className="pill pink"
@@ -180,8 +158,8 @@ export default function AboutPage() {
         <div className="teamGrid">
           {img.team.map((src, i) => {
             const teamData = [
-              { name: "Pushkar Sharma", role: "Co-Founder" },
               { name: "Shubham Goel", role: "Founder" },
+              { name: "Pushkar Sharma", role: "Co-Founder" },
               { name: "Yogita Goel", role: "Manager" },
               { name: "Neer Mittal", role: "Content Head" }
             ];

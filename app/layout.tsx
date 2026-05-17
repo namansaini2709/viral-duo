@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  metadataBase: new URL("https://theviralduo.com"),
   twitter: {
     card: "summary_large_image",
     title: "The Viral Duo | Social Media & UGC Growth Agency",

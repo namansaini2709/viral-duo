@@ -28,7 +28,7 @@ export default function HeroSection() {
           </text>
         </svg>
       </div>
-      <HeroStack slides={['/videos/anytime.mp4', '/videos/VDMC.mp4', '/videos/makeyourtrips.mp4', '/videos/MOTO MANIA.mp4', '/videos/skb video.mp4', '/videos/shreeradhey.mp4']} />
+      <HeroStack slides={[img.phone1, img.phone2, img.phone3, img.work1, img.work2, img.work3]} />
       <div className="heroProject">
         <img src="/logos/Sharma ji ke bhature.JPG" alt="" style={{ borderRadius: '50%', objectFit: 'contain', background: '#fff', padding: '4px' }} />
         <div>
@@ -38,7 +38,7 @@ export default function HeroSection() {
       </div>
       <div className="heroIntroCopy">
         <p>The Viral Duo helps brands create content that truly connects with their audience, consistently and strategically across social media.</p>
-        <ShiftButton dark dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' large leftIconColor="#A78BFA" rightIconColor="#F472B6" style={{ marginLeft: '60px' }}>Book a call</ShiftButton>
+        <ShiftButton dark dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' large leftIconColor="#A78BFA" rightIconColor="#F472B6">Book a call</ShiftButton>
       </div>
     </section>
   );
