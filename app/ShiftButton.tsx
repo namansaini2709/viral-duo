@@ -52,11 +52,18 @@ export default function ShiftButton({
   dataCalLink,
   dataCalConfig,
 }: ShiftButtonProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const baseHeight = large ? 60 : small ? 42 : 48;
-  const fontSize = large ? "20px" : small ? "14px" : "16px";
-  const paddingX = large ? "80px" : small ? "20px" : "24px";
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const baseHeight = large ? (isMobile ? 52 : 60) : small ? 42 : 48;
+  const fontSize = large ? (isMobile ? "16px" : "20px") : small ? "14px" : "16px";
+  const paddingX = large ? (isMobile ? "32px" : "80px") : small ? "20px" : "24px";
 
   // Default colors
   let defaultBg = dark ? "#000" : "#0048A1";
@@ -69,8 +76,8 @@ export default function ShiftButton({
 
   const buttonContent = (
     <motion.div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      initial="initial"
+      whileHover="hover"
       whileTap={{ scale: 0.98 }}
       style={{
         display: "flex",
@@ -87,11 +94,9 @@ export default function ShiftButton({
       {/* LEFT ICON (Visible only on hover) */}
       {showIcon && (
         <motion.div
-          initial={{ width: 0, opacity: 0, scale: 0.5 }}
-          animate={{
-            width: isHovered ? baseHeight : 0,
-            opacity: isHovered ? 1 : 0,
-            scale: isHovered ? 1 : 0.5,
+          variants={{
+            initial: { width: 0, opacity: 0, scale: 0.5 },
+            hover: { width: baseHeight, opacity: 1, scale: 1 }
           }}
           transition={springTransition}
           style={{
@@ -147,11 +152,9 @@ export default function ShiftButton({
       {/* RIGHT ICON (Visible by default, hides on hover) */}
       {showIcon && (
         <motion.div
-          initial={{ width: baseHeight, opacity: 1, scale: 1 }}
-          animate={{
-            width: isHovered ? 0 : baseHeight,
-            opacity: isHovered ? 0 : 1,
-            scale: isHovered ? 0.5 : 1,
+          variants={{
+            initial: { width: baseHeight, opacity: 1, scale: 1 },
+            hover: { width: 0, opacity: 0, scale: 0.5 }
           }}
           transition={springTransition}
           style={{
@@ -194,7 +197,7 @@ export default function ShiftButton({
         className={className}
         style={wrapperStyle}
         target={target}
-        rel={rel}
+        rel={target === "_blank" ? rel || "noopener noreferrer" : rel}
         data-cal-link={dataCalLink}
         data-cal-config={dataCalConfig}
       >
