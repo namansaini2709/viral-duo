@@ -40,7 +40,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <a className="brand" href="/" style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <a className="brand" href={isAboutPage ? "#" : "/"} onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
         The Viral Duo
       </a>
@@ -96,10 +96,10 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px' }}>
-            <span style={{ fontWeight: 900, fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <a href={isAboutPage ? "#" : "/"} onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setIsMobileMenuOpen(false); }} style={{ fontWeight: 900, fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px', color: 'inherit', textDecoration: 'none' }}>
               <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
               The Viral Duo
-            </span>
+            </a>
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="Close menu"
