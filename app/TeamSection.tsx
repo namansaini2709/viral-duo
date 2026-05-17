@@ -23,7 +23,7 @@ function TeamLineAnimation() {
   const path = "M 0 300 C 500 100, 1500 500, 2000 300";
 
   return (
-    <div ref={ref} style={{ width: '80%', height: '100%', margin: '0 auto' }}>
+    <div ref={ref} style={{ position: 'relative', width: '80%', height: '100%', margin: '0 auto' }}>
       <svg viewBox="0 0 2000 600" fill="none" preserveAspectRatio="none" aria-hidden="true" style={{ width: '100%', height: '100%' }}>
         <motion.path
           d={path}
