@@ -132,7 +132,16 @@ export default function HeroSection() {
           </text>
         </svg>
       </div>
-      <HeroStack slides={[img.phone1, img.phone2, img.phone3, img.work1, img.work2, img.work3]} />
+      <HeroStack 
+        slides={[
+          { src: img.phone1, poster: "/Cover pages/Fof fitness.png" },
+          { src: img.phone2, poster: "/Cover pages/Global Holidays.png" },
+          { src: img.phone3, poster: "/Cover pages/Vdmc.PNG" },
+          { src: img.work1, poster: "/Cover pages/Shri Radhey Krishna Cover.PNG" },
+          { src: img.work2 },
+          { src: img.work3 }
+        ]} 
+      />
       
       {/* Brand-Cycling Responsive Widget */}
       <div className="heroProject">
