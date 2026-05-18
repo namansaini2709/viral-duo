@@ -12,7 +12,6 @@ function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
       video.play().catch(() => {});
     } else {
       video.pause();
-      video.currentTime = 0;
     }
   }, [isPlaying]);
 
@@ -23,6 +22,7 @@ function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
       loop
       muted
       playsInline
+      preload="metadata"
       style={{
         position: 'absolute',
         top: 0,
@@ -40,10 +40,23 @@ function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
   );
 }
 
+const brandLinks = {
+  anytimeFitness: "https://www.instagram.com/anytimefitnessshahdaradelhi/?hl=en",
+  vdmc: "https://www.instagram.com/vdmc_malai_chaap_nsfood/?hl=en",
+  makeYourTripPossible: "https://www.instagram.com/makeyourtrippossible/?hl=en",
+  fofFitnesa: "https://www.instagram.com/foffitnesa/?hl=en",
+  sharmaKeBhature: "https://www.instagram.com/sharma_ke_bhature/?hl=en",
+  shriRadheyKrishnaJewellers: "https://www.instagram.com/shri_radheykrishnajewellers/?hl=en",
+  globalHolidays: "https://www.instagram.com/globalholidays78/?hl=en",
+  cityGym: "https://www.instagram.com/citygym.16/?hl=en",
+  saral: "https://www.instagram.com/_saralgym_/?hl=en",
+  careerLauncher: "https://www.instagram.com/cl_ashokvihar/?hl=en",
+};
+
 export default function ExploreMore() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const hoveredIndexRef = useRef<number | null>(null);
   const scalesRef = useRef<number[]>([]);
   const scrollXRef = useRef(0);
@@ -52,15 +65,15 @@ export default function ExploreMore() {
   const isInView = useInView(sectionRef, { once: false, margin: "200px" });
 
   const items = [
-    { src: "/videos-optimized/Anytime fitness.mp4", poster: "/logos/anytime. fitness logos.JPG" },
-    { src: "/videos-optimized/Saral gym.mp4", poster: "/logos/saral gym logo.jpg" },
-    { src: "/videos-optimized/global 3.mp4", poster: "/logos/Global Holidays.PNG" },
-    { src: "/videos-optimized/makeyourtrips.mp4", poster: "/logos/Make your trip possible.jpg" },
-    { src: "/videos-optimized/Sharma ji ke bhature.mp4", poster: "/logos/Sharma ji ke bhature.JPG" }
+    { name: "Anytime Fitness", src: "/videos-optimized/Anytime fitness.mp4", poster: "/logos/anytime. fitness logos.JPG", href: brandLinks.anytimeFitness },
+    { name: "Saral Gym", src: "/videos-optimized/Saral gym.mp4", poster: "/logos/saral gym logo.jpg", href: brandLinks.saral },
+    { name: "Global Holidays", src: "/videos-optimized/global 3.mp4", poster: "/logos/Global Holidays.PNG", href: brandLinks.globalHolidays },
+    { name: "Make Your Trip Possible", src: "/videos-optimized/makeyourtrips.mp4", poster: "/logos/Make your trip possible.jpg", href: brandLinks.makeYourTripPossible },
+    { name: "Sharma Ke Bhature", src: "/videos-optimized/Sharma ji ke bhature.mp4", poster: "/logos/Sharma ji ke bhature.JPG", href: brandLinks.sharmaKeBhature }
   ];
 
-  // We render 5 sets of 5 items (25 cards total) to ensure the track always fills the screen on all monitor sizes.
-  const totalCards = 25;
+  // Three loops keep the marquee full while cutting per-frame transform work.
+  const totalCards = 15;
   const cardWidth = 360;
   const gap = 32;
   const step = cardWidth + gap; // 392px
@@ -70,16 +83,12 @@ export default function ExploreMore() {
   const speedPxPerSecond = 72; 
   const speedPxPerMs = speedPxPerSecond / 1000; // 0.072px/ms
 
-  // Declarative state for mounting/playing videos
-  // This ensures we only mount videos in the DOM when they are near the center,
-  // reducing system RAM usage by over 90%!
-  const [videoStates, setVideoStates] = useState<{ mounted: boolean; playing: boolean }[]>(() =>
-    new Array(totalCards).fill({ mounted: false, playing: false })
+  const [playingStates, setPlayingStates] = useState<boolean[]>(() =>
+    new Array(totalCards).fill(false)
   );
 
-  // Keep a ref to the current videoStates to read inside useAnimationFrame without stale closures
-  const videoStatesRef = useRef(videoStates);
-  videoStatesRef.current = videoStates;
+  const playingStatesRef = useRef(playingStates);
+  playingStatesRef.current = playingStates;
 
   // Initialize scales array
   if (scalesRef.current.length === 0) {
@@ -93,9 +102,9 @@ export default function ExploreMore() {
     const safeDelta = Math.min(delta, 32);
 
     // 1. Update the horizontal scroll position using elapsed time (framerate-independent physics)
-    scrollXRef.current -= speedPxPerMs * safeDelta;
-    if (scrollXRef.current <= -loopWidth) {
-      scrollXRef.current += loopWidth; // Seamless wrap-around
+    scrollXRef.current += speedPxPerMs * safeDelta;
+    if (scrollXRef.current >= loopWidth) {
+      scrollXRef.current -= loopWidth; // Seamless wrap-around
     }
 
     // Apply the translation to the track
@@ -103,12 +112,10 @@ export default function ExploreMore() {
 
     const windowWidth = window.innerWidth;
     const playThreshold = windowWidth * 0.22;
-    const mountThreshold = windowWidth * 0.35;
     
-    // Exact mathematical center offset for 25 cards centered relative to the track center
-    const centerOffset = 4704;
+    const centerOffset = Math.floor(totalCards / 2) * step;
 
-    const nextStates: { mounted: boolean; playing: boolean }[] = [];
+    const nextPlayingStates: boolean[] = [];
     let stateChanged = false;
 
     // 2. Batch all writes to the DOM to prevent layout thrashing and maintain 120fps smoothness
@@ -139,27 +146,23 @@ export default function ExploreMore() {
       cardEl.style.zIndex = hoveredIndexRef.current === i ? '20' : '1';
       cardEl.style.transform = `translate3d(0px, ${y}px, 0px) rotate(${angle}deg) scale(${nextScale})`;
 
-      // Calculate if this video should be mounted and playing
-      const shouldMount = absDist < mountThreshold;
       const shouldPlay = absDist < playThreshold;
 
-      const currentState = videoStatesRef.current[i] || { mounted: false, playing: false };
-      if (currentState.mounted !== shouldMount || currentState.playing !== shouldPlay) {
+      if ((playingStatesRef.current[i] || false) !== shouldPlay) {
         stateChanged = true;
       }
-      nextStates.push({ mounted: shouldMount, playing: shouldPlay });
+      nextPlayingStates.push(shouldPlay);
     }
 
-    // Trigger state change only when entering/leaving thresholds (extremely infrequent, ~once every 2.7s)
     if (stateChanged) {
-      setVideoStates(nextStates);
+      setPlayingStates(nextPlayingStates);
     }
   });
 
   // Keep playing videos paused when the section is not in view to preserve device battery
   useEffect(() => {
     if (!isInView) {
-      setVideoStates(new Array(totalCards).fill({ mounted: false, playing: false }));
+      setPlayingStates(new Array(totalCards).fill(false));
     }
   }, [isInView]);
 
@@ -178,12 +181,16 @@ export default function ExploreMore() {
         >
           {[...Array(totalCards)].map((_, i) => {
             const item = items[i % items.length];
-            const state = videoStates[i] || { mounted: false, playing: false };
+            const isPlaying = playingStates[i] || false;
             return (
-              <div
+              <a
                 key={i}
                 ref={(el) => { cardRefs.current[i] = el; }}
                 className="arcCard"
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${item.name} on Instagram`}
                 onMouseEnter={() => { hoveredIndexRef.current = i; }}
                 onMouseLeave={() => { hoveredIndexRef.current = null; }}
                 style={{
@@ -210,11 +217,9 @@ export default function ExploreMore() {
                     }}
                   />
                 )}
-                {/* Foreground Layer: Video that dynamically mounts and plays only in center */}
-                {state.mounted && (
-                  <ArcCardVideo src={item.src} isPlaying={state.playing} />
-                )}
-              </div>
+                {/* Foreground Layer: Videos stay mounted, only center cards play. */}
+                <ArcCardVideo src={item.src} isPlaying={isPlaying} />
+              </a>
             );
           })}
         </div>

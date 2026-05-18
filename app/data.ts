@@ -58,7 +58,7 @@ export const services = [
     id: "04",
     title: "Brand Partnership",
     desc: "Connecting visionary brands with top-tier creators for seamless integrations that feel organic and deliver measurable results.",
-    metric: "500+",
+    metric: "20+",
     unit: "Successful Collabs",
     color: "color4",
     img: img.service4,

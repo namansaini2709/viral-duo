@@ -54,26 +54,41 @@ export default function AboutPage() {
               <motion.p 
                 className="pill pink"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 ABOUT US
               </motion.p>
             </div>
             <div className="heroLine">
               <motion.h1
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, scale: 0.8, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 45, 
+                  damping: 16, 
+                  mass: 1.2,
+                  delay: 0.05 
+                }}
               >
                 Built by people who won’t
               </motion.h1>
             </div>
             <div className="heroLine">
               <motion.h1
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, scale: 0.8, y: 40 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 45, 
+                  damping: 16, 
+                  mass: 1.2,
+                  delay: 0.3 // Staggered delay for the second line, adjusted slightly for slower speed
+                }}
               >
                 ship content they’d skip
               </motion.h1>
@@ -82,12 +97,13 @@ export default function AboutPage() {
           
           <motion.div 
             className="heroImageWrapper"
-            initial={{ opacity: 0, scale: 0.8, x: 40 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <video
-              src="/Ilustrated videos/About us.mp4"
+              src="/Ilustrated videos/Animation.mp4"
               autoPlay
               loop
               muted
@@ -103,9 +119,9 @@ export default function AboutPage() {
         <div className="visionContent">
           <motion.div 
             className="visionText"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -126,10 +142,16 @@ export default function AboutPage() {
           </motion.div>
           <motion.div 
             className="visionImage"
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, scale: 0.6 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 90, 
+              damping: 14, 
+              mass: 0.8,
+              delay: 0.1
+            }}
           >
             <img src={img.vision} alt="Our Vision" />
           </motion.div>

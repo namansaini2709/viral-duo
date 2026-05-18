@@ -12,7 +12,6 @@ import ExploreMore from "./ExploreMore";
 import ServicesSection from "./ServicesSection";
 import CompareSection from "./CompareSection";
 import ProcessSection from "./ProcessSection";
-import TestimonialsSection from "./TestimonialsSection";
 import TeamSection from "./TeamSection";
 import FaqSection from "./FaqSection";
 import CtaSection from "./CtaSection";
@@ -115,7 +114,6 @@ export default function Home() {
         <ServicesSection />
         <CompareSection />
         <ProcessSection />
-        <TestimonialsSection />
         <TeamSection />
         <FaqSection />
         <CtaSection />

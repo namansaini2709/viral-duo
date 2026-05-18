@@ -14,12 +14,20 @@ type Drag = {
   currentX: number;
 };
 
-export default function HeroStack({ slides }: { slides: string[] }) {
+export type HeroSlide = string | { src: string; poster?: string };
+
+export default function HeroStack({ slides }: { slides: HeroSlide[] }) {
   const [cursor, setCursor] = useState({ x: 50, y: 50, visible: false });
   const [activeIndex, setActiveIndex] = useState(0);
   const [drag, setDrag] = useState<Drag>({ active: false, startX: 0, currentX: 0 });
 
-  const getSlide = (offset: number) => slides[(activeIndex + offset + slides.length) % slides.length];
+  const getSlide = (offset: number) => {
+    const slide = slides[(activeIndex + offset + slides.length) % slides.length];
+    if (typeof slide === "string") {
+      return { src: slide, poster: undefined };
+    }
+    return slide;
+  };
   const dragOffset = drag.active ? drag.currentX - drag.startX : 0;
   const rotation = dragOffset * 0.035;
 
@@ -76,11 +84,12 @@ export default function HeroStack({ slides }: { slides: string[] }) {
         setDrag({ active: false, startX: 0, currentX: 0 });
       }}
     >
-      <SlideItem className="heroCard heroCardThird" src={getSlide(2)} alt="Previous content slide" isActive={false} />
-      <SlideItem className="heroCard heroCardSecond" src={getSlide(1)} alt="Next content slide" isActive={false} />
+      <SlideItem className="heroCard heroCardThird" src={getSlide(2).src} poster={getSlide(2).poster} alt="Previous content slide" isActive={false} />
+      <SlideItem className="heroCard heroCardSecond" src={getSlide(1).src} poster={getSlide(1).poster} alt="Next content slide" isActive={false} />
       <SlideItem
         className={drag.active ? "heroCard heroCardMain isDragging" : "heroCard heroCardMain"}
-        src={getSlide(0)}
+        src={getSlide(0).src}
+        poster={getSlide(0).poster}
         alt="Featured social media campaign"
         isActive={true}
         style={{
@@ -100,9 +109,9 @@ export default function HeroStack({ slides }: { slides: string[] }) {
   );
 }
 
-function SlideItem({ src, className, style, alt, isActive }: { src: string, className: string, style?: React.CSSProperties, alt?: string, isActive?: boolean }) {
+function SlideItem({ src, className, style, alt, isActive, poster }: { src: string, className: string, style?: React.CSSProperties, alt?: string, isActive?: boolean, poster?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(isActive);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -110,14 +119,16 @@ function SlideItem({ src, className, style, alt, isActive }: { src: string, clas
         videoRef.current.play().catch(e => console.log('Playback error:', e));
       } else {
         videoRef.current.pause();
+        if (poster) {
+          videoRef.current.load();
+        }
       }
     }
-  }, [isActive, src, isPlaying]);
+  }, [isActive, src, isPlaying, poster]);
 
   useEffect(() => {
-    // Reset to play when it becomes active
-    if (isActive) {
-      setIsPlaying(true);
+    if (!isActive) {
+      setIsPlaying(false);
     }
   }, [isActive]);
 
@@ -135,9 +146,11 @@ function SlideItem({ src, className, style, alt, isActive }: { src: string, clas
           ref={videoRef}
           style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
           src={src}
+          poster={poster}
           muted
           loop
           playsInline
+          preload="metadata"
         />
       ) : (
         <img style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} src={src} alt={alt} draggable={false} />
