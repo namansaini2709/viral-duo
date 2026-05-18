@@ -134,12 +134,12 @@ export default function HeroSection() {
       </div>
       <HeroStack 
         slides={[
+          { src: img.work3, poster: "/Cover pages/inder chahal.20.49 AM.jpeg" },
           { src: img.phone1, poster: "/Cover pages/Fof fitness.png" },
           { src: img.phone2, poster: "/Cover pages/Global Holidays.png" },
           { src: img.phone3, poster: "/Cover pages/Vdmc.PNG" },
           { src: img.work1, poster: "/Cover pages/Shri Radhey Krishna Cover.PNG" },
-          { src: img.work2 },
-          { src: img.work3, poster: "/Cover pages/inder chahal.20.49 AM.jpeg" }
+          { src: img.work2 }
         ]} 
       />
       

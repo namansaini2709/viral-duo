@@ -111,7 +111,7 @@ export default function HeroStack({ slides }: { slides: HeroSlide[] }) {
 
 function SlideItem({ src, className, style, alt, isActive, poster }: { src: string, className: string, style?: React.CSSProperties, alt?: string, isActive?: boolean, poster?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(isActive);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -127,9 +127,8 @@ function SlideItem({ src, className, style, alt, isActive, poster }: { src: stri
   }, [isActive, src, isPlaying, poster]);
 
   useEffect(() => {
-    // Reset to play when it becomes active
-    if (isActive) {
-      setIsPlaying(true);
+    if (!isActive) {
+      setIsPlaying(false);
     }
   }, [isActive]);
 
