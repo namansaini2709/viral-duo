@@ -139,7 +139,7 @@ export default function HeroSection() {
           { src: img.phone3, poster: "/Cover pages/Vdmc.PNG" },
           { src: img.work1, poster: "/Cover pages/Shri Radhey Krishna Cover.PNG" },
           { src: img.work2 },
-          { src: img.work3 }
+          { src: img.work3, poster: "/Cover pages/inder chahal.20.49 AM.jpeg" }
         ]} 
       />
       
