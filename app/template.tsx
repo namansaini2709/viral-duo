@@ -3,9 +3,44 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isAnimating, setIsAnimating] = useState(true);
+
+  const getSavedScroll = () => {
+    if (typeof window === "undefined") return 0;
+    const saved = sessionStorage.getItem(`scroll_pos_${pathname}`);
+    if (saved) return parseInt(saved, 10);
+    return 0;
+  };
+
+  const savedScrollY = getSavedScroll();
+
+  // Restore scroll position immediately when pathname changes so the page transition
+  // starts at the correct, restored scroll position instead of the top of the page.
+  useIsomorphicLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const hash = window.location.hash;
+    if (hash) {
+      return;
+    }
+
+    const savedScroll = sessionStorage.getItem(`scroll_pos_${pathname}`);
+    if (savedScroll) {
+      const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, parseInt(savedScroll, 10));
+      document.documentElement.style.scrollBehavior = originalScrollBehavior;
+    } else {
+      const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, 0);
+      document.documentElement.style.scrollBehavior = originalScrollBehavior;
+    }
+  }, [pathname]);
 
   React.useEffect(() => {
     setIsAnimating(true);
@@ -141,7 +176,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
       style={{
         width: "100%",
         perspective: isAnimating ? "2000px" : "none",
-        perspectiveOrigin: "50% 50%",
+        perspectiveOrigin: isAnimating && typeof window !== "undefined"
+          ? `50% ${savedScrollY + window.innerHeight / 2}px`
+          : "50% 50%",
         position: "relative",
       }}
     >
@@ -188,14 +225,13 @@ export default function Template({ children }: { children: React.ReactNode }) {
         }}
         style={isAnimating ? { 
           width: '100%', 
-          transformOrigin: "left bottom",
+          transformOrigin: typeof window !== "undefined"
+            ? `left ${savedScrollY + window.innerHeight}px`
+            : "left bottom",
           backfaceVisibility: "hidden",
           backgroundColor: "var(--paper)", // Match page background during rotation
           minHeight: "100vh",
-          // Temporarily lock height and overflow during animation to ensure
-          // the bottom-left corner of the container aligns with the viewport bottom-left
-          height: "100vh",
-          overflow: "hidden",
+          overflow: "visible",
         } : {
           width: '100%',
           backgroundColor: "var(--paper)",
