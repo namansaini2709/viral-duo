@@ -138,16 +138,17 @@ function WorkCard({
 
   return (
     <motion.a
-      className={i === 0 ? "workCard wide" : "workCard"}
+      className="workCard"
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${name} on Instagram`}
       onClick={handleClick}
       onTouchStart={handleTouchStart}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: i * 0.1 }}
+      initial={{ opacity: 0, scale: 0.7, y: 40 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ type: "spring", damping: 60, stiffness: 500, mass: 1, delay: i * 0.1 }}
+      transformTemplate={(transform, generatedTransform) => `perspective(1200px) ${generatedTransform}`}
       viewport={{ once: true, margin: "-100px" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -494,6 +495,9 @@ export default function FeaturedProjects() {
     );
   }
 
+  const leftColProjects = projects.filter((_, idx) => idx % 2 === 0);
+  const rightColProjects = projects.filter((_, idx) => idx % 2 !== 0);
+
   return (
     <section className="section" id="work" style={{ paddingTop: '160px' }}>
       <div className="sectionHead">
@@ -502,20 +506,44 @@ export default function FeaturedProjects() {
       </div>
 
       <div className="workGrid">
-        {projects.map((project, i) => (
-          <WorkCard
-            key={project.name}
-            src={project.src}
-            poster={project.poster}
-            name={project.name}
-            result={project.result}
-            logo={project.logo}
-            href={project.href}
-            i={i}
-            activePlayingIndex={activePlayingIndex}
-            setActivePlayingIndex={setActivePlayingIndex}
-          />
-        ))}
+        <div className="workColumn left">
+          {leftColProjects.map((project) => {
+            const originalIndex = projects.indexOf(project);
+            return (
+              <WorkCard
+                key={project.name}
+                src={project.src}
+                poster={project.poster}
+                name={project.name}
+                result={project.result}
+                logo={project.logo}
+                href={project.href}
+                i={originalIndex}
+                activePlayingIndex={activePlayingIndex}
+                setActivePlayingIndex={setActivePlayingIndex}
+              />
+            );
+          })}
+        </div>
+        <div className="workColumn right">
+          {rightColProjects.map((project) => {
+            const originalIndex = projects.indexOf(project);
+            return (
+              <WorkCard
+                key={project.name}
+                src={project.src}
+                poster={project.poster}
+                name={project.name}
+                result={project.result}
+                logo={project.logo}
+                href={project.href}
+                i={originalIndex}
+                activePlayingIndex={activePlayingIndex}
+                setActivePlayingIndex={setActivePlayingIndex}
+              />
+            );
+          })}
+        </div>
       </div>
     </section>
   );

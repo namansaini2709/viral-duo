@@ -6025,3 +6025,37 @@ details p {
     object-fit: cover !important;
   }
 }
+
+/* Staggered masonry layout for Featured Projects on Desktop */
+@media (min-width: 1024px) {
+  .workGrid {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 40px !important;
+    max-width: 1200px !important;
+    margin-inline: auto !important;
+    margin-top: 80px !important;
+    align-items: flex-start !important;
+  }
+
+  .workColumn {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important;
+    flex: 1 !important;
+  }
+
+  .workColumn.right {
+    margin-top: 100px !important; /* Vertical stagger */
+  }
+
+  .workCard {
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .workCard.wide {
+    grid-column: auto !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+}
