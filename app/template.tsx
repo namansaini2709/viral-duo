@@ -118,7 +118,16 @@ export default function Template({ children }: { children: React.ReactNode }) {
       // 2. Otherwise, restore the saved scroll position for this page
       const savedScroll = sessionStorage.getItem(`scroll_pos_${pathname}`);
       if (savedScroll) {
+        // Temporarily disable global smooth scroll for an instant snap/jump
+        const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = "auto";
+        
         window.scrollTo(0, parseInt(savedScroll, 10));
+        
+        // Re-enable smooth scroll after restoration
+        setTimeout(() => {
+          document.documentElement.style.scrollBehavior = originalScrollBehavior;
+        }, 50);
       }
     }
   }, [isAnimating, pathname]);
