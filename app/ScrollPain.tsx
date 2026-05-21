@@ -24,6 +24,16 @@ function smooth(value: number) {
 export default function ScrollPain() {
   const sectionRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -102,7 +112,7 @@ export default function ScrollPain() {
       className="scrollPain"
       style={{
         background: "var(--paper)",
-        height: "800vh", // Increased to 800vh for ultra-slow, cinematic pacing
+        height: isMobile ? "500vh" : "800vh", // 500vh on mobile to balance scroll fatigue and animation fluidity
       } as CSSProperties}
     >
       <div
@@ -156,9 +166,10 @@ export default function ScrollPain() {
             const opacity = active ? smooth(1 - Math.abs(cardProgress - 0.5) * 2) : 0;
             
             // Horizontal positioning based on index
-            // 0: Left, 1: Right, 2: Center, 3: Right, 4: Left
-            const positions = ["25%", "75%", "50%", "75%", "25%"];
-            const xPos = positions[i] || "50%";
+            // On mobile/tablet, stagger cards elegantly without causing overflow
+            const desktopPositions = ["25%", "75%", "50%", "75%", "25%"];
+            const mobilePositions = ["36%", "64%", "50%", "64%", "36%"];
+            const xPos = isMobile ? (mobilePositions[i] || "50%") : (desktopPositions[i] || "50%");
             
             const rotation = 0;
 

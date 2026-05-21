@@ -1,22 +1,24 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useMotionValueEvent } from 'framer-motion';
+"use client";
+
+import React, { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import ShiftButton from './ShiftButton';
 import { img } from './data';
 
-function TeamLineAnimation() {
+function TeamLineAnimation({ onComplete }: { onComplete?: () => void }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  const persistentPathLength = useMotionValue(0);
-  const opacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const targetLength = Math.min(latest / 0.7, 1);
-    if (targetLength > persistentPathLength.get()) {
-      persistentPathLength.set(targetLength);
+  // Notify when the line is fully drawn
+  useMotionValueEvent(pathLength, "change", (v) => {
+    if (v >= 0.99 && onComplete) {
+      onComplete();
     }
   });
 
@@ -30,7 +32,7 @@ function TeamLineAnimation() {
           stroke="#fbb6ed"
           strokeWidth="20"
           strokeLinecap="round"
-          style={{ pathLength: persistentPathLength, opacity }}
+          style={{ pathLength, opacity }}
         />
       </svg>
     </div>
@@ -38,6 +40,8 @@ function TeamLineAnimation() {
 }
 
 export default function TeamSection() {
+  const [showPhotos, setShowPhotos] = useState(false);
+
   return (
     <section className="teamSection">
       <div className="teamHeader">
@@ -47,23 +51,25 @@ export default function TeamSection() {
 
       <div className="teamContainer">
         <div className="teamLine">
-          <TeamLineAnimation />
+          <TeamLineAnimation onComplete={() => setShowPhotos(true)} />
         </div>
 
-        <div className="teamGridCluttered">
-          {img.team.map((member, i) => (
-            <motion.div
-              key={i}
-              className="teamCard"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-            >
-              <img src={member.avatar} alt={`Team member ${member.name}`} />
-            </motion.div>
-          ))}
-        </div>
+        {showPhotos && (
+          <div className="teamGridCluttered">
+            {img.team.map((member, i) => (
+              <motion.div
+                key={i}
+                className="teamCard"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+              >
+                <img src={member.avatar} alt={`Team member ${member.name}`} />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="teamFooter">
