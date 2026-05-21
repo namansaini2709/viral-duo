@@ -1,26 +1,20 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import ShiftButton from './ShiftButton';
 import { img } from './data';
 
-function TeamLineAnimation({ onComplete }: { onComplete?: () => void }) {
+function TeamLineAnimation() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  // Complete the line early, e.g. by 45% of the scroll progress
+  const pathLength = useTransform(scrollYProgress, [0, 0.45], [0, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
-
-  // Notify when the line is fully drawn
-  useMotionValueEvent(pathLength, "change", (v) => {
-    if (v >= 0.99 && onComplete) {
-      onComplete();
-    }
-  });
 
   const path = "M 0 300 C 500 100, 1500 500, 2000 300";
 
@@ -40,8 +34,6 @@ function TeamLineAnimation({ onComplete }: { onComplete?: () => void }) {
 }
 
 export default function TeamSection() {
-  const [showPhotos, setShowPhotos] = useState(false);
-
   return (
     <section className="teamSection">
       <div className="teamHeader">
@@ -51,25 +43,23 @@ export default function TeamSection() {
 
       <div className="teamContainer">
         <div className="teamLine">
-          <TeamLineAnimation onComplete={() => setShowPhotos(true)} />
+          <TeamLineAnimation />
         </div>
 
-        {showPhotos && (
-          <div className="teamGridCluttered">
-            {img.team.map((member, i) => (
-              <motion.div
-                key={i}
-                className="teamCard"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-              >
-                <img src={member.avatar} alt={`Team member ${member.name}`} />
-              </motion.div>
-            ))}
-          </div>
-        )}
+        <div className="teamGridCluttered">
+          {img.team.map((member, i) => (
+            <motion.div
+              key={i}
+              className="teamCard"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+            >
+              <img src={member.avatar} alt={`Team member ${member.name}`} />
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       <div className="teamFooter">
