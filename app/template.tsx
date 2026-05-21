@@ -33,12 +33,65 @@ export default function Template({ children }: { children: React.ReactNode }) {
     };
   }, [pathname]);
 
-  // Continuously persist the scroll position when not transitioning
+  const isUserScrolling = React.useRef(false);
+
+  // Monitor user interaction inputs to distinguish human scrolling from router programmatic scrolls
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let activeTimeout: NodeJS.Timeout;
+    const setUserScrollingTrue = () => {
+      isUserScrolling.current = true;
+    };
+    const setUserScrollingFalse = () => {
+      isUserScrolling.current = false;
+    };
+    
+    // For wheel scrolls, we clear after a short delay since wheel has no end event
+    const handleWheel = () => {
+      isUserScrolling.current = true;
+      clearTimeout(activeTimeout);
+      activeTimeout = setTimeout(() => {
+        isUserScrolling.current = false;
+      }, 300);
+    };
+
+    // For scroll-controlling keyboard keys
+    const handleKeydown = (e: KeyboardEvent) => {
+      const keys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Space", "Home", "End"];
+      if (keys.includes(e.code)) {
+        isUserScrolling.current = true;
+        clearTimeout(activeTimeout);
+        activeTimeout = setTimeout(() => {
+          isUserScrolling.current = false;
+        }, 300);
+      }
+    };
+
+    window.addEventListener("pointerdown", setUserScrollingTrue, { passive: true });
+    window.addEventListener("pointerup", setUserScrollingFalse, { passive: true });
+    window.addEventListener("touchstart", setUserScrollingTrue, { passive: true });
+    window.addEventListener("touchend", setUserScrollingFalse, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    window.addEventListener("keydown", handleKeydown, { passive: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", setUserScrollingTrue);
+      window.removeEventListener("pointerup", setUserScrollingFalse);
+      window.removeEventListener("touchstart", setUserScrollingTrue);
+      window.removeEventListener("touchend", setUserScrollingFalse);
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("keydown", handleKeydown);
+      clearTimeout(activeTimeout);
+    };
+  }, []);
+
+  // Save scroll position ONLY when scroll is user-initiated (ignores programmatic scroll-to-top)
   React.useEffect(() => {
     if (typeof window === "undefined") return;
 
     const handleScroll = () => {
-      if (!isAnimating && !(window as any).__pageTransitionActive) {
+      if (isUserScrolling.current && !isAnimating && !(window as any).__pageTransitionActive) {
         sessionStorage.setItem(`scroll_pos_${pathname}`, window.scrollY.toString());
       }
     };
