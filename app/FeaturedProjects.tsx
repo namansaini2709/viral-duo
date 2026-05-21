@@ -136,6 +136,8 @@ function WorkCard({
     }
   };
 
+  const isLeft = i % 2 === 0;
+
   return (
     <motion.a
       className="workCard"
@@ -145,11 +147,11 @@ function WorkCard({
       aria-label={`Open ${name} on Instagram`}
       onClick={handleClick}
       onTouchStart={handleTouchStart}
-      initial={{ opacity: 0, scale: 0.7, y: 40 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ type: "spring", damping: 60, stiffness: 500, mass: 1, delay: i * 0.1 }}
+      initial={{ opacity: 0, scale: 0.85, x: isLeft ? -120 : 120, y: 0 }}
+      whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+      transition={{ type: "spring", damping: 60, stiffness: 500, mass: 1, delay: i * 0.15 }}
       transformTemplate={(transform, generatedTransform) => `perspective(1200px) ${generatedTransform}`}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: false, margin: "-100px" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleMouseEnter}
