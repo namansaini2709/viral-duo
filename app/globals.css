@@ -2167,6 +2167,12 @@ footer h2 {
   width: 100%;
   z-index: 4;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero.in-view .heroRibbonContainer {
+  opacity: 1;
 }
 
 .heroRibbonSvg {
@@ -4192,6 +4198,11 @@ details p {
     top: 38% !important;
     height: 140px !important;
     z-index: 0 !important;
+    opacity: 0 !important;
+    transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  .hero.in-view .heroRibbonContainer {
     opacity: 0.45 !important;
   }
 

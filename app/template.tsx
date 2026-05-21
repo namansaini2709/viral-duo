@@ -12,14 +12,25 @@ export default function Template({ children }: { children: React.ReactNode }) {
     if (typeof window !== "undefined") {
       (window as any).__pageTransitionActive = true;
     }
-    const timer = setTimeout(() => {
-      setIsAnimating(false);
+
+    // Trigger entrance animations inside the page early (after 150ms)
+    // so they animate concurrently with the premium 3D page-flip transition
+    const animationTriggerTimer = setTimeout(() => {
       if (typeof window !== "undefined") {
         (window as any).__pageTransitionActive = false;
         window.dispatchEvent(new CustomEvent("page-transition-finished"));
       }
-    }, 950); // Guarantee scrolling unlock after animation duration
-    return () => clearTimeout(timer);
+    }, 150);
+
+    // Keep scrolling/interaction lock for the full duration of the 3D flip animation
+    const lockTimer = setTimeout(() => {
+      setIsAnimating(false);
+    }, 950);
+
+    return () => {
+      clearTimeout(animationTriggerTimer);
+      clearTimeout(lockTimer);
+    };
   }, [pathname]);
 
   return (
