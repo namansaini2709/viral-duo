@@ -540,10 +540,14 @@ img {
 }
 
 .heroTitle {
-  animation: introWords 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 0;
   max-width: min(32vw, 390px);
   position: relative;
   z-index: 4;
+}
+
+.hero.in-view .heroTitle {
+  animation: introWords 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .heroTitle h1 {
@@ -611,7 +615,7 @@ img {
 }
 
 .heroStack {
-  animation: introCard 1150ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 0;
   cursor: none;
   height: min(78vh, 720px);
   left: 50%;
@@ -622,6 +626,10 @@ img {
   z-index: 10;
   touch-action: pan-y;
   user-select: none;
+}
+
+.hero.in-view .heroStack {
+  animation: introCard 1150ms 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .heroCard {
@@ -688,7 +696,7 @@ img {
 
 .heroProject {
   align-items: center;
-  animation: introRight 900ms 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 0;
   background: #fff;
   border-radius: 24px;
   display: grid;
@@ -699,6 +707,10 @@ img {
   right: -8px;
   top: 10vh;
   z-index: 6;
+}
+
+.hero.in-view .heroProject {
+  animation: introRight 900ms 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .heroProject img {
@@ -722,7 +734,7 @@ img {
 }
 
 .heroIntroCopy {
-  animation: introRight 900ms 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 0;
   max-width: 280px;
   position: absolute;
   right: clamp(18px, 5vw, 92px);
@@ -732,6 +744,10 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 24px;
+}
+
+.hero.in-view .heroIntroCopy {
+  animation: introRight 900ms 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .heroIntroCopy p {
@@ -1293,12 +1309,17 @@ footer h2 {
   border: none;
   text-align: left;
   position: relative;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .compareCard.agencies {
   background: #ffffff;
   transform: rotate(-4deg) translateX(40px);
   z-index: 1;
+  border: none;
+  box-shadow: none;
 }
 
 .compareCard.theViralDuo {
@@ -1413,6 +1434,9 @@ footer h2 {
   box-shadow: 0 20px 40px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,0.4);
   transition: box-shadow 0.4s ease;
   cursor: pointer;
+  will-change: flex, transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .processCard:hover {
@@ -3833,6 +3857,14 @@ details p {
   border-radius: inherit;
 }
 
+.mobilePillWrapper {
+  display: none !important;
+}
+
+.desktopOnlyPill {
+  display: block;
+}
+
 .aboutHero .pill.pink {
   display: inline-block;
   background: #ffa8f2;
@@ -4189,6 +4221,27 @@ details p {
     width: 100% !important;
     max-width: 500px;
     margin: 0 auto;
+  }
+
+  .aboutPage .aboutHero {
+    padding-top: 140px !important; /* increased specificity and padding to fully clear fixed navbar and avoid being covered */
+  }
+
+  .mobilePillWrapper {
+    display: flex !important;
+    justify-content: center;
+    margin-bottom: 32px !important;
+    position: relative;
+    z-index: 10;
+  }
+
+  .desktopOnlyPill {
+    display: none !important;
+  }
+
+  .aboutHero .heroImageWrapper {
+    order: -1 !important;
+    margin-top: 0 !important;
   }
 
   /* Vision Section Stacking */

@@ -1,39 +1,83 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+
+const isPageReload = (): boolean => {
+  if (typeof window === "undefined") return false;
+  try {
+    const navigationEntries = performance.getEntriesByType("navigation");
+    if (navigationEntries.length > 0) {
+      return (navigationEntries[0] as PerformanceNavigationTiming).type === "reload";
+    }
+    return (window.performance as any).navigation?.type === 1;
+  } catch (e) {
+    return false;
+  }
+};
 
 export default function Preloader() {
-  const [isActive, setIsActive] = useState(false);
+  const pathname = usePathname();
+  const [isActive, setIsActive] = useState(() => {
+    return pathname === "/";
+  });
   const [isFading, setIsFading] = useState(false);
   const [showSkipHint, setShowSkipHint] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Check session storage to see if we've already played the preloader this session
-    const hasPlayed = sessionStorage.getItem("preloader-played");
-    if (!hasPlayed) {
-      setIsActive(true);
-      // Disable scrolling on load
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
+    if (pathname === "/") {
+      const isPlayed = sessionStorage.getItem("preloader_played") === "true";
+      const isReload = isPageReload();
+
+      if (isPlayed && !isReload) {
+        setIsActive(false);
+        if (typeof window !== "undefined") {
+          (window as any).__preloaderFinished = true;
+          window.dispatchEvent(new CustomEvent("preloader-finished"));
+        }
+      } else {
+        sessionStorage.setItem("preloader_played", "true");
+      }
+    } else {
+      sessionStorage.setItem("preloader_played", "true");
+      if (typeof window !== "undefined") {
+        (window as any).__preloaderFinished = true;
+        window.dispatchEvent(new CustomEvent("preloader-finished"));
+      }
     }
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isActive) return;
 
-    // Show the skip hint after 1.5 seconds
+    // Disable scrolling on load
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      // Clean up overflow styles in case component unmounts unexpectedly
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [isActive]);
+
+  useEffect(() => {
+    if (!isActive) return;
+
+    // Show the skip hint after 1.0 second
     const hintTimer = setTimeout(() => {
       setShowSkipHint(true);
-    }, 1500);
+    }, 1000);
 
-    // Fallback: If for any reason the video is stuck, close the preloader after 8 seconds
+    // Fallback: If for any reason the video is stuck, close the preloader after 4 seconds
     const fallbackTimer = setTimeout(() => {
       handleClose();
-    }, 8000);
+    }, 4000);
 
-    // Try to trigger play in case autoplay was restricted
+    // Try to trigger play in case autoplay was restricted and speed it up
     if (videoRef.current) {
+      videoRef.current.playbackRate = 2.25;
       videoRef.current.play().catch((err) => {
         console.log("Autoplay failed or was blocked:", err);
       });
@@ -48,13 +92,16 @@ export default function Preloader() {
   const handleClose = () => {
     if (isFading) return;
     setIsFading(true);
-    
-    // Mark as played in session storage
-    sessionStorage.setItem("preloader-played", "true");
 
     // Re-enable scrolling
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
+
+    // Notify window that preloader has completed
+    if (typeof window !== "undefined") {
+      (window as any).__preloaderFinished = true;
+      window.dispatchEvent(new CustomEvent("preloader-finished"));
+    }
 
     // Unmount after fade-out transition duration (500ms)
     setTimeout(() => {

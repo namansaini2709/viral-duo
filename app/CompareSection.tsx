@@ -45,10 +45,14 @@ export default function CompareSection() {
   return (
     <section className="section compare">
       <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.8 }}
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { opacity: 1, y: 0 }
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         Don't settle for less
       </motion.h2>
@@ -126,77 +130,101 @@ export default function CompareSection() {
       ) : (
         /* Original Premium Desktop Sticky Layout */
         <div className="compareGrid">
-          <AnimatePresence mode="wait">
-            {(!isMobile || activeTab === 'agencies') && (
-              <motion.div
+          <AnimatePresence>
+            {!isMobile || activeTab === 'agencies' ? (
+              <div
                 key="agencies"
+                className="compareColWrapper left"
                 onMouseEnter={() => setHoveredCard('agencies')}
                 onMouseLeave={() => setHoveredCard(null)}
-                style={{ position: 'relative', zIndex: hoveredCard === 'agencies' ? 10 : 1, width: '100%' }}
-                initial={isMobile ? { opacity: 0, x: -20 } : { opacity: 0, x: -50, rotate: 0 }}
-                animate={{
-                  x: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : (hoveredCard === 'theViralDuo' ? -80 : 20)),
-                  rotate: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : -2),
-                  scale: hoveredCard === 'agencies' ? 1.02 : 1,
-                  opacity: 1,
-                  boxShadow: hoveredCard === 'agencies' ? "0 20px 40px rgba(0,0,0,0.05)" : "none"
+                style={{ 
+                  position: 'relative', 
+                  zIndex: hoveredCard === 'agencies' ? 10 : 1, 
+                  width: '50%',
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  paddingRight: '24px'
                 }}
-                exit={isMobile ? { opacity: 0, x: 20 } : undefined}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: false, amount: 0.15 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="compareCard agencies">
-                  <h3>Other Agencies</h3>
-                  <div className="compareList" role="list">
-                    {["Ad-like, brand-heavy", "Posting volume", "Based on follower count", "Trend-chasing", "Basic metrics"].map(x => (
-                      <div key={x} className="compareItem" role="listitem">
-                        <span className="icon" aria-hidden="true">✕</span>
-                        {x}
-                      </div>
-                    ))}
+                <motion.div
+                  style={{ position: 'relative' }}
+                  initial={isMobile ? { opacity: 0, x: -20 } : { opacity: 0, x: -50, rotate: 0 }}
+                  animate={{
+                    x: isMobile ? 0 : (hoveredCard === 'agencies' ? -20 : (hoveredCard === 'theViralDuo' ? -120 : 30)),
+                    rotate: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : -2),
+                    scale: hoveredCard === 'agencies' ? 1.02 : 1,
+                    opacity: 1,
+                    boxShadow: "none"
+                  }}
+                  exit={isMobile ? { opacity: 0, x: 20 } : undefined}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div className="compareCard agencies">
+                    <h3>Other Agencies</h3>
+                    <div className="compareList" role="list">
+                      {["Ad-like, brand-heavy", "Posting volume", "Based on follower count", "Trend-chasing", "Basic metrics"].map(x => (
+                        <div key={x} className="compareItem" role="listitem">
+                          <span className="icon" aria-hidden="true">✕</span>
+                          {x}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            )}
+                </motion.div>
+              </div>
+            ) : null}
 
-            {(!isMobile || activeTab === 'theViralDuo') && (
-              <motion.div
+            {!isMobile || activeTab === 'theViralDuo' ? (
+              <div
                 key="theViralDuo"
+                className="compareColWrapper right"
                 onMouseEnter={() => setHoveredCard('theViralDuo')}
                 onMouseLeave={() => setHoveredCard(null)}
-                style={{ position: 'relative', zIndex: hoveredCard === 'theViralDuo' ? 10 : 2, width: '100%' }}
-                initial={isMobile ? { opacity: 0, x: 20 } : { opacity: 0, x: 50, rotate: 0 }}
-                animate={{
-                  x: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : (hoveredCard === 'agencies' ? 80 : -20)),
-                  rotate: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : 2),
-                  scale: hoveredCard === 'theViralDuo' ? 1.05 : 1,
-                  opacity: 1,
-                  boxShadow: hoveredCard === 'theViralDuo' ? "0 40px 80px rgba(0,0,0,0.15)" : "0 20px 40px rgba(0,0,0,0.05)"
+                style={{ 
+                  position: 'relative', 
+                  zIndex: hoveredCard === 'theViralDuo' ? 10 : 2, 
+                  width: '50%',
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  paddingLeft: '24px'
                 }}
-                exit={isMobile ? { opacity: 0, x: -20 } : undefined}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: false, amount: 0.15 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="compareCard theViralDuo">
-                  <h3>
-                    <div className="theViralDuoLogo">
-                      <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
-                    </div>
-                    The Viral Duo
-                  </h3>
-                  <div className="compareList" role="list">
-                    {["Platform-native, organic-first", "Engagement & relevance", "Performance-based selection", "Strategic & brand-aligned", "Clear insights & learnings"].map(x => (
-                      <div key={x} className="compareItem" role="listitem">
-                        <span className="icon" aria-hidden="true">✓</span>
-                        {x}
+                <motion.div
+                  style={{ position: 'relative' }}
+                  initial={isMobile ? { opacity: 0, x: 20 } : { opacity: 0, x: 50, rotate: 0 }}
+                  animate={{
+                    x: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 20 : (hoveredCard === 'agencies' ? 120 : -30)),
+                    rotate: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : 2),
+                    scale: hoveredCard === 'theViralDuo' ? 1.05 : 1,
+                    opacity: 1,
+                    boxShadow: "none"
+                  }}
+                  exit={isMobile ? { opacity: 0, x: -20 } : undefined}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div className="compareCard theViralDuo">
+                    <h3>
+                      <div className="theViralDuoLogo">
+                        <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
                       </div>
-                    ))}
+                      The Viral Duo
+                    </h3>
+                    <div className="compareList" role="list">
+                      {["Platform-native, organic-first", "Engagement & relevance", "Performance-based selection", "Strategic & brand-aligned", "Clear insights & learnings"].map(x => (
+                        <div key={x} className="compareItem" role="listitem">
+                          <span className="icon" aria-hidden="true">✓</span>
+                          {x}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            )}
+                </motion.div>
+              </div>
+            ) : null}
           </AnimatePresence>
         </div>
       )}

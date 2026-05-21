@@ -36,3 +36,4 @@ yarn-error.log*
 next-env.d.ts
 public/videos/*.mp4
 public/videos/drive-download-20260517T110754Z-3-001.zip
+scratch/

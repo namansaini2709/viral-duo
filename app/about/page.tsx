@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import ShiftButton from "../ShiftButton";
 import AboutGallery from "./AboutGallery";
 import Navbar from "../Navbar";
+import LazyVideo from "../LazyVideo";
 
 const img = {
   team: [
@@ -48,9 +49,22 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <section className="aboutHero">
+        {/* Mobile-only Pill positioned above the video/container */}
+        <div className="mobilePillWrapper">
+          <motion.p 
+            className="pill pink"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            ABOUT US
+          </motion.p>
+        </div>
+
         <div className="heroContainer">
           <div className="heroText">
-            <div className="overflow-hidden">
+            <div className="overflow-hidden desktopOnlyPill">
               <motion.p 
                 className="pill pink"
                 initial={{ opacity: 0, y: 20 }}
@@ -102,7 +116,7 @@ export default function AboutPage() {
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <video
+            <LazyVideo
               src="/Ilustrated videos/Animation.mp4"
               autoPlay
               loop

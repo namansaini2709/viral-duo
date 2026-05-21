@@ -152,33 +152,67 @@ export default function ProcessSection() {
                     flexDirection: isActive ? 'column' : 'row', 
                     alignItems: isActive ? 'flex-start' : 'center', 
                     justifyContent: isMobile && !isActive ? 'flex-start' : (isActive ? 'flex-start' : 'center'), 
-                    height: '100%' 
+                    height: '100%',
+                    width: '100%'
                   }}>
-                    <motion.h3
-                      layout
-                      style={{ whiteSpace: "nowrap" }}
-                      animate={{
-                        fontSize: isActive ? (isMobile ? "24px" : "36px") : "20px",
-                        writingMode: isMobile ? "horizontal-tb" : (isActive ? "horizontal-tb" : "vertical-rl"),
-                        transform: isMobile ? "rotate(0deg)" : (isActive ? "rotate(0deg)" : "rotate(180deg)"),
-                        marginBottom: isActive ? (isMobile ? "8px" : "16px") : "0px",
-                        opacity: isActive ? 1 : 0.7
-                      }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      {step.title}
-                    </motion.h3>
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.p
-                          layout
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
+                    <AnimatePresence mode="wait">
+                      {isActive ? (
+                        <motion.div
+                          key="expanded"
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0 }}
-                          transition={{ duration: 0.4 }}
+                          transition={{ duration: 0.35, ease: "easeOut" }}
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'flex-start',
+                            width: '100%'
+                          }}
                         >
-                          {step.text}
-                        </motion.p>
+                          <motion.h3
+                            style={{ 
+                              whiteSpace: "nowrap",
+                              fontSize: isMobile ? "24px" : "36px",
+                              fontWeight: 800,
+                              color: "var(--ink)",
+                              marginBottom: isMobile ? "8px" : "12px",
+                              lineHeight: 1.1,
+                              transform: "none",
+                              writingMode: "horizontal-tb"
+                            }}
+                          >
+                            {step.title}
+                          </motion.h3>
+                          <motion.p
+                            style={{
+                              color: "rgba(0,0,0,0.75)",
+                              fontSize: isMobile ? "14px" : "17px",
+                              lineHeight: 1.4,
+                              fontWeight: 500
+                            }}
+                          >
+                            {step.text}
+                          </motion.p>
+                        </motion.div>
+                      ) : (
+                        <motion.h3
+                          key="collapsed"
+                          layout
+                          style={{ whiteSpace: "nowrap" }}
+                          initial={{ opacity: 0 }}
+                          animate={{
+                            fontSize: "20px",
+                            writingMode: isMobile ? "horizontal-tb" : "vertical-rl",
+                            transform: isMobile ? "rotate(0deg)" : "rotate(180deg)",
+                            opacity: 0.7,
+                            marginBottom: "0px"
+                          }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {step.title}
+                        </motion.h3>
                       )}
                     </AnimatePresence>
                   </motion.div>
