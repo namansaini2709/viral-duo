@@ -33,6 +33,43 @@ export default function Template({ children }: { children: React.ReactNode }) {
     };
   }, [pathname]);
 
+  // Continuously persist the scroll position when not transitioning
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleScroll = () => {
+      if (!isAnimating && !(window as any).__pageTransitionActive) {
+        sessionStorage.setItem(`scroll_pos_${pathname}`, window.scrollY.toString());
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [pathname, isAnimating]);
+
+  // Restore scroll position or handle hash scrolling once transition has finished
+  React.useEffect(() => {
+    if (!isAnimating && typeof window !== "undefined") {
+      // 1. If there's a hash in the URL, scroll to that element
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+      }
+
+      // 2. Otherwise, restore the saved scroll position for this page
+      const savedScroll = sessionStorage.getItem(`scroll_pos_${pathname}`);
+      if (savedScroll) {
+        window.scrollTo(0, parseInt(savedScroll, 10));
+      }
+    }
+  }, [isAnimating, pathname]);
+
   return (
     <motion.div
       key={pathname}
