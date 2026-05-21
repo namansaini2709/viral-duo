@@ -139,7 +139,7 @@ export default function HeroSection() {
           { src: img.phone2, poster: "/Cover pages/Global Holidays.png" },
           { src: img.phone3, poster: "/Cover pages/Vdmc.PNG" },
           { src: img.work1, poster: "/Cover pages/Shri Radhey Krishna Cover.PNG" },
-          { src: img.work2 }
+          { src: img.work2, poster: "/logos/Make your trip possible.jpg" }
         ]} 
       />
       

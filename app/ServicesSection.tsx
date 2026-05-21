@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { services } from './data';
+import LazyVideo from './LazyVideo';
 
 export default function ServicesSection() {
   const [isMobile, setIsMobile] = useState(false);
@@ -139,7 +140,7 @@ export default function ServicesSection() {
 
                     <div className="serviceCardBodyMobile">
                       <div className="serviceCardMedia">
-                        {service.videoUrl ? (
+                        {service.videoUrl && isTop ? (
                           <video
                             src={service.videoUrl}
                             autoPlay
@@ -275,18 +276,23 @@ export default function ServicesSection() {
 
                   <div className="serviceImage">
                     {service.videoUrl ? (
-                      <motion.video
-                        src={service.videoUrl}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
+                      <motion.div
                         initial={{ opacity: 0, scale: 1.1 }}
-                        whileInView={{ opacity: 0.68, scale: 1 }}
-                        transition={{ delay: 0.3, duration: 1 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '40px', display: 'block' }}
-                      />
+                        transition={{ delay: 0.3, duration: 1 }}
+                        style={{ width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
+                      >
+                        <LazyVideo
+                          src={service.videoUrl}
+                          poster={service.img}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.68 }}
+                        />
+                      </motion.div>
                     ) : (
                       <motion.img
                         src={service.img}

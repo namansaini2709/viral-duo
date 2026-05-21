@@ -97,30 +97,32 @@ function WorkCard({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasTouched, setHasTouched] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  
   const isPlaying = activePlayingIndex === i;
+  const isMounted = isPlaying || isHovered;
 
   useEffect(() => {
-    if (!videoRef.current) return;
-    
-    if (isPlaying) {
-      videoRef.current.play().catch(e => console.log("Touch play failed", e));
-    } else {
-      videoRef.current.pause();
-      videoRef.current.load(); // Reset to show the cover page poster
+    if (!isMounted) {
+      setIsReady(false);
     }
-  }, [isPlaying]);
+  }, [isMounted]);
+
+  useEffect(() => {
+    if (isMounted && isReady && videoRef.current) {
+      videoRef.current.play().catch(e => console.log("Play failed", e));
+    }
+  }, [isMounted, isReady]);
 
   const handleMouseEnter = () => {
     if (hasTouched) return;
-    videoRef.current?.play().catch(e => console.log("Play failed", e));
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
     if (hasTouched) return;
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.load();
-    }
+    setIsHovered(false);
   };
 
   const handleTouchStart = () => {
@@ -156,19 +158,53 @@ function WorkCard({
       onMouseLeave={handleMouseLeave}
       onFocus={handleMouseEnter}
       onBlur={handleMouseLeave}
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
-      <video 
-        ref={videoRef} 
-        src={src} 
-        poster={poster} 
-        loop 
-        muted 
-        playsInline 
-        className="workCardMedia" 
-        style={{ objectPosition: 'top' }} 
-        preload="metadata" 
+      {/* Background/Placeholder image */}
+      <img
+        src={poster}
+        alt=""
+        className="workCardMedia"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'top',
+          pointerEvents: 'none',
+          zIndex: 1
+        }}
       />
-      <div className="cardInfo">
+
+      {isMounted && (
+        <video 
+          ref={videoRef} 
+          src={src} 
+          poster={poster} 
+          loop 
+          muted 
+          autoPlay
+          playsInline 
+          className="workCardMedia" 
+          onPlaying={() => setIsReady(true)}
+          style={{ 
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'top',
+            opacity: isReady ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+            zIndex: 2
+          }} 
+        />
+      )}
+
+      <div className="cardInfo" style={{ zIndex: 3 }}>
         <img 
           src={logo} 
           alt="" 
@@ -221,16 +257,19 @@ function MobileProjectCard({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showHighlights, setShowHighlights] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (!videoRef.current) return;
-    if (isActive) {
-      videoRef.current.play().catch(e => console.log("Mobile video play failed", e));
-    } else {
-      videoRef.current.pause();
-      videoRef.current.load(); // Reset video to poster frame
+    if (!isActive) {
+      setIsReady(false);
     }
   }, [isActive]);
+
+  useEffect(() => {
+    if (isActive && isReady && videoRef.current) {
+      videoRef.current.play().catch(e => console.log("Mobile video play failed", e));
+    }
+  }, [isActive, isReady]);
 
   useEffect(() => {
     if (isActive) {
@@ -277,23 +316,56 @@ function MobileProjectCard({
         stiffness: 260,
         damping: 26
       }}
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
-      <video
-        ref={videoRef}
-        src={src}
-        poster={poster}
-        loop
-        muted
-        playsInline
+      {/* Background/Placeholder image */}
+      <img
+        src={poster}
+        alt=""
         className="mobileProjectCardMedia"
-        style={{ objectPosition: 'top' }}
-        preload="metadata"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'top',
+          pointerEvents: 'none',
+          zIndex: 1
+        }}
       />
+
+      {isActive && (
+        <video
+          ref={videoRef}
+          src={src}
+          poster={poster}
+          loop
+          muted
+          autoPlay
+          playsInline
+          className="mobileProjectCardMedia"
+          onPlaying={() => setIsReady(true)}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'top',
+            opacity: isReady ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+            zIndex: 2
+          }}
+        />
+      )}
 
       {/* Floating Cascade Frosted Highlight Tags */}
       <AnimatePresence>
         {showHighlights && (
-          <div className="mobileProjectHighlights">
+          <div className="mobileProjectHighlights" style={{ zIndex: 12 }}>
             {highlights.map((tag, idx) => (
               <motion.span
                 key={idx}
@@ -316,7 +388,7 @@ function MobileProjectCard({
         )}
       </AnimatePresence>
 
-      <div className="mobileProjectCardInfo">
+      <div className="mobileProjectCardInfo" style={{ zIndex: 10 }}>
         <div className="mobileProjectCardLogoAndTitle">
           <img
             src={logo}

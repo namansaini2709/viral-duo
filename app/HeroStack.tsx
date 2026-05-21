@@ -142,16 +142,25 @@ function SlideItem({ src, className, style, alt, isActive, poster }: { src: stri
   return (
     <div className={`${className} videoSlideWrapper`} style={{ ...style, overflow: 'hidden' }}>
       {isVideo ? (
-        <video
-          ref={videoRef}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
-          src={src}
-          poster={poster}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
+        isActive ? (
+          <video
+            ref={videoRef}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
+            src={src}
+            poster={poster}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        ) : (
+          <img 
+            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} 
+            src={poster} 
+            alt={alt} 
+            draggable={false} 
+          />
+        )
       ) : (
         <img style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }} src={src} alt={alt} draggable={false} />
       )}

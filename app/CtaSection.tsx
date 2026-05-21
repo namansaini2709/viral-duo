@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ShiftButton from './ShiftButton';
+import LazyVideo from './LazyVideo';
 
 export default function CtaSection() {
   const pathVariants = {
@@ -46,7 +47,7 @@ export default function CtaSection() {
       </div>
 
       <div className="ctaCard">
-        <video
+        <LazyVideo
           src="/Ilustrated videos/bottom 2.mp4"
           className="ctaCardImage"
           autoPlay

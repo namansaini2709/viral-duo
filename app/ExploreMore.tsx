@@ -1,28 +1,34 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useAnimationFrame, useInView } from 'framer-motion';
 
-function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
+function ArcCardVideo({ src, isPlaying, poster }: { src: string; isPlaying: boolean; poster?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isPlaying) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
+    if (!isPlaying) {
+      setIsReady(false);
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    if (isPlaying && isReady && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isPlaying, isReady]);
+
+  if (!isPlaying) return null;
 
   return (
     <video
       ref={videoRef}
       src={src}
+      poster={poster}
       loop
       muted
+      autoPlay
       playsInline
-      preload="metadata"
+      onPlaying={() => setIsReady(true)}
       style={{
         position: 'absolute',
         top: 0,
@@ -31,7 +37,7 @@ function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
         height: '100%',
         objectFit: 'cover',
         borderRadius: 'inherit',
-        opacity: isPlaying ? 1 : 0,
+        opacity: isReady ? 1 : 0,
         transition: 'opacity 0.4s ease',
         willChange: 'opacity',
         pointerEvents: 'none'
@@ -230,8 +236,8 @@ export default function ExploreMore() {
                     }}
                   />
                 )}
-                {/* Foreground Layer: Videos stay mounted, only center cards play. */}
-                <ArcCardVideo src={item.src} isPlaying={isPlaying} />
+                {/* Foreground Layer: Videos mount dynamically, only center cards play. */}
+                <ArcCardVideo src={item.src} isPlaying={isPlaying} poster={item.poster} />
               </a>
             );
           })}
