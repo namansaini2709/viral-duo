@@ -6,7 +6,18 @@ import LazyVideo from './LazyVideo';
 
 export default function ServicesSection() {
   const [isMobile, setIsMobile] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [stack, setStack] = useState([0, 1, 2, 3]);
+  const currentIndex = stack[0];
+
+  const switchCard = (targetIndex: number) => {
+    if (targetIndex === currentIndex) return;
+
+    setStack((prevStack) => {
+      const remaining = prevStack.filter(idx => idx !== targetIndex && idx !== currentIndex);
+      return [targetIndex, currentIndex, ...remaining];
+    });
+    dragX.set(0);
+  };
 
   // Framer Motion values for interactive drag-based rotation
   const dragX = useMotionValue(0);
@@ -38,8 +49,7 @@ export default function ServicesSection() {
                 key={service.id}
                 className={`serviceTabBtn ${index === currentIndex ? 'active' : ''}`}
                 onClick={() => {
-                  setCurrentIndex(index);
-                  dragX.set(0); // Reset drag value
+                  switchCard(index);
                 }}
               >
                 {index === currentIndex && (
@@ -59,10 +69,10 @@ export default function ServicesSection() {
           {/* Immersive 3D Card Deck Stack */}
           <div className="servicesCardDeck">
             {services.map((service, index) => {
-              const isTop = index === currentIndex;
-              const isNext = index === (currentIndex + 1) % services.length;
-              const isThird = index === (currentIndex + 2) % services.length;
-              const isFourth = index === (currentIndex + 3) % services.length;
+              const isTop = index === stack[0];
+              const isNext = index === stack[1];
+              const isThird = index === stack[2];
+              const isFourth = index === stack[3];
               
               // Render and animate all four cards in the stack to show depth
               const inDeck = isTop || isNext || isThird || isFourth;
@@ -115,12 +125,12 @@ export default function ServicesSection() {
                       const swipeThreshold = 80;
                       if (info.offset.x < -swipeThreshold) {
                         // Swipe left -> next card
-                        setCurrentIndex((prev) => (prev + 1) % services.length);
-                        dragX.set(0);
+                        const nextIndex = (currentIndex + 1) % services.length;
+                        switchCard(nextIndex);
                       } else if (info.offset.x > swipeThreshold) {
                         // Swipe right -> prev card
-                        setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
-                        dragX.set(0);
+                        const prevIndex = (currentIndex - 1 + services.length) % services.length;
+                        switchCard(prevIndex);
                       } else {
                         // Release snap back
                         dragX.set(0);
@@ -140,7 +150,7 @@ export default function ServicesSection() {
 
                     <div className="serviceCardBodyMobile">
                       <div className="serviceCardMedia">
-                        {service.videoUrl && isTop ? (
+                        {service.videoUrl ? (
                           <video
                             src={service.videoUrl}
                             autoPlay
@@ -202,8 +212,7 @@ export default function ServicesSection() {
                 key={index}
                 className={`serviceDotMobile ${index === currentIndex ? 'active' : ''}`}
                 onClick={() => {
-                  setCurrentIndex(index);
-                  dragX.set(0);
+                  switchCard(index);
                 }}
                 aria-label={`Go to service ${index + 1}`}
               />
