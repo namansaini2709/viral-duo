@@ -8,6 +8,11 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? React.useLayou
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isAnimating, setIsAnimating] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const getSavedScroll = () => {
     if (typeof window === "undefined") return 0;
@@ -176,7 +181,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       style={{
         width: "100%",
         perspective: isAnimating ? "2000px" : "none",
-        perspectiveOrigin: isAnimating && typeof window !== "undefined"
+        perspectiveOrigin: isAnimating && mounted
           ? `50% ${savedScrollY + window.innerHeight / 2}px`
           : "50% 50%",
         position: "relative",
@@ -225,7 +230,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         }}
         style={isAnimating ? { 
           width: '100%', 
-          transformOrigin: typeof window !== "undefined"
+          transformOrigin: mounted
             ? `left ${savedScrollY + window.innerHeight}px`
             : "left bottom",
           backfaceVisibility: "hidden",
