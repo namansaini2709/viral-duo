@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 import ErrorBoundary from "./ErrorBoundary";
 import { useEffect, useState, useCallback } from "react";
 import { getCalApi } from "@calcom/embed-react";
+import Preloader from "./Preloader";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -136,6 +137,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <ErrorBoundary>
+      <Preloader />
+
       {/* Visual Backdrop Overlay */}
       <AnimatePresence>
         {isModalOpen && (

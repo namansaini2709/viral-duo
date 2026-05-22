@@ -32,7 +32,9 @@ export const services = [
     unit: "Total Impressions",
     color: "color1",
     img: img.service1,
-    videoUrl: "/Ilustrated videos/short.mp4"
+    videoUrl: "/Ilustrated videos/short.mp4",
+    tabLabel: "Shorts",
+    highlights: ["⚡ Scroll-Stopping Hooks", "🎵 Trend-Jacking Audio", "🔥 4K High-Bitrate Export"]
   },
   {
     id: "02",
@@ -42,7 +44,9 @@ export const services = [
     unit: "Avg. ROI Increase",
     color: "color2",
     img: img.service2,
-    videoUrl: "/Ilustrated videos/2nd card.mp4"
+    videoUrl: "/Ilustrated videos/2nd card.mp4",
+    tabLabel: "Viral",
+    highlights: ["🧠 Algorithm-First Indexing", "📊 Competitor Data Mining", "🎯 Niche Positioning Blueprint"]
   },
   {
     id: "03",
@@ -52,7 +56,9 @@ export const services = [
     unit: "Daily Interactions",
     color: "color3",
     img: img.service3,
-    videoUrl: "/Ilustrated videos/management.mp4"
+    videoUrl: "/Ilustrated videos/management.mp4",
+    tabLabel: "Social",
+    highlights: ["💬 15-Min Response SLA", "❤️ Sentimental Nurturing", "🚀 High-Engagement Comments"]
   },
   {
     id: "04",
@@ -62,7 +68,9 @@ export const services = [
     unit: "Successful Collabs",
     color: "color4",
     img: img.service4,
-    videoUrl: "/Ilustrated videos/Partnership.mp4"
+    videoUrl: "/Ilustrated videos/Partnership.mp4",
+    tabLabel: "Brands",
+    highlights: ["🤝 500+ Creator Roster", "💼 Full Contract Licensing", "📈 End-to-End Tracking"]
   }
 ];
 

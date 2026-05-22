@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, Variants } from 'framer-motion';
 import HeroStack from './HeroStack';
 import ShiftButton from './ShiftButton';
@@ -72,6 +72,10 @@ const subVariants: Variants = {
 
 export default function HeroSection() {
   const [projectIndex, setProjectIndex] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(true);
+  const [isPreloaderActive, setIsPreloaderActive] = useState(true);
+  const [isPageTransitionActive, setIsPageTransitionActive] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -80,8 +84,69 @@ export default function HeroSection() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).__preloaderFinished) {
+      setIsPreloaderActive(false);
+      if (window.scrollY < 100) {
+        setIsInView(true);
+      }
+    } else {
+      const handlePreloaderFinished = () => {
+        setIsPreloaderActive(false);
+        if (window.scrollY < 100) {
+          setIsInView(true);
+        }
+      };
+      window.addEventListener('preloader-finished', handlePreloaderFinished);
+      return () => {
+        window.removeEventListener('preloader-finished', handlePreloaderFinished);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !(window as any).__pageTransitionActive) {
+      setIsPageTransitionActive(false);
+      if (window.scrollY < 100) {
+        setIsInView(true);
+      }
+    } else {
+      const handleTransitionFinished = () => {
+        setIsPageTransitionActive(false);
+        if (window.scrollY < 100) {
+          setIsInView(true);
+        }
+      };
+      window.addEventListener('page-transition-finished', handleTransitionFinished);
+      return () => {
+        window.removeEventListener('page-transition-finished', handleTransitionFinished);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const showAnimation = isInView && !isPreloaderActive && !isPageTransitionActive;
+
   return (
-    <section className="hero section" id="home">
+    <section ref={sectionRef} className={`hero section ${showAnimation ? 'in-view' : ''}`} id="home">
       <div className="heroTitle">
         <h1>
           {/* Parent container triggering the animation sequence every time it enters the viewport */}
@@ -139,7 +204,7 @@ export default function HeroSection() {
           { src: img.phone2, poster: "/Cover pages/Global Holidays.png" },
           { src: img.phone3, poster: "/Cover pages/Vdmc.PNG" },
           { src: img.work1, poster: "/Cover pages/Shri Radhey Krishna Cover.PNG" },
-          { src: img.work2 }
+          { src: img.work2, poster: "/logos/Make your trip possible.jpg" }
         ]} 
       />
       

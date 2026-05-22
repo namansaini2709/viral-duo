@@ -1,33 +1,36 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   src: string;
+  poster?: string;
 }
 
-export default function LazyVideo({ src, ...props }: LazyVideoProps) {
-  const ref = useRef<HTMLVideoElement>(null);
+export default function LazyVideo({ src, poster, className, style, ...props }: LazyVideoProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = wrapperRef.current;
     if (!el) return;
 
-    // Use IntersectionObserver to play/pause video dynamically based on visibility
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            el.play().catch(() => {});
+            setIsInView(true);
           } else {
-            el.pause();
+            setIsInView(false);
+            setIsReady(false);
           }
         });
       },
       { 
         root: null, // use viewport
-        rootMargin: '100px', // start loading/playing slightly before it rolls on screen
-        threshold: 0.05 // play when at least 5% is visible
+        rootMargin: '200px', // start loading/playing before it rolls on screen
+        threshold: 0.05
       }
     );
 
@@ -39,11 +42,62 @@ export default function LazyVideo({ src, ...props }: LazyVideoProps) {
   }, []);
 
   return (
-    <video
-      ref={ref}
-      src={src}
-      preload="none" // do not pre-fetch full video data until observer binds
-      {...props}
-    />
+    <div
+      ref={wrapperRef}
+      className={className}
+      style={{
+        position: 'relative',
+        overflow: 'hidden',
+        width: '100%',
+        height: '100%',
+        borderRadius: 'inherit',
+        ...style
+      }}
+    >
+      {/* Background layer: Static poster image */}
+      {poster && (
+        <img
+          src={poster}
+          alt=""
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: (style?.objectFit as any) || 'cover',
+            borderRadius: 'inherit',
+            opacity: isReady ? 0 : 1,
+            transition: 'opacity 0.3s ease',
+            pointerEvents: 'none',
+            zIndex: 1
+          }}
+        />
+      )}
+
+      {/* Foreground layer: Video is only mounted when in viewport */}
+      {isInView && (
+        <video
+          src={src}
+          poster={poster}
+          onPlaying={() => setIsReady(true)}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: 'inherit',
+            opacity: poster ? (isReady ? 1 : 0) : 1,
+            transition: 'opacity 0.3s ease',
+            position: poster ? 'absolute' : 'relative',
+            top: 0,
+            left: 0,
+            zIndex: 2,
+            ...style
+          }}
+          {...props}
+        />
+      )}
+    </div>
   );
 }
+

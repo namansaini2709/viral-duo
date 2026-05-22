@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
-import { useScroll, useMotionValueEvent } from "framer-motion";
+import { useScroll } from "framer-motion";
 
 import Navbar from "./Navbar";
 import HeroSection from "./HeroSection";
@@ -21,7 +21,7 @@ export default function Home() {
   const { scrollY } = useScroll();
   const [isAtTop, setIsAtTop] = useState(true);
   const [isHidden, setIsHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   const [navTheme, setNavTheme] = useState<'dark' | 'light'>('dark');
   const footerRef = useRef<HTMLDivElement>(null);
@@ -53,33 +53,51 @@ export default function Home() {
     }
   }, []);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsAtTop(latest < 50);
+  useEffect(() => {
+    const updateScrollState = (latest: number) => {
+      setIsAtTop(latest < 50);
 
-    if (latest > lastScrollY && latest > 150) {
-      setIsHidden(true);
-    } else if (latest < lastScrollY) {
-      setIsHidden(false);
-    }
-    
-    const vh = window.innerHeight;
-    const scrollPainStart = vh;
-    const blackStart = scrollPainStart + 800 * (vh / 100) * 0.28;
-    const blackEnd = scrollPainStart + 800 * (vh / 100) * 0.70;
+      if (latest < 50) {
+        setIsHidden(false);
+      } else if (latest > lastScrollY.current && latest > 150) {
+        setIsHidden(true);
+      } else if (latest < lastScrollY.current) {
+        setIsHidden(false);
+      }
+      
+      const vh = window.innerHeight;
+      const scrollPainStart = vh;
+      const blackStart = scrollPainStart + 800 * (vh / 100) * 0.28;
+      const blackEnd = scrollPainStart + 800 * (vh / 100) * 0.70;
 
-    const ctaStart = document.body.scrollHeight - vh - 200;
+      const docHeight = Math.max(
+        document.body?.scrollHeight || 0,
+        document.documentElement?.scrollHeight || 0
+      );
+      const ctaStart = docHeight - vh - 200;
 
-    if ((latest > blackStart && latest < blackEnd) || latest > ctaStart) {
-      setNavTheme('light');
-    } else {
-      setNavTheme('dark');
-    }
+      if ((latest > blackStart && latest < blackEnd) || latest > ctaStart) {
+        setNavTheme('light');
+      } else {
+        setNavTheme('dark');
+      }
 
-    const isAtBottom = latest > (document.body.scrollHeight - footerHeight - 300);
-    setIsOverFooter(isAtBottom);
+      const isAtBottom = latest > 100 && latest > (docHeight - footerHeight - 320);
+      setIsOverFooter(isAtBottom);
 
-    setLastScrollY(latest);
-  });
+      lastScrollY.current = latest;
+    };
+
+    // Initialize with current scroll position
+    updateScrollState(scrollY.get());
+
+    // Subscribe to scroll changes
+    const unsubscribe = scrollY.on("change", updateScrollState);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [scrollY, footerHeight]);
 
   return (
     <main>

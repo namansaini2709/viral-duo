@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import ShiftButton from './ShiftButton';
 
 interface NavbarProps {
@@ -40,7 +41,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      <a className="brand" href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
+      <Link className="brand" href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
         if (isAboutPage && pathname === '/about') {
           e.preventDefault(); 
           window.scrollTo({ top: 0, behavior: 'smooth' }); 
@@ -51,20 +52,20 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       }} style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
         The Viral Duo
-      </a>
+      </Link>
       <div className="navLinks" style={{ color: 'inherit' }}>
-        <a href="/">Home</a>
+        <Link href="/">Home</Link>
         {isAboutPage ? (
           <>
-            <a href="#vision">Vision</a>
-            <a href="#gallery">Glimpse</a>
-            <a href="#team">Team</a>
+            <Link href="#vision">Vision</Link>
+            <Link href="#gallery">Glimpse</Link>
+            <Link href="#team">Team</Link>
           </>
         ) : (
           <>
-            <a href="/#work">Projects</a>
-            <a href="/#services">Services</a>
-            <a href="/about">About Us</a>
+            <Link href="/#work">Projects</Link>
+            <Link href="/#services">Services</Link>
+            <Link href="/about">About Us</Link>
           </>
         )}
       </div>
@@ -104,7 +105,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '60px' }}>
-            <a href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
+            <Link href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
               if (isAboutPage && pathname === '/about') {
                 e.preventDefault(); 
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
@@ -116,7 +117,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
             }} style={{ fontWeight: 900, fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px', color: 'inherit', textDecoration: 'none' }}>
               <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
               The Viral Duo
-            </a>
+            </Link>
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="Close menu"
@@ -129,21 +130,21 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
             </button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', fontSize: '32px', fontWeight: 700 }}>
-            <a href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
             {isAboutPage ? (
               <>
-                <a href="#vision" onClick={() => setIsMobileMenuOpen(false)}>Vision</a>
-                <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Glimpse</a>
-                <a href="#team" onClick={() => setIsMobileMenuOpen(false)}>Team</a>
+                <Link href="#vision" onClick={() => setIsMobileMenuOpen(false)}>Vision</Link>
+                <Link href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Glimpse</Link>
+                <Link href="#team" onClick={() => setIsMobileMenuOpen(false)}>Team</Link>
               </>
             ) : (
               <>
-                <a href="/#work" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
-                <a href="/#services" onClick={() => setIsMobileMenuOpen(false)}>Services</a>
-                <a href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+                <Link href="/#work" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
+                <Link href="/#services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
+                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
               </>
             )}
-            <a href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+            <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
           </div>
         </motion.div>
       )}

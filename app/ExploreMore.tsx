@@ -1,28 +1,34 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useAnimationFrame, useInView } from 'framer-motion';
 
-function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
+function ArcCardVideo({ src, isPlaying, poster }: { src: string; isPlaying: boolean; poster?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (isPlaying) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
+    if (!isPlaying) {
+      setIsReady(false);
     }
   }, [isPlaying]);
+
+  useEffect(() => {
+    if (isPlaying && isReady && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [isPlaying, isReady]);
+
+  if (!isPlaying) return null;
 
   return (
     <video
       ref={videoRef}
       src={src}
+      poster={poster}
       loop
       muted
+      autoPlay
       playsInline
-      preload="metadata"
+      onPlaying={() => setIsReady(true)}
       style={{
         position: 'absolute',
         top: 0,
@@ -31,7 +37,7 @@ function ArcCardVideo({ src, isPlaying }: { src: string; isPlaying: boolean }) {
         height: '100%',
         objectFit: 'cover',
         borderRadius: 'inherit',
-        opacity: isPlaying ? 1 : 0,
+        opacity: isReady ? 1 : 0,
         transition: 'opacity 0.4s ease',
         willChange: 'opacity',
         pointerEvents: 'none'
@@ -60,6 +66,16 @@ export default function ExploreMore() {
   const hoveredIndexRef = useRef<number | null>(null);
   const scalesRef = useRef<number[]>([]);
   const scrollXRef = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // We check if the section is in view to pause the animation and videos when not visible, saving CPU/battery.
   const isInView = useInView(sectionRef, { once: false, margin: "200px" });
@@ -74,10 +90,10 @@ export default function ExploreMore() {
 
   // Three loops keep the marquee full while cutting per-frame transform work.
   const totalCards = 15;
-  const cardWidth = 360;
-  const gap = 32;
-  const step = cardWidth + gap; // 392px
-  const loopWidth = items.length * step; // 5 * 392 = 1960px
+  const cardWidth = isMobile ? 260 : 360; // 260px on mobile/tablet to be slightly smaller as requested
+  const gap = isMobile ? 20 : 32;
+  const step = cardWidth + gap;
+  const loopWidth = items.length * step;
   
   // Set a constant speed of 72 pixels per second (independent of framerate)
   const speedPxPerSecond = 72; 
@@ -177,7 +193,7 @@ export default function ExploreMore() {
         <div
           ref={trackRef}
           className="arcMarquee"
-          style={{ display: 'flex', gap: '32px' }}
+          style={{ display: 'flex', gap: `${gap}px` }}
         >
           {[...Array(totalCards)].map((_, i) => {
             const item = items[i % items.length];
@@ -198,7 +214,10 @@ export default function ExploreMore() {
                   transition: 'box-shadow 0.2s ease, border-color 0.2s ease',
                   cursor: 'pointer',
                   position: 'relative',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  width: `${cardWidth}px`,
+                  height: isMobile ? '160px' : '220px',
+                  borderRadius: isMobile ? '24px' : '40px',
                 }}
               >
                 {/* Background Layer: Static Thumbnail Logo */}
@@ -217,8 +236,8 @@ export default function ExploreMore() {
                     }}
                   />
                 )}
-                {/* Foreground Layer: Videos stay mounted, only center cards play. */}
-                <ArcCardVideo src={item.src} isPlaying={isPlaying} />
+                {/* Foreground Layer: Videos mount dynamically, only center cards play. */}
+                <ArcCardVideo src={item.src} isPlaying={isPlaying} poster={item.poster} />
               </a>
             );
           })}

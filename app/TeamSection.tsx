@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import ShiftButton from './ShiftButton';
 import { img } from './data';
 
@@ -10,15 +12,9 @@ function TeamLineAnimation() {
     offset: ["start end", "end start"]
   });
 
-  const persistentPathLength = useMotionValue(0);
-  const opacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const targetLength = Math.min(latest / 0.7, 1);
-    if (targetLength > persistentPathLength.get()) {
-      persistentPathLength.set(targetLength);
-    }
-  });
+  // Complete the line early, e.g. by 45% of the scroll progress
+  const pathLength = useTransform(scrollYProgress, [0, 0.45], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
 
   const path = "M 0 300 C 500 100, 1500 500, 2000 300";
 
@@ -30,7 +26,7 @@ function TeamLineAnimation() {
           stroke="#fbb6ed"
           strokeWidth="20"
           strokeLinecap="round"
-          style={{ pathLength: persistentPathLength, opacity }}
+          style={{ pathLength, opacity }}
         />
       </svg>
     </div>
