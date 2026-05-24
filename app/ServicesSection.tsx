@@ -143,7 +143,7 @@ export default function ServicesSection() {
                     <div className="serviceCardHeaderMobile">
                       <span className="cardLabel">SERVICE / {service.id}</span>
                       <div className="cardLiveBadge">
-                        <span className="liveDot" />
+                        <span className={`liveDot ${isTop ? 'activePulse' : ''}`} />
                         <span>CASE STUDY</span>
                       </div>
                     </div>
@@ -152,12 +152,14 @@ export default function ServicesSection() {
                       <div className="serviceCardMedia">
                         {service.videoUrl ? (
                           <video
+                            key={isTop ? "playing" : "paused"}
                             src={service.videoUrl}
-                            autoPlay
+                            autoPlay={isTop}
                             loop
                             muted
                             playsInline
                             className="serviceVideoMobile"
+                            preload={isTop ? "auto" : "metadata"}
                           />
                         ) : (
                           <img
@@ -299,6 +301,7 @@ export default function ServicesSection() {
                           loop
                           muted
                           playsInline
+                          preload="metadata"
                           style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.68 }}
                         />
                       </motion.div>

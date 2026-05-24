@@ -28,6 +28,7 @@ function ArcCardVideo({ src, isPlaying, poster }: { src: string; isPlaying: bool
       muted
       autoPlay
       playsInline
+      preload="metadata"
       onPlaying={() => setIsReady(true)}
       style={{
         position: 'absolute',

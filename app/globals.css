@@ -5483,7 +5483,7 @@ details p {
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.9);
     padding: 4px 10px;
     border-radius: 999px;
     font-size: 10px;
@@ -5491,7 +5491,6 @@ details p {
     letter-spacing: 0.05em;
     color: var(--ink);
     border: 1px solid rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(8px);
   }
 
   .liveDot {
@@ -5499,6 +5498,9 @@ details p {
     height: 6px;
     border-radius: 50%;
     background: #10B981;
+  }
+
+  .liveDot.activePulse {
     animation: livePulse 1.6s infinite;
   }
 
@@ -5571,11 +5573,10 @@ details p {
     font-size: 11px;
     font-weight: 700;
     color: rgba(11, 11, 10, 0.85);
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 6px 12px;
     border-radius: 12px;
-    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     gap: 4px;

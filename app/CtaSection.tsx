@@ -54,6 +54,7 @@ export default function CtaSection() {
           loop
           muted
           playsInline
+          preload="metadata"
         />
       </div>
     </section>

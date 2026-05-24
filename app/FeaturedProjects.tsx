@@ -187,6 +187,7 @@ function WorkCard({
           muted 
           autoPlay
           playsInline 
+          preload="metadata"
           className="workCardMedia" 
           onPlaying={() => setIsReady(true)}
           style={{ 
@@ -345,6 +346,7 @@ function MobileProjectCard({
           muted
           autoPlay
           playsInline
+          preload="metadata"
           className="mobileProjectCardMedia"
           onPlaying={() => setIsReady(true)}
           style={{
