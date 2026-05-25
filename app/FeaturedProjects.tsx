@@ -21,56 +21,45 @@ const projects = [
     src: "/videos-optimized/shreeradhey.mp4", 
     poster: "/Cover pages/Shri Radhey Krishna Cover.PNG", 
     name: "Shri Radhey Krishna Jewellers", 
-    result: "+112% Sales Growth", 
+    result: "Jewellery Shined on Feed! ✨", 
     logo: "/logos/Shri radhey Krishna  jewellers.JPG", 
     href: brandLinks.shriRadheyKrishnaJewellers,
     glowColor: "rgba(212, 175, 55, 0.8)",
     shadowGlow: "rgba(212, 175, 55, 0.22)",
-    highlights: ["⚡ Luxury Reel Branding", "📈 +112% Sales Lift", "💎 Elite Positioning"]
+    highlights: ["⚡ Luxury Reel Branding", "📈 High-End Video Reach", "💎 Premium Positioning"]
   },
   { 
     src: "/videos-optimized/MOTO MANIA.mp4", 
     poster: "/Cover pages/Fof fitness.png", 
     name: "FOF Fitnesa", 
-    result: "+154% Member Growth", 
+    result: "High-Energy Gym Loops! 💪", 
     logo: "/logos/FOF Fitnesa logo.jpeg", 
     href: brandLinks.fofFitnesa,
     glowColor: "rgba(0, 242, 254, 0.8)",
     shadowGlow: "rgba(0, 242, 254, 0.22)",
-    highlights: ["⚡ High-Tempo Editing", "📈 +154% Sign-ups", "🔥 Audio Engineering"]
+    highlights: ["⚡ Hardcore Beast Mode", "📈 Gym Culture & Buzz", "🔥 Audio Engineering On Fire"]
   },
   { 
     src: "/videos-optimized/Global 2 (1).mp4", 
     poster: "/Cover pages/Global Holidays.png", 
     name: "Global Holidays", 
-    result: "+84% Booking Growth", 
+    result: "Travel Loops That Worked! ✈️", 
     logo: "/logos/Global Holidays.PNG", 
     href: brandLinks.globalHolidays,
     glowColor: "rgba(255, 107, 107, 0.8)",
     shadowGlow: "rgba(255, 107, 107, 0.22)",
-    highlights: ["⚡ Travel Vibe Loops", "📈 +84% Conversions", "🌍 Global Reach"]
-  },
-  { 
-    src: "/videos-optimized/Career launcher.mp4", 
-    poster: "/Cover pages/Career Launcher cover.jpg", 
-    name: "Career Launcher", 
-    result: "+180% Student Leads", 
-    logo: "/logos/carrer launcher.JPG", 
-    href: brandLinks.careerLauncher,
-    glowColor: "rgba(99, 102, 241, 0.8)",
-    shadowGlow: "rgba(99, 102, 241, 0.22)",
-    highlights: ["⚡ Storytelling Edits", "📈 +180% Inbound Leads", "🎓 CTR Optimization"]
+    highlights: ["⚡ Wanderlust Vibe Loops", "📈 Travel Inquiries Generated", "🌍 High-Retention Hook"]
   },
   { 
     src: "/videos-optimized/VDMC.mp4", 
     poster: "/Cover pages/Vdmc.PNG", 
     name: "VDMC", 
-    result: "+220% Daily Orders", 
+    result: "Mouth-Watering Chaap Reels! 🍽️", 
     logo: "/logos/Vdmc logo.JPG", 
     href: brandLinks.vdmc,
     glowColor: "rgba(239, 68, 68, 0.8)",
     shadowGlow: "rgba(239, 68, 68, 0.22)",
-    highlights: ["⚡ Culinary Hooks", "📈 +220% Zomato Orders", "🍔 Content Architecture"]
+    highlights: ["⚡ Food Porn Hooks", "📈 Swag-Packed Cuts", "🍔 Zomato Orders Elevated"]
   }
 ];
 
@@ -206,19 +195,12 @@ function WorkCard({
       )}
 
       <div className="cardInfo" style={{ zIndex: 3 }}>
-        <img 
-          src={logo} 
-          alt="" 
-          style={{ 
-            width: '32px', 
-            height: '32px', 
-            borderRadius: '50%', 
-            objectFit: 'contain', 
-            background: '#fff', 
-            padding: '2px',
-            marginRight: '8px'
-          }} 
-        />
+        <div className="cardInfoLogoWrapper">
+          <img 
+            src={logo} 
+            alt="" 
+          />
+        </div>
         <b>{name}</b>
         <span>/ {result}</span>
         <div className="cardArrow">↗</div>
@@ -392,11 +374,13 @@ function MobileProjectCard({
 
       <div className="mobileProjectCardInfo" style={{ zIndex: 10 }}>
         <div className="mobileProjectCardLogoAndTitle">
-          <img
-            src={logo}
-            alt=""
-            className="mobileProjectCardLogo"
-          />
+          <div className="mobileProjectCardLogoWrapper">
+            <img
+              src={logo}
+              alt=""
+              className="mobileProjectCardLogo"
+            />
+          </div>
           <div className="mobileProjectCardText">
             <b>{name}</b>
             <span className="mobileProjectCardMetric">{result}</span>

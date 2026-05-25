@@ -8,33 +8,28 @@ import { img } from './data';
 const heroProjects = [
   {
     logo: "/logos/Sharma ji ke bhature.JPG",
-    title: "Making Sharma Ji Ke Bhature viral on social",
-    tag: "NEW PROJECT!"
+    title: "Making food reels that poora Dilli craves! 😋",
+    tag: "FOOD CRUSH 😋"
   },
   {
     logo: "/logos/Shri radhey Krishna  jewellers.JPG",
-    title: "Growing Shri Radhey Krishna Jewellers' retail sales",
-    tag: "SCALING UP!"
+    title: "Making luxury jewellery designs shine on social! ✨",
+    tag: "GOLD CLASS ✨"
   },
   {
     logo: "/logos/FOF Fitnesa logo.jpeg",
-    title: "Exploding FOF Fitnesa's gym memberships",
-    tag: "FEATURED CAMPAIGN"
+    title: "Creating high-energy reels that drive gym sign-ups! 💪",
+    tag: "GYM JOSH 💪"
   },
   {
     logo: "/logos/Global Holidays.PNG",
-    title: "Boosting Global Holidays' bookings by +84%",
-    tag: "ACTIVE CASE STUDY"
-  },
-  {
-    logo: "/logos/carrer launcher.JPG",
-    title: "Generating student leads for Career Launcher",
-    tag: "RESULTS-DRIVEN"
+    title: "Creating travel loops that inspire bags to pack! ✈️",
+    tag: "WANDERLUST ✈️"
   },
   {
     logo: "/logos/Vdmc logo.JPG",
-    title: "Increasing VDMC's daily online orders by 220%",
-    tag: "E-COMMERCE GROWTH"
+    title: "Creating mouth-watering reels for VDMC Malai Chaap! 🍽️",
+    tag: "DELICIOUS LIFT 🍽️"
   }
 ];
 
@@ -218,15 +213,23 @@ export default function HeroSection() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           style={{ display: 'contents' }}
         >
-          <img 
-            src={heroProjects[projectIndex].logo} 
-            alt="" 
-            style={{ borderRadius: '50%', objectFit: 'contain', background: '#fff', padding: '4px' }} 
-          />
-          <div>
-            <p>{heroProjects[projectIndex].tag}</p>
-            <b>{heroProjects[projectIndex].title}</b>
-          </div>
+          {(() => {
+            const currentProject = heroProjects[projectIndex] || heroProjects[0];
+            return (
+              <>
+                <div className="heroProjectLogoWrapper">
+                  <img 
+                    src={currentProject.logo} 
+                    alt="" 
+                  />
+                </div>
+                <div>
+                  <p>{currentProject.tag}</p>
+                  <b>{currentProject.title}</b>
+                </div>
+              </>
+            );
+          })()}
         </motion.div>
       </div>
 

@@ -713,11 +713,25 @@ img {
   animation: introRight 900ms 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.heroProject img {
+.heroProjectLogoWrapper {
   aspect-ratio: 1 / 1 !important;
   border-radius: 50% !important;
-  object-fit: contain !important;
   width: 96px;
+  height: 96px;
+  background: #fff;
+  border: none;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.heroProjectLogoWrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
 }
 
 .heroProject p {
@@ -1201,6 +1215,28 @@ footer h2 {
   right: 14px;
   z-index: 2;
   color: #0b0b0a;
+}
+
+.workCard .cardInfoLogoWrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-right: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.workCard .cardInfoLogoWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .workCard .cardInfo b {
@@ -4494,12 +4530,24 @@ details p {
     text-align: left !important;
   }
   
-  .heroProject img {
+  .heroProjectLogoWrapper {
     width: 52px !important;
     height: 52px !important;
     border-radius: 50% !important;
     background: #fff !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
     box-shadow: 0 4px 8px rgba(0,0,0,0.04) !important;
+  }
+
+  .heroProjectLogoWrapper img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
   }
   
   .heroProject p {
@@ -5865,15 +5913,26 @@ details p {
     overflow: hidden;
   }
 
-  .mobileProjectCardLogo {
+  .mobileProjectCardLogoWrapper {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    object-fit: contain;
     background: #fff;
-    padding: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  }
+
+  .mobileProjectCardLogo {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    border: none !important;
   }
 
   .mobileProjectCardText {
