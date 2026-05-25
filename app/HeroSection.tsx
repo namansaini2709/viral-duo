@@ -148,8 +148,7 @@ export default function HeroSection() {
           <motion.span 
             className="hero-ugc-container"
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            animate={showAnimation ? "visible" : "hidden"}
           >
             {/* Word 1: User */}
             <motion.span className="hero-ugc-word" variants={wordVariants}>
