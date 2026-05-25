@@ -1,12 +1,202 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { services } from './data';
 import LazyVideo from './LazyVideo';
 
+interface MobileCardProps {
+  service: typeof services[0];
+  index: number;
+  isTop: boolean;
+  isNext: boolean;
+  isThird: boolean;
+  isFourth: boolean;
+  dragX: any;
+  rotateValue: any;
+  isTabSwitch: boolean;
+  setIsTabSwitch: (val: boolean) => void;
+  currentIndex: number;
+  switchCard: (idx: number) => void;
+}
+
+function MobileCard({
+  service,
+  index,
+  isTop,
+  isNext,
+  isThird,
+  isFourth,
+  dragX,
+  rotateValue,
+  isTabSwitch,
+  setIsTabSwitch,
+  currentIndex,
+  switchCard,
+}: MobileCardProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const inDeck = isTop || isNext || isThird || isFourth;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isTop) {
+      // Play when on top
+      video.play().catch((err) => {
+        console.warn("Video play failed:", err);
+      });
+    } else {
+      // Pause and reset to first frame when not on top
+      video.pause();
+      try {
+        video.currentTime = 0;
+      } catch (e) {
+        // Safe catch for cases where video is not yet loaded/ready
+      }
+    }
+  }, [isTop]);
+
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: isTop ? 'auto' : 'none',
+        display: inDeck ? 'flex' : 'none',
+        zIndex: isTop ? 10 : isNext ? 9 : isThird ? 8 : isFourth ? 7 : 1,
+        willChange: "transform, opacity",
+      }}
+      initial={false}
+      animate={{
+        x: isTop ? (isTabSwitch ? [index % 2 === 0 ? -450 : 450, 0] : 0) : 0,
+        opacity: isTop ? (isTabSwitch ? [0, 1] : 1) : 1,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 220,
+        damping: 22
+      }}
+    >
+      <motion.div
+        className={`serviceCardMobile ${service.color}`}
+        style={{
+          x: isTop ? dragX : 0,
+          rotate: isTop ? rotateValue : isNext ? -3 : isThird ? 3 : isFourth ? -1.5 : 0,
+          cursor: isTop ? 'grab' : 'default',
+          touchAction: 'pan-y',
+          width: '100%',
+          height: '100%',
+          willChange: "transform, opacity",
+        }}
+        animate={{
+          scale: isTop ? 1 : isNext ? 0.90 : isThird ? 0.80 : isFourth ? 0.70 : 0.60,
+          y: isTop ? 0 : isNext ? 18 : isThird ? 36 : isFourth ? 54 : 72,
+          opacity: isTop ? 1 : isNext ? 0.92 : isThird ? 0.45 : isFourth ? 0.15 : 0,
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        drag={isTop ? "x" : false}
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.65}
+        onDragStart={() => {
+          setIsTabSwitch(false);
+        }}
+        onDragEnd={(e, info) => {
+          if (!isTop) return;
+          const swipeThreshold = 80;
+          if (info.offset.x < -swipeThreshold) {
+            // Swipe left -> next card
+            const nextIndex = (currentIndex + 1) % services.length;
+            switchCard(nextIndex);
+          } else if (info.offset.x > swipeThreshold) {
+            // Swipe right -> prev card
+            const prevIndex = (currentIndex - 1 + services.length) % services.length;
+            switchCard(prevIndex);
+          } else {
+            // Release snap back
+            dragX.set(0);
+          }
+        }}
+      >
+        {/* Oversized background index watermark */}
+        <div className="cardWatermark">{service.id}</div>
+
+        <div className="serviceCardHeaderMobile">
+          <span className="cardLabel">SERVICE / {service.id}</span>
+          <div className="cardLiveBadge">
+            <span className={`liveDot ${isTop ? 'activePulse' : ''}`} />
+            <span>CASE STUDY</span>
+          </div>
+        </div>
+
+        <div className="serviceCardBodyMobile">
+          <div className="serviceCardMedia">
+            {service.videoUrl ? (
+              <video
+                ref={videoRef}
+                src={service.videoUrl}
+                loop
+                muted
+                playsInline
+                className="serviceVideoMobile"
+                preload="auto"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            ) : (
+              <img
+                src={service.img}
+                alt={service.title}
+                className="serviceImgMobile"
+              />
+            )}
+          </div>
+
+          <div className="serviceCardInfo">
+            <h3 className="serviceCardTitleMobile">{service.title}</h3>
+            <p className="serviceCardDescMobile">{service.desc}</p>
+            
+            {/* Premium Highlights Grid */}
+            <div className="serviceHighlightsGrid">
+              {service.highlights && service.highlights.map((highlight, idx) => (
+                <div key={idx} className="highlightTag">
+                  {highlight}
+                </div>
+              ))}
+            </div>
+
+            <div className="serviceCardFooterMobile">
+              <div className="serviceCardMetricsMobile">
+                <span className="metricValue">{service.metric}</span>
+                <span className="metricUnit">{service.unit}</span>
+              </div>
+
+              <a 
+                href="https://www.instagram.com/theviralduo/?hl=en" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="serviceCardBtnMobile animateGrowBtn"
+              >
+                <span>Scale My Brand</span>
+                <span className="btnArrowMobile">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function ServicesSection() {
   const [isMobile, setIsMobile] = useState(false);
   const [stack, setStack] = useState([0, 1, 2, 3]);
+  const [isTabSwitch, setIsTabSwitch] = useState(false);
   const currentIndex = stack[0];
 
   const switchCard = (targetIndex: number) => {
@@ -49,6 +239,7 @@ export default function ServicesSection() {
                 key={service.id}
                 className={`serviceTabBtn ${index === currentIndex ? 'active' : ''}`}
                 onClick={() => {
+                  setIsTabSwitch(true);
                   switchCard(index);
                 }}
               >
@@ -74,135 +265,22 @@ export default function ServicesSection() {
               const isThird = index === stack[2];
               const isFourth = index === stack[3];
               
-              // Render and animate all four cards in the stack to show depth
-              const inDeck = isTop || isNext || isThird || isFourth;
-
               return (
-                <motion.div
+                <MobileCard
                   key={service.id}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    pointerEvents: isTop ? 'auto' : 'none',
-                    display: inDeck ? 'flex' : 'none',
-                    zIndex: isTop ? 10 : isNext ? 9 : isThird ? 8 : isFourth ? 7 : 1,
-                  }}
-                  initial={false}
-                  animate={{
-                    x: isTop ? [index % 2 === 0 ? -450 : 450, 0] : 0,
-                    opacity: isTop ? [0, 1] : 1,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 220,
-                    damping: 22
-                  }}
-                >
-                  <motion.div
-                    className={`serviceCardMobile ${service.color}`}
-                    style={{
-                      x: isTop ? dragX : 0,
-                      rotate: isTop ? rotateValue : isNext ? -3 : isThird ? 3 : isFourth ? -1.5 : 0,
-                      cursor: isTop ? 'grab' : 'default',
-                      touchAction: 'pan-y',
-                      width: '100%',
-                      height: '100%',
-                    }}
-                    animate={{
-                      scale: isTop ? 1 : isNext ? 0.90 : isThird ? 0.80 : isFourth ? 0.70 : 0.60,
-                      y: isTop ? 0 : isNext ? 18 : isThird ? 36 : isFourth ? 54 : 72,
-                      opacity: isTop ? 1 : isNext ? 0.92 : isThird ? 0.45 : isFourth ? 0.15 : 0,
-                    }}
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    drag={isTop ? "x" : false}
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.65}
-                    onDragEnd={(e, info) => {
-                      if (!isTop) return;
-                      const swipeThreshold = 80;
-                      if (info.offset.x < -swipeThreshold) {
-                        // Swipe left -> next card
-                        const nextIndex = (currentIndex + 1) % services.length;
-                        switchCard(nextIndex);
-                      } else if (info.offset.x > swipeThreshold) {
-                        // Swipe right -> prev card
-                        const prevIndex = (currentIndex - 1 + services.length) % services.length;
-                        switchCard(prevIndex);
-                      } else {
-                        // Release snap back
-                        dragX.set(0);
-                      }
-                    }}
-                  >
-                    {/* Oversized background index watermark */}
-                    <div className="cardWatermark">{service.id}</div>
-
-                    <div className="serviceCardHeaderMobile">
-                      <span className="cardLabel">SERVICE / {service.id}</span>
-                      <div className="cardLiveBadge">
-                        <span className={`liveDot ${isTop ? 'activePulse' : ''}`} />
-                        <span>CASE STUDY</span>
-                      </div>
-                    </div>
-
-                    <div className="serviceCardBodyMobile">
-                      <div className="serviceCardMedia">
-                        {service.videoUrl && isTop ? (
-                          <video
-                            key="playing"
-                            src={service.videoUrl}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="serviceVideoMobile"
-                            preload="auto"
-                          />
-                        ) : (
-                          <img
-                            src={service.img}
-                            alt={service.title}
-                            className="serviceImgMobile"
-                          />
-                        )}
-                      </div>
-
-                      <div className="serviceCardInfo">
-                        <h3 className="serviceCardTitleMobile">{service.title}</h3>
-                        <p className="serviceCardDescMobile">{service.desc}</p>
-                        
-                        {/* Premium Highlights Grid */}
-                        <div className="serviceHighlightsGrid">
-                          {service.highlights && service.highlights.map((highlight, idx) => (
-                            <div key={idx} className="highlightTag">
-                              {highlight}
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="serviceCardFooterMobile">
-                          <div className="serviceCardMetricsMobile">
-                            <span className="metricValue">{service.metric}</span>
-                            <span className="metricUnit">{service.unit}</span>
-                          </div>
-
-                          <a 
-                            href="https://www.instagram.com/theviralduo/?hl=en" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="serviceCardBtnMobile animateGrowBtn"
-                          >
-                            <span>Scale My Brand</span>
-                            <span className="btnArrowMobile">↗</span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
+                  service={service}
+                  index={index}
+                  isTop={isTop}
+                  isNext={isNext}
+                  isThird={isThird}
+                  isFourth={isFourth}
+                  dragX={dragX}
+                  rotateValue={rotateValue}
+                  isTabSwitch={isTabSwitch}
+                  setIsTabSwitch={setIsTabSwitch}
+                  currentIndex={currentIndex}
+                  switchCard={switchCard}
+                />
               );
             })}
           </div>
@@ -214,6 +292,7 @@ export default function ServicesSection() {
                 key={index}
                 className={`serviceDotMobile ${index === currentIndex ? 'active' : ''}`}
                 onClick={() => {
+                  setIsTabSwitch(true);
                   switchCard(index);
                 }}
                 aria-label={`Go to service ${index + 1}`}
