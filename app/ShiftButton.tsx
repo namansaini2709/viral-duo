@@ -33,8 +33,8 @@ const springTransition = {
 
 const spinTransition = {
   type: "spring" as const,
-  stiffness: 50,
-  damping: 15,
+  stiffness: 70,
+  damping: 17,
 };
 
 export default function ShiftButton({
