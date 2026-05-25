@@ -102,8 +102,8 @@ export default function ShiftButton({
       {showIcon && (
         <motion.div
           variants={{
-            initial: { width: 0, opacity: 0, scale: 0.5, y: 12 },
-            hover: { width: baseHeight, opacity: 1, scale: 1, y: 12 }
+            initial: { width: 0, opacity: 0, scale: 0.5, y: 18 },
+            hover: { width: baseHeight, opacity: 1, scale: 1, y: 18 }
           }}
           transition={springTransition}
           style={{
