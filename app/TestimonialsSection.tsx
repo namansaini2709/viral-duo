@@ -49,7 +49,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg, 
                 exit={{ opacity: 0 }}
                 style={{ width: '100%', height: '100%', position: 'relative' }}
               >
-                <img src={videoImg} alt={`Video testimonial from ${name}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src={videoImg} alt={`Video testimonial from ${name}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <button className="playBtn" aria-label="Play video testimonial">▶</button>
               </motion.div>
             )}
@@ -66,7 +66,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg, 
             <p>{text}</p>
           </div>
           <div className="testimonialProfile" style={{ marginTop: '40px' }}>
-            <img src={avatar} alt={`${name}'s avatar`} style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
+            <img src={avatar} alt={`${name}'s avatar`} loading="lazy" style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
             <div className="profileInfo">
               <b>{name}</b>
               <span>{role}</span>
@@ -95,7 +95,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg, 
         <p>{text}</p>
       </div>
       <div className="testimonialProfile">
-        <img src={avatar} alt={`${name}'s avatar`} style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
+        <img src={avatar} alt={`${name}'s avatar`} loading="lazy" style={{ width: '48px', height: '48px', objectFit: 'contain', background: '#fff', padding: '4px', borderRadius: '50%' }} />
         <div className="profileInfo">
           <b>{name}</b>
           <span>{role}</span>

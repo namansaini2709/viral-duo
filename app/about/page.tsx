@@ -55,7 +55,7 @@ export default function AboutPage() {
             className="pill pink"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             ABOUT US
@@ -69,7 +69,7 @@ export default function AboutPage() {
                 className="pill pink"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 ABOUT US
@@ -79,7 +79,7 @@ export default function AboutPage() {
               <motion.h1
                 initial={{ opacity: 0, scale: 0.8, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ 
                   type: "spring", 
                   stiffness: 45, 
@@ -95,7 +95,7 @@ export default function AboutPage() {
               <motion.h1
                 initial={{ opacity: 0, scale: 0.8, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ 
                   type: "spring", 
                   stiffness: 45, 
@@ -113,7 +113,7 @@ export default function AboutPage() {
             className="heroImageWrapper"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <LazyVideo
@@ -135,7 +135,7 @@ export default function AboutPage() {
             className="visionText"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -158,7 +158,7 @@ export default function AboutPage() {
             className="visionImage"
             initial={{ opacity: 0, scale: 0.6 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ 
               type: "spring", 
               stiffness: 90, 
@@ -167,7 +167,7 @@ export default function AboutPage() {
               delay: 0.1
             }}
           >
-            <img src={img.vision} alt="Our Vision" />
+            <img src={img.vision} alt="Our Vision" loading="lazy" />
           </motion.div>
         </div>
       </section>
@@ -209,7 +209,7 @@ export default function AboutPage() {
                 className="teamMember"
                 initial={{ opacity: 0, scale: 0.8, y: 30 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ 
                   duration: 0.6, 
                   delay: (i % 4) * 0.1, 
@@ -217,7 +217,7 @@ export default function AboutPage() {
                 }}
               >
                 <div className="memberImage">
-                  <img src={src} alt={teamData[i].name} />
+                  <img src={src} alt={teamData[i].name} loading="lazy" />
                 </div>
                 <div className="memberInfo">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

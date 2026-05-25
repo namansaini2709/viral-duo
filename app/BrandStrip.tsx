@@ -17,7 +17,7 @@ export default function BrandStrip() {
                     width: '32px', 
                     height: '32px', 
                     borderRadius: '50%', 
-                    objectFit: 'contain', 
+                    objectFit: 'cover', 
                     background: '#fff',
                     padding: '2px'
                   }} 

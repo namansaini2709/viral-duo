@@ -93,7 +93,7 @@ export default function MissionSection() {
               rel="noopener noreferrer"
               style={{ display: 'block', width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
             >
-              <LazyVideo src="/videos-optimized/DAB4D12D-088C-42AD-A6F6-1B74217B2F8F.mp4" autoPlay loop muted playsInline />
+              <LazyVideo src="/videos-optimized/DAB4D12D-088C-42AD-A6F6-1B74217B2F8F.mp4" autoPlay loop muted playsInline preload="metadata" />
             </a>
             <motion.div
               className="missionMetric pink"
@@ -130,7 +130,7 @@ export default function MissionSection() {
               rel="noopener noreferrer"
               style={{ display: 'block', width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
             >
-              <LazyVideo src="/videos-optimized/inderchahal.mp4" autoPlay loop muted playsInline />
+              <LazyVideo src="/videos-optimized/inderchahal.mp4" autoPlay loop muted playsInline preload="metadata" />
             </a>
             <motion.div
               className="missionMetric purple"

@@ -10,7 +10,7 @@ export default function FaqSection() {
           <details className="faqItem" key={q}>
             <summary className="faqQuestion">
               {q}
-              <div className="faqToggle">+</div>
+              <div className="faqToggle"></div>
             </summary>
             <p className="faqAnswer">{a}</p>
           </details>

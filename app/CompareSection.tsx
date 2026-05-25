@@ -51,7 +51,7 @@ export default function CompareSection() {
         }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         Don't settle for less
@@ -66,7 +66,7 @@ export default function CompareSection() {
               className="compareMobileRow"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, margin: "-60px" }}
+              viewport={{ once: true, margin: "-60px" }}
               variants={{
                 hidden: { opacity: 0 },
                 visible: {
@@ -158,7 +158,7 @@ export default function CompareSection() {
                   }}
                   exit={isMobile ? { opacity: 0, x: 20 } : undefined}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ once: false, amount: 0.15 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="compareCard agencies">
@@ -203,13 +203,13 @@ export default function CompareSection() {
                   }}
                   exit={isMobile ? { opacity: 0, x: -20 } : undefined}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ once: false, amount: 0.15 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="compareCard theViralDuo">
                     <h3>
                       <div className="theViralDuoLogo">
-                        <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                        <img src="/logo-v2.png" alt="The Viral Duo Logo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
                       </div>
                       The Viral Duo
                     </h3>

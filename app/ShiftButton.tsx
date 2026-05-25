@@ -31,6 +31,12 @@ const springTransition = {
   damping: 30,
 };
 
+const spinTransition = {
+  type: "spring" as const,
+  stiffness: 70,
+  damping: 17,
+};
+
 export default function ShiftButton({
   children,
   href,
@@ -79,6 +85,14 @@ export default function ShiftButton({
       initial="initial"
       whileHover="hover"
       whileTap={{ scale: 0.98 }}
+      variants={{
+        initial: { scale: 1, rotate: 0 },
+        hover: { 
+          scale: 1.03,
+          rotate: 4,
+          transition: { type: "spring", stiffness: 400, damping: 25 }
+        }
+      }}
       style={{
         display: "flex",
         alignItems: "center",
@@ -95,11 +109,12 @@ export default function ShiftButton({
       {showIcon && (
         <motion.div
           variants={{
-            initial: { width: 0, opacity: 0, scale: 0.5 },
-            hover: { width: baseHeight, opacity: 1, scale: 1 }
+            initial: { width: 0, opacity: 0, scale: 0.2, rotate: -120, y: 25, x: 0 },
+            hover: { width: baseHeight, opacity: 1, scale: 1, rotate: 0, y: 25, x: 0 }
           }}
           transition={springTransition}
           style={{
+            width: 0,
             height: baseHeight,
             borderRadius: "50%",
             backgroundColor: leftIconColor || defaultBg,
@@ -109,12 +124,27 @@ export default function ShiftButton({
             color: fontColor,
             flexShrink: 0,
             overflow: "hidden",
+            zIndex: 1,
           }}
         >
-          <svg width={baseHeight * 0.4} height={baseHeight * 0.4} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
+          <motion.svg 
+            variants={{
+              initial: { rotate: 360, scale: 0.5 },
+              hover: { rotate: 0, scale: 1 }
+            }}
+            transition={spinTransition}
+            width={baseHeight * 0.4} 
+            height={baseHeight * 0.4} 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="3" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </motion.svg>
         </motion.div>
       )}
 
@@ -153,11 +183,12 @@ export default function ShiftButton({
       {showIcon && (
         <motion.div
           variants={{
-            initial: { width: baseHeight, opacity: 1, scale: 1 },
-            hover: { width: 0, opacity: 0, scale: 0.5 }
+            initial: { width: baseHeight, opacity: 1, scale: 1, rotate: 0 },
+            hover: { width: 0, opacity: 0, scale: 0.2, rotate: 120 }
           }}
           transition={springTransition}
           style={{
+            width: baseHeight,
             height: baseHeight,
             borderRadius: "50%",
             backgroundColor: rightIconColor || defaultBg,
@@ -169,10 +200,24 @@ export default function ShiftButton({
             overflow: "hidden",
           }}
         >
-          <svg width={baseHeight * 0.4} height={baseHeight * 0.4} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <motion.svg 
+            variants={{
+              initial: { rotate: 0, scale: 1 },
+              hover: { rotate: 360, scale: 0.5 }
+            }}
+            transition={spinTransition}
+            width={baseHeight * 0.4} 
+            height={baseHeight * 0.4} 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="3" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+          </motion.svg>
         </motion.div>
       )}
     </motion.div>
