@@ -33,8 +33,8 @@ const springTransition = {
 
 const spinTransition = {
   type: "spring" as const,
-  stiffness: 120,
-  damping: 20,
+  stiffness: 50,
+  damping: 15,
 };
 
 export default function ShiftButton({
@@ -110,7 +110,7 @@ export default function ShiftButton({
         <motion.div
           variants={{
             initial: { width: 0, opacity: 0, scale: 0.2, rotate: -120, y: 25, x: 0 },
-            hover: { width: baseHeight, opacity: 1, scale: 1, rotate: 0, y: 25, x: 10 }
+            hover: { width: baseHeight, opacity: 1, scale: 1, rotate: 0, y: 25, x: 0 }
           }}
           transition={springTransition}
           style={{
