@@ -286,11 +286,15 @@ export default function ExploreMore() {
           </div>
 
           <motion.h2
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -20, rotate: 0 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             variants={{
-              hover: { scale: 1.05 }
+              hover: { 
+                scale: 1.05,
+                rotate: 4,
+                transition: { type: "spring", stiffness: 400, damping: 25 }
+              }
             }}
           >
             See More Works
