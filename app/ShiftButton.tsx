@@ -123,7 +123,7 @@ export default function ShiftButton({
         >
           <motion.svg 
             variants={{
-              initial: { rotate: -360, scale: 0.5 },
+              initial: { rotate: 360, scale: 0.5 },
               hover: { rotate: 0, scale: 1 }
             }}
             transition={springTransition}
