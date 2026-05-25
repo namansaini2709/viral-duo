@@ -51,6 +51,17 @@ const projects = [
     highlights: ["⚡ Wanderlust Vibe Loops", "📈 Travel Inquiries Generated", "🌍 High-Retention Hook"]
   },
   { 
+    src: "/videos-optimized/Career launcher.mp4", 
+    poster: "/Cover pages/Career Launcher cover.jpg", 
+    name: "Career Launcher", 
+    result: "Student Leads Elevated! 🎓", 
+    logo: "/logos/carrer launcher.JPG", 
+    href: brandLinks.careerLauncher,
+    glowColor: "rgba(99, 102, 241, 0.8)",
+    shadowGlow: "rgba(99, 102, 241, 0.22)",
+    highlights: ["⚡ Storytelling Edits", "📈 Inbound Leads Spike", "🎓 CTR Optimization"]
+  },
+  { 
     src: "/videos-optimized/VDMC.mp4", 
     poster: "/Cover pages/Vdmc.PNG", 
     name: "VDMC", 
@@ -142,7 +153,7 @@ function WorkCard({
       whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
       transition={{ type: "spring", damping: 60, stiffness: 500, mass: 1, delay: i * 0.15 }}
       transformTemplate={(transform, generatedTransform) => `perspective(1200px) ${generatedTransform}`}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: false, margin: "-100px" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleMouseEnter}
