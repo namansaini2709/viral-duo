@@ -56,7 +56,7 @@ export default function TeamSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
             >
-              <img src={member.avatar} alt={`Team member ${member.name}`} />
+              <img src={member.avatar} alt={`Team member ${member.name}`} loading="lazy" />
             </motion.div>
           ))}
         </div>

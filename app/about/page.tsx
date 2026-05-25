@@ -167,7 +167,7 @@ export default function AboutPage() {
               delay: 0.1
             }}
           >
-            <img src={img.vision} alt="Our Vision" />
+            <img src={img.vision} alt="Our Vision" loading="lazy" />
           </motion.div>
         </div>
       </section>
@@ -217,7 +217,7 @@ export default function AboutPage() {
                 }}
               >
                 <div className="memberImage">
-                  <img src={src} alt={teamData[i].name} />
+                  <img src={src} alt={teamData[i].name} loading="lazy" />
                 </div>
                 <div className="memberInfo">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

@@ -153,6 +153,7 @@ function WorkCard({
       <img
         src={poster}
         alt=""
+        loading="lazy"
         className="workCardMedia"
         style={{
           position: 'absolute',
@@ -199,6 +200,7 @@ function WorkCard({
           <img 
             src={logo} 
             alt="" 
+            loading="lazy"
           />
         </div>
         <b>{name}</b>
@@ -305,6 +307,7 @@ function MobileProjectCard({
       <img
         src={poster}
         alt=""
+        loading="lazy"
         className="mobileProjectCardMedia"
         style={{
           position: 'absolute',
@@ -378,6 +381,7 @@ function MobileProjectCard({
             <img
               src={logo}
               alt=""
+              loading="lazy"
               className="mobileProjectCardLogo"
             />
           </div>

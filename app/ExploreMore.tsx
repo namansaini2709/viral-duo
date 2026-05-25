@@ -226,6 +226,7 @@ export default function ExploreMore() {
                   <img
                     src={item.poster}
                     alt=""
+                    loading="lazy"
                     style={{
                       position: 'absolute',
                       top: 0,

@@ -59,6 +59,7 @@ export default function LazyVideo({ src, poster, className, style, ...props }: L
         <img
           src={poster}
           alt=""
+          loading="lazy"
           style={{
             position: 'absolute',
             top: 0,
