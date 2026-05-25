@@ -82,7 +82,7 @@ export default function ShiftButton({
       variants={{
         initial: { rotate: 0 },
         hover: { 
-          rotate: -2,
+          rotate: 2,
           transition: { type: "spring", stiffness: 400, damping: 25 }
         }
       }}
