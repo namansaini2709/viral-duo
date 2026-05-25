@@ -142,7 +142,7 @@ function WorkCard({
       whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
       transition={{ type: "spring", damping: 60, stiffness: 500, mass: 1, delay: i * 0.15 }}
       transformTemplate={(transform, generatedTransform) => `perspective(1200px) ${generatedTransform}`}
-      viewport={{ once: false, margin: "-100px" }}
+      viewport={{ once: true, margin: "-100px" }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleMouseEnter}
