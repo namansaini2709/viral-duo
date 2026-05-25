@@ -31,6 +31,12 @@ const springTransition = {
   damping: 30,
 };
 
+const spinTransition = {
+  type: "spring" as const,
+  stiffness: 120,
+  damping: 20,
+};
+
 export default function ShiftButton({
   children,
   href,
@@ -126,7 +132,7 @@ export default function ShiftButton({
               initial: { rotate: 360, scale: 0.5 },
               hover: { rotate: 0, scale: 1 }
             }}
-            transition={springTransition}
+            transition={spinTransition}
             width={baseHeight * 0.4} 
             height={baseHeight * 0.4} 
             viewBox="0 0 24 24" 
@@ -199,7 +205,7 @@ export default function ShiftButton({
               initial: { rotate: 0, scale: 1 },
               hover: { rotate: 360, scale: 0.5 }
             }}
-            transition={springTransition}
+            transition={spinTransition}
             width={baseHeight * 0.4} 
             height={baseHeight * 0.4} 
             viewBox="0 0 24 24" 

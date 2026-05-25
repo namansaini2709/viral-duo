@@ -269,7 +269,7 @@ export default function ExploreMore() {
                   initial: { rotate: 360, scale: 0.5 },
                   hover: { rotate: 0, scale: 1 }
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                transition={{ type: "spring", stiffness: 120, damping: 20 }}
                 width={32} 
                 height={32} 
                 viewBox="0 0 24 24" 
@@ -314,7 +314,7 @@ export default function ExploreMore() {
                   initial: { rotate: 0, scale: 1 },
                   hover: { rotate: 360, scale: 0.5 }
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                transition={{ type: "spring", stiffness: 120, damping: 20 }}
                 width={32} 
                 height={32} 
                 viewBox="0 0 24 24" 
