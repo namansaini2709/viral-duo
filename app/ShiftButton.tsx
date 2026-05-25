@@ -100,6 +100,7 @@ export default function ShiftButton({
           }}
           transition={springTransition}
           style={{
+            width: 0,
             height: baseHeight,
             borderRadius: "50%",
             backgroundColor: leftIconColor || defaultBg,
@@ -158,6 +159,7 @@ export default function ShiftButton({
           }}
           transition={springTransition}
           style={{
+            width: baseHeight,
             height: baseHeight,
             borderRadius: "50%",
             backgroundColor: rightIconColor || defaultBg,

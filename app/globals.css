@@ -3368,9 +3368,12 @@ details p {
   position: relative;
   width: 80px;
   height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .seeMoreBtn {
@@ -3380,13 +3383,16 @@ details p {
   display: flex;
   font-size: 32px;
   height: 80px;
+  width: 80px;
+  min-width: 80px;
+  min-height: 80px;
   justify-content: center;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  width: 80px;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,0.1);
   text-decoration: none;
   position: absolute;
+  flex-shrink: 0;
 }
 
 .seeMoreBtn.pink {
@@ -5183,15 +5189,21 @@ details p {
   .seeMoreArrowWrap {
     width: 64px !important;
     height: 64px !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    flex-shrink: 0 !important;
   }
 
   .seeMoreBtn {
     width: 64px !important;
     height: 64px !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
     font-size: 28px !important;
     position: relative !important; /* Changed from absolute to allow stacking */
     top: auto !important;
     left: auto !important;
+    flex-shrink: 0 !important;
   }
 
   .seeMoreSection {
