@@ -150,16 +150,16 @@ export default function ServicesSection() {
 
                     <div className="serviceCardBodyMobile">
                       <div className="serviceCardMedia">
-                        {service.videoUrl ? (
+                        {service.videoUrl && isTop ? (
                           <video
-                            key={isTop ? "playing" : "paused"}
+                            key="playing"
                             src={service.videoUrl}
-                            autoPlay={isTop}
+                            autoPlay
                             loop
                             muted
                             playsInline
                             className="serviceVideoMobile"
-                            preload={isTop ? "auto" : "metadata"}
+                            preload="auto"
                           />
                         ) : (
                           <img
