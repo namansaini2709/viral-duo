@@ -79,6 +79,13 @@ export default function ShiftButton({
       initial="initial"
       whileHover="hover"
       whileTap={{ scale: 0.98 }}
+      variants={{
+        initial: { rotate: 0 },
+        hover: { 
+          rotate: -2,
+          transition: { type: "spring", stiffness: 400, damping: 25 }
+        }
+      }}
       style={{
         display: "flex",
         alignItems: "center",
@@ -112,7 +119,17 @@ export default function ShiftButton({
             overflow: "hidden",
           }}
         >
-          <svg width={baseHeight * 0.4} height={baseHeight * 0.4} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <svg 
+            width={baseHeight * 0.4} 
+            height={baseHeight * 0.4} 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="3" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            style={{ transform: "translateY(2.5px)" }}
+          >
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
           </svg>
