@@ -80,9 +80,9 @@ export default function ShiftButton({
       whileHover="hover"
       whileTap={{ scale: 0.98 }}
       variants={{
-        initial: { rotate: 0 },
+        initial: { scale: 1 },
         hover: { 
-          rotate: 4,
+          scale: 1.03,
           transition: { type: "spring", stiffness: 400, damping: 25 }
         }
       }}
@@ -102,8 +102,8 @@ export default function ShiftButton({
       {showIcon && (
         <motion.div
           variants={{
-            initial: { width: 0, opacity: 0, scale: 0.5, y: 25, x: 0 },
-            hover: { width: baseHeight, opacity: 1, scale: 1, y: 25, x: 10 }
+            initial: { width: 0, opacity: 0, scale: 0.2, rotate: -120 },
+            hover: { width: baseHeight, opacity: 1, scale: 1, rotate: 0 }
           }}
           transition={springTransition}
           style={{
@@ -129,7 +129,6 @@ export default function ShiftButton({
             strokeWidth="3" 
             strokeLinecap="round" 
             strokeLinejoin="round"
-            style={{ transform: "translateY(2.5px)" }}
           >
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
@@ -172,8 +171,8 @@ export default function ShiftButton({
       {showIcon && (
         <motion.div
           variants={{
-            initial: { width: baseHeight, opacity: 1, scale: 1 },
-            hover: { width: 0, opacity: 0, scale: 0.5 }
+            initial: { width: baseHeight, opacity: 1, scale: 1, rotate: 0 },
+            hover: { width: 0, opacity: 0, scale: 0.2, rotate: 120 }
           }}
           transition={springTransition}
           style={{
