@@ -29,7 +29,7 @@ export default function CtaSection() {
             variants={pathVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           />
         </svg>
         <h2>UGC that grows your brand.</h2>

@@ -42,6 +42,14 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
             </div>
 
             <div className="footerCol">
+              <h3>SERVICES</h3>
+              <div className="footerNav">
+                <WiggleButton href="/photoshoots">Product Photoshoots</WiggleButton>
+                <WiggleButton href="/event-coverage">Event Coverage</WiggleButton>
+              </div>
+            </div>
+
+            <div className="footerCol">
               <h3>LEGAL</h3>
               <div className="footerNav">
                 <WiggleButton href="/privacy">Privacy Policy</WiggleButton>

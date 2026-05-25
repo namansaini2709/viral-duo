@@ -38,7 +38,7 @@ function MissionBlockWithLine({
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: false, margin: "-100px" }}
     >
       <div className="missionLine">
         <svg viewBox={viewBox} fill="none" preserveAspectRatio="none">
@@ -63,7 +63,7 @@ export default function MissionSection() {
         <motion.p
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="eyebrow"
         >
           our mission
@@ -72,7 +72,7 @@ export default function MissionSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           We made social media into a consistent, high-performing growth channel.
         </motion.h2>
@@ -100,7 +100,7 @@ export default function MissionSection() {
               initial={{ x: -20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               <strong>2.2M</strong>
               <span>Organic Views</span>
@@ -137,7 +137,7 @@ export default function MissionSection() {
               initial={{ x: 20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               <strong>Our 1st</strong>
               <span>Hit Event</span>

@@ -9,6 +9,7 @@ import ScrollPain from "./ScrollPain";
 import MissionSection from "./MissionSection";
 import FeaturedProjects from "./FeaturedProjects";
 import ExploreMore from "./ExploreMore";
+import ExtendedServices from "./ExtendedServices";
 import ServicesSection from "./ServicesSection";
 import CompareSection from "./CompareSection";
 import ProcessSection from "./ProcessSection";
@@ -133,6 +134,7 @@ export default function Home() {
         <CompareSection />
         <ProcessSection />
         <TeamSection />
+        <ExtendedServices />
         <FaqSection />
         <CtaSection />
       </div>

@@ -53,7 +53,7 @@ export default function TeamSection() {
               className="teamCard"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
             >
               <img src={member.avatar} alt={`Team member ${member.name}`} loading="lazy" />

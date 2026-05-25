@@ -55,19 +55,9 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       </Link>
       <div className="navLinks" style={{ color: 'inherit' }}>
         <Link href="/">Home</Link>
-        {isAboutPage ? (
-          <>
-            <Link href="#vision">Vision</Link>
-            <Link href="#gallery">Glimpse</Link>
-            <Link href="#team">Team</Link>
-          </>
-        ) : (
-          <>
-            <Link href="/#work">Projects</Link>
-            <Link href="/#services">Services</Link>
-            <Link href="/about">About Us</Link>
-          </>
-        )}
+        <Link href="/photoshoots">Photoshoots</Link>
+        <Link href="/event-coverage">Event Coverage</Link>
+        <Link href="/about">About Us</Link>
       </div>
       <ShiftButton small={true} dark={isAtTop ? false : (navTheme === 'light')} dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' showIcon={false}>Book a call</ShiftButton>
       
@@ -131,19 +121,9 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', fontSize: '32px', fontWeight: 700 }}>
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-            {isAboutPage ? (
-              <>
-                <Link href="#vision" onClick={() => setIsMobileMenuOpen(false)}>Vision</Link>
-                <Link href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Glimpse</Link>
-                <Link href="#team" onClick={() => setIsMobileMenuOpen(false)}>Team</Link>
-              </>
-            ) : (
-              <>
-                <Link href="/#work" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
-                <Link href="/#services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
-                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
-              </>
-            )}
+            <Link href="/photoshoots" onClick={() => setIsMobileMenuOpen(false)}>Photoshoots</Link>
+            <Link href="/event-coverage" onClick={() => setIsMobileMenuOpen(false)}>Event Coverage</Link>
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
             <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
           </div>
         </motion.div>

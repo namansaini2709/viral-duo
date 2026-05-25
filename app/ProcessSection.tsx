@@ -57,7 +57,7 @@ export default function ProcessSection() {
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.8 }}
       >
         From strategy to scroll-stopping content.
@@ -78,7 +78,7 @@ export default function ProcessSection() {
               animate={{
                 flex: isActive ? 4 : 1,
               }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{
                 layout: { type: "spring", stiffness: 100, damping: 20 },
                 duration: 1.2
