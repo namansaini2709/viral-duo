@@ -259,12 +259,29 @@ export default function ExploreMore() {
             <motion.div 
               className="seeMoreBtn purple"
               variants={{
-                initial: { scale: 0.8, x: -20, opacity: 0, rotate: 0 },
-                hover: { scale: 1.1, x: 0, opacity: 1, rotate: 45 }
+                initial: { scale: 0.8, x: -20, opacity: 0 },
+                hover: { scale: 1.1, x: 0, opacity: 1 }
               }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >
-              ↗
+              <motion.svg 
+                variants={{
+                  initial: { rotate: 360, scale: 0.5 },
+                  hover: { rotate: 0, scale: 1 }
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                width={32} 
+                height={32} 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="3" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </motion.svg>
             </motion.div>
           </div>
 
@@ -283,12 +300,29 @@ export default function ExploreMore() {
             <motion.div 
               className="seeMoreBtn pink"
               variants={{
-                initial: { scale: 1, x: 0, opacity: 1, rotate: 0 },
-                hover: { scale: 0.8, x: 20, opacity: 0, rotate: 45 }
+                initial: { scale: 1, x: 0, opacity: 1 },
+                hover: { scale: 0.8, x: 20, opacity: 0 }
               }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >
-              ↗
+              <motion.svg 
+                variants={{
+                  initial: { rotate: 0, scale: 1 },
+                  hover: { rotate: 360, scale: 0.5 }
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                width={32} 
+                height={32} 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="3" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </motion.svg>
             </motion.div>
           </div>
         </motion.a>
