@@ -51,14 +51,26 @@ export default function FlyingIconsButton({
   disabled = false,
 }: FlyingIconsButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [icons, setIcons] = useState<IconData[]>([]);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const iconIdCounter = useRef(0);
   const lastSpawnPos = useRef<{ x: number; y: number } | null>(null);
 
-  const handleMouseEnter = () => setIsHovered(true);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (isMobile) return;
+    setIsHovered(true);
+  };
   
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (isMobile) return;
     if (buttonRef.current && isHovered) {
       const rect = buttonRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -87,6 +99,7 @@ export default function FlyingIconsButton({
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     setIsHovered(false);
     lastSpawnPos.current = null;
     // Clear icons immediately on leave as per Framer's handleMouseLeave
