@@ -5191,6 +5191,12 @@ details p {
     height: 64px !important;
     min-width: 64px !important;
     min-height: 64px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     flex-shrink: 0 !important;
   }
 
@@ -5199,6 +5205,12 @@ details p {
     height: 64px !important;
     min-width: 64px !important;
     min-height: 64px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     font-size: 28px !important;
     position: relative !important; /* Changed from absolute to allow stacking */
     top: auto !important;

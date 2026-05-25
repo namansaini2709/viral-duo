@@ -164,7 +164,7 @@ export default function HeroSection() {
             </motion.span>
 
             {/* Word 3: Content */}
-            <motion.span className="hero-ugc-word">
+            <motion.span className="hero-ugc-word" variants={wordVariants}>
               <span className="hero-ugc-cap">C</span>
               <motion.span className="hero-ugc-sub" variants={subVariants}>ontent</motion.span>
             </motion.span>
