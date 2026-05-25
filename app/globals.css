@@ -5735,18 +5735,9 @@ details p {
     box-shadow: 0 4px 12px rgba(11, 11, 10, 0.15);
   }
 
-  .animateGrowBtn:active {
-    transform: scale(0.96);
-    opacity: 0.95;
-  }
-
   .btnArrowMobile {
     font-size: 13px;
     transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-
-  .animateGrowBtn:active .btnArrowMobile {
-    transform: translate(2px, -2px);
   }
 
   .servicesDotsMobile {

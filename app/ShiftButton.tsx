@@ -83,8 +83,8 @@ export default function ShiftButton({
   const buttonContent = (
     <motion.div
       initial="initial"
-      whileHover="hover"
-      whileTap={{ scale: 0.98 }}
+      whileHover={isMobile ? undefined : "hover"}
+      whileTap={isMobile ? undefined : { scale: 0.98 }}
       variants={{
         initial: { scale: 1, rotate: 0 },
         hover: { 
