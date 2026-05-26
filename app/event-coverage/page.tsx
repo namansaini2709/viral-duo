@@ -172,16 +172,23 @@ export default function EventCoveragePage() {
         }}
       >
         {/* Central Text Elements matching Pinterest Reference */}
-        <div 
+        <motion.div 
+          initial={{ scale: 0.5 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ type: "spring", stiffness: 40, damping: 14, delay: 0.15 }}
           style={{
             position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: isMobile ? "0px" : "48px",
+            gap: isMobile ? "0px" : "24px",
             pointerEvents: "none",
             zIndex: 50,
-            width: "100%",
           }}
         >
           {/* Left Text */}
@@ -258,10 +265,14 @@ export default function EventCoveragePage() {
               Through Memories
             </motion.div>
           )}
-        </div>
+        </motion.div>
 
         {/* Orbiting Video Cards */}
-        <div 
+        <motion.div 
+          initial={{ scale: 0.5 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ type: "spring", stiffness: 40, damping: 14, delay: 0.15 }}
           style={{
             position: "relative",
             width: "100%",
@@ -347,7 +358,7 @@ export default function EventCoveragePage() {
               </div>
             );
           })}
-        </div>
+        </motion.div>
       </section>
 
       {/* Case Studies & Metrics Section */}
