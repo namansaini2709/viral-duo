@@ -4103,19 +4103,34 @@ details p {
 }
 
 @media (max-width: 1024px) {
-  .galleryItem.centerMain { width: 340px; height: 460px; }
-  .galleryItem.topLeft { width: 220px; height: 300px; left: 5%; }
-  .galleryItem.topRight { width: 180px; height: 240px; right: 5%; }
+  .galleryGrid { height: 650px; }
+  .galleryItem.centerMain { width: 300px; height: 410px; }
+  .galleryItem.topLeft { width: 180px; height: 250px; left: 3%; }
+  .galleryItem.topRight { width: 150px; height: 200px; right: 3%; }
+  .galleryItem.bottomLeft { width: 170px; height: 230px; left: 4%; }
+  .galleryItem.bottomRight { width: 190px; height: 260px; right: 4%; }
 }
 
 @media (max-width: 768px) {
-  .aboutGallery { padding: 100px 20px 200px; }
-  .galleryGrid { height: 600px; }
-  .galleryItem.centerMain { width: 260px; height: 360px; }
-  .galleryItem.topLeft, .galleryItem.topRight, 
-  .galleryItem.bottomLeft, .galleryItem.bottomRight {
-    display: none; /* Hide floating images on small mobile for clarity */
-  }
+  .aboutGallery { padding: 80px 16px 160px; }
+  .galleryGrid { height: 500px; }
+  .galleryItem { border-radius: 20px !important; }
+  .galleryItem.centerMain { width: 200px; height: 270px; }
+  .galleryItem.topLeft { width: 95px; height: 130px; left: 2%; top: 15%; display: block !important; }
+  .galleryItem.bottomLeft { width: 100px; height: 135px; left: 4%; bottom: 5%; display: block !important; }
+  .galleryItem.topRight { width: 80px; height: 110px; right: 2%; top: 18%; display: block !important; }
+  .galleryItem.bottomRight { width: 115px; height: 155px; right: 3%; bottom: 3%; display: block !important; }
+}
+
+@media (max-width: 480px) {
+  .aboutGallery { padding: 60px 12px 100px; }
+  .galleryGrid { height: 380px; }
+  .galleryItem { border-radius: 12px !important; }
+  .galleryItem.centerMain { width: 140px; height: 190px; }
+  .galleryItem.topLeft { width: 65px; height: 90px; left: 1%; top: 13%; }
+  .galleryItem.bottomLeft { width: 70px; height: 95px; left: 2%; bottom: 4%; }
+  .galleryItem.topRight { width: 58px; height: 80px; right: 1%; top: 15%; }
+  .galleryItem.bottomRight { width: 80px; height: 110px; right: 2%; bottom: 2%; }
 }
 
 .aboutTeam {
@@ -4343,33 +4358,6 @@ details p {
 
   .visionText {
     order: 2;
-  }
-
-  /* About Gallery Stacking - Crucial Fix */
-  .galleryGrid {
-    display: flex !important;
-    flex-direction: column !important;
-    height: auto !important;
-    gap: 20px !important;
-    position: relative !important;
-  }
-  
-  .galleryItem {
-    position: relative !important;
-    width: 100% !important;
-    height: 400px !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    margin-bottom: 20px;
-  }
-  
-  .galleryItem.centerMain {
-    width: 100% !important;
-    height: 500px !important;
-    order: -1; /* Keep main one at top */
   }
 
   /* Team Stacking */

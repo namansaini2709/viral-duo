@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import LazyVideo from "../LazyVideo";
 
@@ -13,17 +13,28 @@ const videos = [
 
 export default function AboutGallery() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  // Parallax offsets for different images
-  const yCenter = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const yTopLeft = useTransform(scrollYProgress, [0, 1], [150, -450]);
-  const yTopRight = useTransform(scrollYProgress, [0, 1], [80, -600]);
-  const yBottomLeft = useTransform(scrollYProgress, [0, 1], [200, -350]);
-  const yBottomRight = useTransform(scrollYProgress, [0, 1], [250, -700]);
+  // Parallax offsets for different images (tuned for mobile view to move upwards actively on scroll)
+  const yCenter = useTransform(scrollYProgress, [0, 1], isMobile ? [0, -100] : [0, -200]);
+  const yTopLeft = useTransform(scrollYProgress, [0, 1], isMobile ? [60, -200] : [150, -450]);
+  const yTopRight = useTransform(scrollYProgress, [0, 1], isMobile ? [40, -280] : [80, -600]);
+  const yBottomLeft = useTransform(scrollYProgress, [0, 1], isMobile ? [80, -160] : [200, -350]);
+  const yBottomRight = useTransform(scrollYProgress, [0, 1], isMobile ? [100, -300] : [250, -700]);
 
   return (
     <section className="aboutGallery" ref={containerRef} id="gallery">
