@@ -121,7 +121,8 @@ export default function PhotoshootsPage() {
       <section style={{ textAlign: "center", padding: "0 24px", position: "relative", zIndex: 10 }}>
         <motion.span 
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 1 }}
           style={{ 
             display: "inline-block", 
@@ -136,19 +137,21 @@ export default function PhotoshootsPage() {
           Timeless Imagery
         </motion.span>
         
-        <div style={{ overflow: "hidden" }}>
+        <div style={{ overflow: "hidden", paddingBottom: "12px", marginBottom: "-12px" }}>
           <motion.h1 
             initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
             transition={{ type: "spring", stiffness: 50, damping: 15 }}
             style={{ 
               fontFamily: "'Playfair Display', Georgia, serif", 
               fontSize: "clamp(34px, 5vw, 64px)", 
               fontWeight: "400", 
               letterSpacing: "-0.02em", 
-              lineHeight: "1.1", 
+              lineHeight: "1.2", 
               color: "var(--ink)",
-              margin: 0
+              margin: 0,
+              paddingBottom: "4px"
             }}
           >
             Capturing Moments, Crafting Stories

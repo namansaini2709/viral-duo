@@ -126,7 +126,7 @@ export default function EventCoveragePage() {
           </motion.p>
         </div>
         
-        <div style={{ overflow: "hidden" }}>
+        <div style={{ overflow: "hidden", paddingBottom: "12px", marginBottom: "-12px" }}>
           <motion.h1 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -137,9 +137,10 @@ export default function EventCoveragePage() {
               fontSize: "clamp(34px, 5vw, 64px)", 
               fontWeight: "400", 
               letterSpacing: "-0.02em", 
-              lineHeight: "1.1", 
+              lineHeight: "1.2", 
               color: "var(--ink)",
-              margin: 0
+              margin: 0,
+              paddingBottom: "4px"
             }}
           >
             High-Energy Coverage That Goes Viral
