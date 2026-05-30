@@ -7,12 +7,11 @@ import Navbar from "../Navbar";
 const galleryVideos = [
   { src: "/videos-optimized/MOTO MANIA.mp4", poster: "/Cover pages/Fof fitness.png" },
   { src: "/videos-optimized/inderchahal.mp4", poster: "/Cover pages/Anytime fitness.jpg" },
-  { src: "/videos-optimized/VDMC.mp4", poster: "/Cover pages/Vdmc.PNG" },
-  { src: "/videos-optimized/Anytime fitness.mp4", poster: "/logos/anytime. fitness logos.JPG" },
-  { src: "/videos-optimized/Sharma ji ke bhature.mp4", poster: "/logos/Sharma ji ke bhature.JPG" },
-  { src: "/videos-optimized/shreeradhey.mp4", poster: "/Cover pages/Shri Radhey Krishna Cover.PNG" },
-  { src: "/videos-optimized/global 3.mp4", poster: "/logos/Global Holidays.PNG" },
-  { src: "/videos-optimized/makeyourtrips.mp4", poster: "/logos/Make your trip possible.jpg" }
+  { src: "/videos-optimized/ramanujan-1.mp4" },
+  { src: "/videos-optimized/ramanujan-2.mp4" },
+  { src: "/videos-optimized/ramanujan-3.mp4" },
+  { src: "/videos-optimized/ramanujan-4.mp4" },
+  { src: "/videos-optimized/ramanujan-5.mp4" }
 ];
 
 export default function EventCoveragePage() {

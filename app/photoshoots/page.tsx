@@ -7,14 +7,14 @@ import Navbar from "../Navbar";
 // High-fidelity image assets for the 3D gallery
 const galleryImages = [
   "/product_photoshoot_showcase.png",
-  "/Cover pages/Shri Radhey Krishna Cover.PNG",
-  "/Cover pages/Fof fitness.png",
-  "/Cover pages/Vdmc.PNG",
-  "/Cover pages/Anytime fitness.jpg",
-  "/Cover pages/Career Launcher cover.jpg",
-  "/Cover pages/Global Holidays.png",
-  "/photo.png"
+  "/Dot_Key/Product Photoshoot/IMG_4745.jpg",
+  "/Dot_Key/Product Photoshoot/IMG_4776.jpg",
+  "/Dot_Key/Product Photoshoot/IMG_4798.jpg",
+  "/Dot_Key/Product Photoshoot/IMG_4855.PNG",
+  "/img1.jpeg",
+  "/img2.jpeg"
 ];
+
 
 export default function PhotoshootsPage() {
   const [isAtTop, setIsAtTop] = useState(true);

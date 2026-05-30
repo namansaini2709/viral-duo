@@ -1,0 +1,49 @@
+name: "🔒 Hardened Security & Build Pipeline"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Enforce zero-privilege security baseline by default
+permissions:
+  contents: read
+
+jobs:
+  audit-and-build:
+    name: "Audit & Verify Build"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: "Checkout Codebase"
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false # Mitigates token hijacking exposure
+
+      - name: "Set up Node.js Environment"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: "Install Dependencies"
+        # --ignore-scripts blocks malicious package postinstall execution exploits
+        run: npm ci --ignore-scripts
+
+      - name: "Audit Dependencies for Vulnerabilities"
+        run: npm audit --audit-level=high
+
+      - name: "Check for Secret Leaks in Code"
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: false # Stop pipeline instantly if keys are leaked
+
+      - name: "Verify Production Compilation"
+        # Enforce production build compilation checks
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: "https://theviralduo.com"
+          NEWSLETTER_PROVIDER: "mock"
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}

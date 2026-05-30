@@ -119,17 +119,33 @@ function NewsletterForm() {
     
     setStatus('loading');
     
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success');
-      setEmail('');
-    }, 1500);
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        console.error('[Newsletter Signup Error]', data.error || 'Unknown error');
+        setStatus('error');
+      }
+    } catch (err) {
+      console.error('[Newsletter Connection Exception]', err);
+      setStatus('error');
+    }
   };
 
   if (status === 'success') {
     return (
-      <div className="newsletterSuccess" style={{ color: '#fbb6ed', padding: '10px 0' }}>
-        Thanks for subscribing! Stay viral.
+      <div className="newsletterSuccess" style={{ color: '#fbb6ed', padding: '10px 0', fontWeight: 'bold' }}>
+        Thanks for subscribing! Stay viral. 🔥
       </div>
     );
   }
@@ -154,6 +170,11 @@ function NewsletterForm() {
           autoComplete="off" 
         />
       </div>
+      {status === 'error' && (
+        <div style={{ color: '#ff6b6b', fontSize: '14px', margin: '-8px 0 8px', textAlign: 'left', fontWeight: 'bold' }}>
+          Subscription failed. Please try again.
+        </div>
+      )}
       <FlyingIconsButton 
         type="submit" 
         fullWidth 
