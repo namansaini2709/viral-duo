@@ -15,6 +15,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--paper);
 }
 
 body {
@@ -2538,8 +2539,16 @@ footer h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.faqQuestion h3 {
   font-size: 20px;
   font-weight: 700;
+  margin: 0;
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
 .faqToggle {
@@ -3486,7 +3495,7 @@ details p {
 }
 
 .servicesWrapper {
-  height: 440vh; /* scroll length for 4 cards */
+  height: 640vh; /* scroll length for 6 cards */
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
@@ -3532,12 +3541,12 @@ details p {
   position: absolute;
   top: 0;
   height: 62px;
-  min-width: 200px;
+  min-width: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   border-radius: 24px 24px 0 0;
@@ -3581,18 +3590,19 @@ details p {
 }
 
 .serviceMetric small {
+  display: block;
   font-size: 14px;
-  opacity: 0.6;
   text-transform: uppercase;
-  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 5px;
 }
 
 .serviceImage {
   flex: 1;
-  padding: 40px;
-  height: 100%;
-  border-radius: 40px;
+  position: relative;
   overflow: hidden;
+  border-radius: 40px;
 }
 
 .serviceImage img {
@@ -3604,16 +3614,22 @@ details p {
 
 /* Folder Colors & Tab Offsets */
 .serviceCard.color1 .serviceCardBody { background: #B4A9FF; }
-.serviceCard.color1 .serviceTab { background: #9B8FFF; left: 80px; }
+.serviceCard.color1 .serviceTab { background: #9B8FFF; left: 40px; }
 
 .serviceCard.color2 .serviceCardBody { background: #F9A8D4; }
-.serviceCard.color2 .serviceTab { background: #F472B6; left: 240px; }
+.serviceCard.color2 .serviceTab { background: #F472B6; left: 210px; }
 
 .serviceCard.color3 .serviceCardBody { background: #D6D3CF; }
-.serviceCard.color3 .serviceTab { background: #A8A29E; left: 400px; }
+.serviceCard.color3 .serviceTab { background: #A8A29E; left: 380px; }
 
 .serviceCard.color4 .serviceCardBody { background: #99F6E4; }
-.serviceCard.color4 .serviceTab { background: #2DD4BF; left: 560px; }
+.serviceCard.color4 .serviceTab { background: #2DD4BF; left: 550px; }
+
+.serviceCard.color5 .serviceCardBody { background: #FDE047; }
+.serviceCard.color5 .serviceTab { background: #EAB308; left: 720px; }
+
+.serviceCard.color6 .serviceCardBody { background: #FDA4AF; }
+.serviceCard.color6 .serviceTab { background: #F43F5E; left: 890px; }
 
 @media (max-width: 1024px) {
   .serviceContent { padding: 60px 40px; }
@@ -3622,6 +3638,8 @@ details p {
   .serviceCard.color2 .serviceTab { left: 160px !important; }
   .serviceCard.color3 .serviceTab { left: 280px !important; }
   .serviceCard.color4 .serviceTab { left: 400px !important; }
+  .serviceCard.color5 .serviceTab { left: 520px !important; }
+  .serviceCard.color6 .serviceTab { left: 640px !important; }
 }
 
 @media (max-width: 800px) {
@@ -5499,6 +5517,8 @@ details p {
   .activeServiceTabBg.color2 { background: #FFE4F2; }
   .activeServiceTabBg.color3 { background: #EAE6E1; }
   .activeServiceTabBg.color4 { background: #E0FAF5; }
+  .activeServiceTabBg.color5 { background: #FEF9C3; }
+  .activeServiceTabBg.color6 { background: #FFE4E6; }
 
   .serviceTabBtnText {
     position: relative;
@@ -5534,6 +5554,8 @@ details p {
   .serviceCardMobile.color2 { background: #FFE4F2; } /* Pink pastel */
   .serviceCardMobile.color3 { background: #EAE6E1; } /* Warm stone pastel */
   .serviceCardMobile.color4 { background: #E0FAF5; } /* Mint pastel */
+  .serviceCardMobile.color5 { background: #FEF9C3; } /* Yellow pastel */
+  .serviceCardMobile.color6 { background: #FFE4E6; } /* Rose pastel */
 
   /* Large editorial outline watermarks in card backgrounds */
   .cardWatermark {
@@ -7092,5 +7114,9 @@ details p {
     font-weight: 800 !important;
     font-size: 24px !important;
   }
+}
+
+.backHomeLink:hover {
+  opacity: 0.7;
 }
 

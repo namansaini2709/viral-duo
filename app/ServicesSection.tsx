@@ -195,7 +195,7 @@ function MobileCard({
 
 export default function ServicesSection() {
   const [isMobile, setIsMobile] = useState(false);
-  const [stack, setStack] = useState([0, 1, 2, 3]);
+  const [stack, setStack] = useState([0, 1, 2, 3, 4, 5]);
   const [isTabSwitch, setIsTabSwitch] = useState(false);
   const currentIndex = stack[0];
 
@@ -264,6 +264,8 @@ export default function ServicesSection() {
               const isNext = index === stack[1];
               const isThird = index === stack[2];
               const isFourth = index === stack[3];
+              const isFifth = index === stack[4];
+              const isSixth = index === stack[5];
               
               return (
                 <MobileCard
@@ -273,7 +275,7 @@ export default function ServicesSection() {
                   isTop={isTop}
                   isNext={isNext}
                   isThird={isThird}
-                  isFourth={isFourth}
+                  isFourth={isFourth || isFifth || isSixth} // Render next preview layouts correctly
                   dragX={dragX}
                   rotateValue={rotateValue}
                   isTabSwitch={isTabSwitch}

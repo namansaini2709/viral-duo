@@ -163,7 +163,7 @@ function WorkCard({
       {/* Background/Placeholder image */}
       <img
         src={poster}
-        alt=""
+        alt={`${name} project case study thumbnail`}
         loading="lazy"
         className="workCardMedia"
         style={{
@@ -210,7 +210,7 @@ function WorkCard({
         <div className="cardInfoLogoWrapper">
           <img 
             src={logo} 
-            alt="" 
+            alt={`${name} brand logo`} 
             loading="lazy"
           />
         </div>
@@ -317,7 +317,7 @@ function MobileProjectCard({
       {/* Background/Placeholder image */}
       <img
         src={poster}
-        alt=""
+        alt={`${name} project case study mobile thumbnail`}
         loading="lazy"
         className="mobileProjectCardMedia"
         style={{
@@ -391,7 +391,7 @@ function MobileProjectCard({
           <div className="mobileProjectCardLogoWrapper">
             <img
               src={logo}
-              alt=""
+              alt={`${name} brand logo`}
               loading="lazy"
               className="mobileProjectCardLogo"
             />

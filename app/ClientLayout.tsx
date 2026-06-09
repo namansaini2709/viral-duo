@@ -164,7 +164,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           transition: 'all 0.4s ease',
           pointerEvents: isModalOpen ? 'none' : 'auto',
           userSelect: isModalOpen ? 'none' : 'auto',
-          filter: isModalOpen ? 'blur(4px)' : 'none'
+          filter: isModalOpen ? 'blur(4px)' : 'none',
+          backgroundColor: 'var(--paper)',
+          minHeight: '100vh'
         }}
       >
         <AnimatePresence mode="wait">

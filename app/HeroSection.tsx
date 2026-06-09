@@ -219,7 +219,7 @@ export default function HeroSection() {
                 <div className="heroProjectLogoWrapper">
                   <img 
                     src={currentProject.logo} 
-                    alt="" 
+                    alt={`${currentProject.title} client logo`} 
                   />
                 </div>
                 <div>

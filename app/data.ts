@@ -71,6 +71,30 @@ export const services = [
     videoUrl: "/Ilustrated videos/Partnership.mp4",
     tabLabel: "Brands",
     highlights: ["🤝 500+ Creator Roster", "💼 Full Contract Licensing", "📈 End-to-End Tracking"]
+  },
+  {
+    id: "05",
+    title: "Studio Photoshoots",
+    desc: "We design high-end conceptual product shoots that showcase intricate texture, capture attention on feeds, and elevate your brand's visual identity across all digital platforms.",
+    metric: "100%",
+    unit: "Creative Delivery",
+    color: "color5",
+    img: "/studio_photoshoot.png",
+    videoUrl: "/Ilustrated videos/6th video.mp4",
+    tabLabel: "Studio",
+    highlights: ["📸 Custom Set Designs", "✨ High-End Texturing", "🎯 Commercial Licensing"]
+  },
+  {
+    id: "06",
+    title: "Event Coverage",
+    desc: "We deploy high-energy content creation crews to capture live event excitement, musical festivals, and auto shows, driving organic reach and lasting social buzz.",
+    metric: "2.7M+",
+    unit: "Event Reel Views",
+    color: "color6",
+    img: "/event_coverage.png",
+    videoUrl: "/Ilustrated videos/fifth card video.mp4",
+    tabLabel: "Events",
+    highlights: ["🎥 Live Mobile Crews", "⚡ Fast Same-Day Edits", "🔥 Immersive Sound Design"]
   }
 ];
 
