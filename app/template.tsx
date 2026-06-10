@@ -7,6 +7,7 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? React.useLayou
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const pathRef = React.useRef(pathname);
   const [isAnimating, setIsAnimating] = useState(true);
   const [mounted, setMounted] = useState(false);
 
@@ -16,15 +17,14 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   const getSavedScroll = () => {
     if (typeof window === "undefined") return 0;
-    const saved = sessionStorage.getItem(`scroll_pos_${pathname}`);
+    const saved = sessionStorage.getItem(`scroll_pos_${pathRef.current}`);
     if (saved) return parseInt(saved, 10);
     return 0;
   };
 
   const savedScrollY = getSavedScroll();
 
-  // Restore scroll position immediately when pathname changes so the page transition
-  // starts at the correct, restored scroll position instead of the top of the page.
+  // Restore scroll position immediately when component mounts
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -33,7 +33,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    const savedScroll = sessionStorage.getItem(`scroll_pos_${pathname}`);
+    const savedScroll = sessionStorage.getItem(`scroll_pos_${pathRef.current}`);
     if (savedScroll) {
       const originalScrollBehavior = document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior = "auto";
@@ -45,7 +45,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       window.scrollTo(0, 0);
       document.documentElement.style.scrollBehavior = originalScrollBehavior;
     }
-  }, [pathname]);
+  }, []);
 
   React.useEffect(() => {
     setIsAnimating(true);
@@ -71,7 +71,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       clearTimeout(animationTriggerTimer);
       clearTimeout(lockTimer);
     };
-  }, [pathname]);
+  }, []);
 
   const isUserScrolling = React.useRef(false);
 
@@ -132,7 +132,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
     const handleScroll = () => {
       if (isUserScrolling.current && !isAnimating && !(window as any).__pageTransitionActive) {
-        sessionStorage.setItem(`scroll_pos_${pathname}`, window.scrollY.toString());
+        sessionStorage.setItem(`scroll_pos_${pathRef.current}`, window.scrollY.toString());
       }
     };
 
@@ -140,7 +140,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname, isAnimating]);
+  }, [isAnimating]);
 
   // Restore scroll position or handle hash scrolling once transition has finished
   React.useEffect(() => {
@@ -156,7 +156,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       }
 
       // 2. Otherwise, restore the saved scroll position for this page
-      const savedScroll = sessionStorage.getItem(`scroll_pos_${pathname}`);
+      const savedScroll = sessionStorage.getItem(`scroll_pos_${pathRef.current}`);
       if (savedScroll) {
         // Temporarily disable global smooth scroll for an instant snap/jump
         const originalScrollBehavior = document.documentElement.style.scrollBehavior;
@@ -164,17 +164,17 @@ export default function Template({ children }: { children: React.ReactNode }) {
         
         window.scrollTo(0, parseInt(savedScroll, 10));
         
-        // Re-enable smooth scroll after restoration
+        // Re-enable scroll behavior after restoration
         setTimeout(() => {
           document.documentElement.style.scrollBehavior = originalScrollBehavior;
         }, 50);
       }
     }
-  }, [isAnimating, pathname]);
+  }, [isAnimating]);
 
   return (
     <motion.div
-      key={pathname}
+      key={pathRef.current}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -234,12 +234,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
             ? `left ${savedScrollY + window.innerHeight}px`
             : "left bottom",
           backfaceVisibility: "hidden",
-          backgroundColor: "var(--paper)", // Match page background during rotation
+          backgroundColor: "#f4f0e8", // Match page background during rotation
           minHeight: "100vh",
           overflow: "visible",
         } : {
           width: '100%',
-          backgroundColor: "var(--paper)",
+          backgroundColor: "#f4f0e8",
           minHeight: "100vh",
           height: "auto",
           overflow: "visible",

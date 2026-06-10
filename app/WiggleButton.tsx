@@ -9,9 +9,10 @@ interface WiggleButtonProps {
   href?: string;
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
+  style?: React.CSSProperties;
 }
 
-export default function WiggleButton({ children, href, className, onClick }: WiggleButtonProps) {
+export default function WiggleButton({ children, href, className, onClick, style }: WiggleButtonProps) {
   const [isExploding, setIsExploding] = useState(false);
   const router = useRouter();
 
@@ -57,7 +58,8 @@ export default function WiggleButton({ children, href, className, onClick }: Wig
           cursor: 'pointer', 
           textDecoration: 'none',
           position: 'relative',
-          zIndex: 2
+          zIndex: 2,
+          ...style
         }}
         initial={{ rotate: 0, scale: 1, opacity: 1 }}
         animate={isExploding ? {

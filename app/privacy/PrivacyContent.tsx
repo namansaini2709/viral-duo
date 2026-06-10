@@ -2,14 +2,15 @@
 
 import React from "react";
 import WiggleButton from "../WiggleButton";
+import LegalFooter from "../LegalFooter";
 
 export default function PrivacyContent() {
   return (
-    <main style={{ background: "var(--paper)", minHeight: "100vh", padding: "140px 24px 80px", color: "var(--ink)", fontFamily: "Instrument Sans, system-ui, sans-serif" }}>
-      <div style={{ maxWidth: "800px", margin: "0 auto", position: "relative" }}>
+    <main style={{ background: "var(--paper)", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <div style={{ flex: 1, maxWidth: "800px", margin: "0 auto", width: "100%", padding: "140px 24px 80px", position: "relative" }}>
         
         {/* Editorial Floating Tag */}
-        <div style={{ display: "inline-block", background: "var(--lime)", color: "var(--ink)", padding: "8px 16px", borderRadius: "999px", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "24px", border: "1px solid var(--ink)", boxShadow: "2px 2px 0px var(--ink)" }}>
+        <div style={{ display: "inline-block", background: "#B4A9FF", color: "var(--ink)", padding: "8px 16px", borderRadius: "999px", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "24px", border: "1.5px solid var(--ink)", boxShadow: "3px 3px 0px var(--ink)" }}>
           Legal / Security
         </div>
 
@@ -21,11 +22,11 @@ export default function PrivacyContent() {
           Last updated: June 10, 2026 // Content protection protocols
         </p>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
           {/* Card 1 */}
-          <div style={{ background: "var(--card)", padding: "32px", borderRadius: "32px", border: "1px solid var(--line)", boxShadow: "0 4px 20px rgba(0,0,0,0.02)" }}>
-            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", display: "flex", alignItems: "center", gap: "12px" }}>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", borderRadius: "50%", background: "#B4A9FF", fontSize: "14px", color: "var(--ink)", fontWeight: 800 }}>01</span>
+          <div style={{ background: "#ffffff", padding: "32px 32px 32px 40px", borderRadius: "24px", border: "1.5px solid var(--ink)", borderLeft: "8px solid #B4A9FF", boxShadow: "4px 4px 0px var(--ink)" }}>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#B4A9FF", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px" }}>Section 01</div>
+            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", color: "var(--ink)" }}>
               Information We Collect
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(11, 11, 10, 0.8)", lineHeight: "1.6" }}>
@@ -34,9 +35,9 @@ export default function PrivacyContent() {
           </div>
 
           {/* Card 2 */}
-          <div style={{ background: "var(--card)", padding: "32px", borderRadius: "32px", border: "1px solid var(--line)", boxShadow: "0 4px 20px rgba(0,0,0,0.02)" }}>
-            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", display: "flex", alignItems: "center", gap: "12px" }}>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", borderRadius: "50%", background: "#F9A8D4", fontSize: "14px", color: "var(--ink)", fontWeight: 800 }}>02</span>
+          <div style={{ background: "#ffffff", padding: "32px 32px 32px 40px", borderRadius: "24px", border: "1.5px solid var(--ink)", borderLeft: "8px solid #F9A8D4", boxShadow: "4px 4px 0px var(--ink)" }}>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#F472B6", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px" }}>Section 02</div>
+            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", color: "var(--ink)" }}>
               How We Use Your Information
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(11, 11, 10, 0.8)", lineHeight: "1.6" }}>
@@ -45,9 +46,9 @@ export default function PrivacyContent() {
           </div>
 
           {/* Card 3 */}
-          <div style={{ background: "var(--card)", padding: "32px", borderRadius: "32px", border: "1px solid var(--line)", boxShadow: "0 4px 20px rgba(0,0,0,0.02)" }}>
-            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", display: "flex", alignItems: "center", gap: "12px" }}>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", borderRadius: "50%", background: "#D6D3CF", fontSize: "14px", color: "var(--ink)", fontWeight: 800 }}>03</span>
+          <div style={{ background: "#ffffff", padding: "32px 32px 32px 40px", borderRadius: "24px", border: "1.5px solid var(--ink)", borderLeft: "8px solid #EAB308", boxShadow: "4px 4px 0px var(--ink)" }}>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#EAB308", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px" }}>Section 03</div>
+            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", color: "var(--ink)" }}>
               Third-Party Services
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(11, 11, 10, 0.8)", lineHeight: "1.6" }}>
@@ -56,9 +57,9 @@ export default function PrivacyContent() {
           </div>
 
           {/* Card 4 */}
-          <div style={{ background: "var(--card)", padding: "32px", borderRadius: "32px", border: "1px solid var(--line)", boxShadow: "0 4px 20px rgba(0,0,0,0.02)" }}>
-            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", display: "flex", alignItems: "center", gap: "12px" }}>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", borderRadius: "50%", background: "#99F6E4", fontSize: "14px", color: "var(--ink)", fontWeight: 800 }}>04</span>
+          <div style={{ background: "#ffffff", padding: "32px 32px 32px 40px", borderRadius: "24px", border: "1.5px solid var(--ink)", borderLeft: "8px solid #2DD4BF", boxShadow: "4px 4px 0px var(--ink)" }}>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#2DD4BF", textTransform: "uppercase", letterSpacing: "0.15em", marginBottom: "8px" }}>Section 04</div>
+            <h2 style={{ fontSize: "24px", fontWeight: 700, marginBottom: "12px", color: "var(--ink)" }}>
               Data Protection
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(11, 11, 10, 0.8)", lineHeight: "1.6" }}>
@@ -68,13 +69,14 @@ export default function PrivacyContent() {
         </div>
 
         {/* Back Link */}
-        <div style={{ marginTop: "48px", textAlign: "center" }}>
-          <WiggleButton href="/" className="backHomeLink" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "var(--ink)", fontWeight: 700, textDecoration: "none", borderBottom: "2px solid var(--lime)", paddingBottom: "4px", transition: "opacity 0.2s" } as any}>
+        <div style={{ marginTop: "56px", textAlign: "center" }}>
+          <WiggleButton href="/" className="backHomeLink" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "var(--ink)", fontWeight: 700, textDecoration: "none", borderBottom: "2px solid #B4A9FF", paddingBottom: "4px", transition: "opacity 0.2s" } as any}>
             <span>← Go back home</span>
           </WiggleButton>
         </div>
 
       </div>
+      <LegalFooter theme="light" currentPage="privacy" />
     </main>
   );
 }

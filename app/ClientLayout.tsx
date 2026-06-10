@@ -1,12 +1,14 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ErrorBoundary from "./ErrorBoundary";
 import { useEffect, useState, useCallback } from "react";
 import { getCalApi } from "@calcom/embed-react";
 import Preloader from "./Preloader";
+import { usePathname } from "next/navigation";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Synchronize DOM state with React state
@@ -41,7 +43,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
 
-      // Restore smooth scroll behavior for the rest of the site
+      // Restore scroll behavior for the rest of the site
       requestAnimationFrame(() => {
         html.style.scrollBehavior = '';
       });
@@ -165,12 +167,14 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           pointerEvents: isModalOpen ? 'none' : 'auto',
           userSelect: isModalOpen ? 'none' : 'auto',
           filter: isModalOpen ? 'blur(4px)' : 'none',
-          backgroundColor: 'var(--paper)',
+          backgroundColor: '#f4f0e8',
           minHeight: '100vh'
         }}
       >
         <AnimatePresence mode="wait">
-          {children}
+          <motion.div key={pathname} style={{ width: "100%", minHeight: "100vh" }}>
+            {children}
+          </motion.div>
         </AnimatePresence>
       </div>
     </ErrorBoundary>

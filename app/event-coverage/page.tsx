@@ -82,8 +82,24 @@ export default function EventCoveragePage() {
 
   const cardHeight = cardWidth * 1.45; // Aspect ratio matching mobile vertical video reels
 
+  const videoSchema = {
+    "@context": "https://schema.org",
+    "@graph": galleryVideos.map((video, idx) => ({
+      "@type": "VideoObject",
+      "name": `The Viral Duo Event Coverage Showreel ${idx + 1}`,
+      "description": "High-energy event vertical video coverage showcase by The Viral Duo.",
+      "thumbnailUrl": video.poster || "https://theviralduo.com/logo-v2.png",
+      "contentUrl": `https://theviralduo.com${video.src}`,
+      "uploadDate": "2026-06-10T00:00:00Z"
+    }))
+  };
+
   return (
     <main className="aboutPage eventCoveragePage" style={{ overflowX: "hidden", minHeight: "100vh", position: "relative" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+      />
       {/* Google Fonts Link injection for Playfair Display serif font */}
       <link 
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" 
@@ -346,6 +362,8 @@ export default function EventCoveragePage() {
                     loop 
                     muted 
                     playsInline 
+                    title={`The Viral Duo Event Coverage Showreel ${i + 1}`}
+                    aria-label={`Vertical video reel showing high-energy event coverage ${i + 1}`}
                     style={{ 
                       width: "100%", 
                       height: "100%", 

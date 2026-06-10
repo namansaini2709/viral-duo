@@ -81,6 +81,17 @@ export default function PhotoshootsPage() {
 
   const cardHeight = cardWidth * 1.35;
 
+  const imageSchema = {
+    "@context": "https://schema.org",
+    "@graph": galleryImages.map((src, idx) => ({
+      "@type": "ImageObject",
+      "name": `The Viral Duo Commercial Product Photoshoot ${idx + 1}`,
+      "description": "High-end product photography staging showcase by The Viral Duo.",
+      "contentUrl": `https://theviralduo.com${src}`,
+      "thumbnailUrl": `https://theviralduo.com${src}`
+    }))
+  };
+
   return (
     <main 
       className="aboutPage" 
@@ -90,6 +101,10 @@ export default function PhotoshootsPage() {
         position: "relative"
       }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageSchema) }}
+      />
       {/* Google Fonts Link injection for Playfair Display serif font */}
       <link 
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" 
@@ -236,7 +251,7 @@ export default function PhotoshootsPage() {
                   >
                     <img 
                       src={src} 
-                      alt="" 
+                      alt={`The Viral Duo Commercial Product Photoshoot Carousel Item ${i + 1}`}
                       loading="eager"
                       style={{ 
                         width: "100%", 
@@ -321,7 +336,7 @@ export default function PhotoshootsPage() {
                   >
                     <img 
                       src={src} 
-                      alt="" 
+                      alt={`The Viral Duo Commercial Product Photoshoot Carousel Item ${i + 1}`}
                       loading="eager"
                       style={{ 
                         width: "100%", 

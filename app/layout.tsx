@@ -122,7 +122,61 @@ export default function RootLayout({
       "Brand Growth Strategy",
       "Product Photoshoots",
       "Event Video Coverage"
-    ]
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Social Media & UGC Growth Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Short-Form Production",
+            "description": "High-impact vertical content crafted to stop the scroll and drive massive engagement on Reels, TikTok, and Shorts."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Strategic Viral Growth",
+            "description": "Data-driven strategy to identify and leverage trending patterns before they explode."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Community Management",
+            "description": "Building loyal fanbases through authentic interactions, high-engagement commenting, and sentimental nurturing."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Brand Partnership",
+            "description": "Organic, seamless creator-brand matchings backed by comprehensive contracting and metrics tracking."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Studio Photoshoots",
+            "description": "High-end conceptual product photography with custom staging setups and commercial licensing."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Event Coverage",
+            "description": "Deploying high-energy mobile video crews to capture festival and event hype for viral reach."
+          }
+        }
+      ]
+    }
   };
 
   return (
