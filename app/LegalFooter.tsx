@@ -101,7 +101,7 @@ export default function LegalFooter({ theme, currentPage }: LegalFooterProps) {
 
         {/* Right Side: Copyright */}
         <div style={{ fontSize: "13px", color: isDark ? "rgba(244, 240, 232, 0.5)" : "var(--muted)", fontWeight: 500 }}>
-          © 2026 THE VIRAL DUO. ALL RIGHTS RESERVED.
+          © 2026 THE VIRAL DUO. ALL RIGHTS RESERVED. DESIGNED BY BlackSea Organisation
         </div>
       </div>
     </footer>

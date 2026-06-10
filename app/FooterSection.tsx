@@ -94,7 +94,7 @@ const FooterSection = forwardRef<HTMLDivElement, FooterSectionProps>(({ isReveal
             <h1 className="footerLogo">The Viral Duo</h1>
           </div>
           <div className="footerBottomRow">
-            <div className="footerCopyright">© 2026 THE VIRAL DUO. ALL RIGHTS RESERVED.</div>
+            <div className="footerCopyright">© 2026 THE VIRAL DUO. ALL RIGHTS RESERVED. DESIGNED BY BlackSea Organisation</div>
           </div>
         </div>
 
