@@ -11,10 +11,10 @@ interface LegalFooterProps {
 export default function LegalFooter({ theme, currentPage }: LegalFooterProps) {
   const isDark = theme === "dark";
   
-  const bgColor = isDark ? "var(--ink)" : "var(--paper)";
-  const textColor = isDark ? "var(--paper)" : "var(--ink)";
-  const borderColor = isDark ? "rgba(248, 250, 252, 0.1)" : "rgba(11, 11, 10, 0.1)";
-  const linkColor = "var(--lime)";
+  const bgColor = "linear-gradient(135deg, #a3e635 0%, #10b981 100%)";
+  const textColor = "#000000";
+  const borderColor = "rgba(0, 0, 0, 0.15)";
+  const linkColor = "#000000";
 
   return (
     <footer 
@@ -100,7 +100,7 @@ export default function LegalFooter({ theme, currentPage }: LegalFooterProps) {
         </div>
 
         {/* Right Side: Copyright */}
-        <div style={{ fontSize: "13px", color: isDark ? "rgba(244, 240, 232, 0.5)" : "var(--muted)", fontWeight: 500 }}>
+        <div style={{ fontSize: "13px", color: "rgba(0, 0, 0, 0.6)", fontWeight: 500 }}>
           © 2026 THE VIRAL DUO. ALL RIGHTS RESERVED. DESIGNED BY BlackSea Organisation
         </div>
       </div>
