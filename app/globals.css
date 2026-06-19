@@ -2,11 +2,11 @@
 
 :root {
   --ink: #0b0b0a;
-  --paper: #f4f0e8;
-  --muted: #776f63;
-  --line: #d8d0c3;
-  --lime: #dfff42;
-  --card: #fffaf0;
+  --paper: #f8fafc;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --lime: #a3e635;
+  --card: #ffffff;
 }
 
 * {
@@ -15,12 +15,12 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #f4f0e8;
+  background-color: var(--paper);
 }
 
 body {
   margin: 0;
-  background: #f4f0e8;
+  background: var(--paper);
   color: var(--ink);
   font-family: Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   width: 100%;
@@ -1008,7 +1008,7 @@ footer h2 {
   display: inline-block;
   margin-bottom: 24px;
   padding: 8px 16px;
-  background: #ffa8f2;
+  background: var(--lime);
   color: var(--ink);
   border-radius: 999px;
   font-weight: 500;
@@ -1079,13 +1079,13 @@ footer h2 {
 }
 
 .missionMetric.pink {
-  background: #ffa8f2;
+  background: var(--lime);
   bottom: 60px;
   left: -40px;
 }
 
 .missionMetric.purple {
-  background: #9967ff;
+  background: #10b981;
   bottom: 60px;
   right: -40px;
 }
@@ -1148,7 +1148,7 @@ footer h2 {
 .sectionHead .eyebrow {
   display: inline-block;
   padding: 8px 16px;
-  background: #ffa8f2;
+  background: var(--lime);
   color: var(--ink);
   border-radius: 999px;
   font-weight: 600;
@@ -1272,7 +1272,7 @@ footer h2 {
 
 .workCard:hover .cardArrow {
   transform: rotate(45deg);
-  background: #ffa8f2;
+  background: var(--lime);
 }
 
 .services {
@@ -3405,12 +3405,12 @@ details p {
 }
 
 .seeMoreBtn.pink {
-  background: #ffa8f2;
+  background: var(--lime);
   z-index: 2;
 }
 
 .seeMoreBtn.purple {
-  background: #a394f1;
+  background: #10b981;
   z-index: 1;
 }
 
@@ -3613,23 +3613,23 @@ details p {
 }
 
 /* Folder Colors & Tab Offsets */
-.serviceCard.color1 .serviceCardBody { background: #B4A9FF; }
-.serviceCard.color1 .serviceTab { background: #9B8FFF; left: 40px; }
+.serviceCard.color1 .serviceCardBody { background: #ecfccb; }
+.serviceCard.color1 .serviceTab { background: #a3e635; left: 40px; }
 
-.serviceCard.color2 .serviceCardBody { background: #F9A8D4; }
-.serviceCard.color2 .serviceTab { background: #F472B6; left: 210px; }
+.serviceCard.color2 .serviceCardBody { background: #d1fae5; }
+.serviceCard.color2 .serviceTab { background: #10b981; left: 210px; }
 
-.serviceCard.color3 .serviceCardBody { background: #D6D3CF; }
-.serviceCard.color3 .serviceTab { background: #A8A29E; left: 380px; }
+.serviceCard.color3 .serviceCardBody { background: #ccfbf1; }
+.serviceCard.color3 .serviceTab { background: #14b8a6; left: 380px; }
 
-.serviceCard.color4 .serviceCardBody { background: #99F6E4; }
-.serviceCard.color4 .serviceTab { background: #2DD4BF; left: 550px; }
+.serviceCard.color4 .serviceCardBody { background: #e2e8f0; }
+.serviceCard.color4 .serviceTab { background: #64748b; left: 550px; }
 
-.serviceCard.color5 .serviceCardBody { background: #FDE047; }
-.serviceCard.color5 .serviceTab { background: #EAB308; left: 720px; }
+.serviceCard.color5 .serviceCardBody { background: #f1f5f9; }
+.serviceCard.color5 .serviceTab { background: #cbd5e1; left: 720px; }
 
-.serviceCard.color6 .serviceCardBody { background: #FDA4AF; }
-.serviceCard.color6 .serviceTab { background: #F43F5E; left: 890px; }
+.serviceCard.color6 .serviceCardBody { background: #cbd5e1; }
+.serviceCard.color6 .serviceTab { background: #0f172a; left: 890px; }
 
 @media (max-width: 1024px) {
   .serviceContent { padding: 60px 40px; }
@@ -3960,7 +3960,7 @@ details p {
 
 .aboutHero .pill.pink {
   display: inline-block;
-  background: #ffa8f2;
+  background: var(--lime);
   color: var(--ink);
   padding: 8px 16px;
   border-radius: 999px;
@@ -4219,7 +4219,7 @@ details p {
   align-items: center;
   justify-content: center;
   padding: 80px 40px;
-  background: #ffa8f2;
+  background: linear-gradient(135deg, #a3e635 0%, #10b981 100%);
   text-align: center;
   border-top-left-radius: 80px;
   border-top-right-radius: 80px;
@@ -4244,7 +4244,7 @@ details p {
   text-transform: uppercase;
 }
 
-.pill.pink { background: #ffa8f2; color: #000; }
+.pill.pink { background: var(--lime); color: #000; }
 .pill.dark { background: #000; color: #fff; }
 
 @media (max-width: 900px) {
@@ -6822,7 +6822,7 @@ details p {
 .phoneWaveBar {
   width: 2px;
   height: 100%;
-  background: #ffa8f2;
+  background: var(--lime);
   border-radius: 1px;
   animation: phoneWaveAnim 1.2s infinite ease-in-out alternate;
 }

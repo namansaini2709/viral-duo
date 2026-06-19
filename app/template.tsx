@@ -234,12 +234,12 @@ export default function Template({ children }: { children: React.ReactNode }) {
             ? `left ${savedScrollY + window.innerHeight}px`
             : "left bottom",
           backfaceVisibility: "hidden",
-          backgroundColor: "#f4f0e8", // Match page background during rotation
+          backgroundColor: "#f8fafc", // Match page background during rotation
           minHeight: "100vh",
           overflow: "visible",
         } : {
           width: '100%',
-          backgroundColor: "#f4f0e8",
+          backgroundColor: "#f8fafc",
           minHeight: "100vh",
           height: "auto",
           overflow: "visible",

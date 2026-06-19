@@ -81,7 +81,7 @@ export default function MissionSection() {
       <div className="missionBlocks">
         <MissionBlockWithLine
           className="missionBlock"
-          lineColor="#ffa8f2"
+          lineColor="#a3e635"
           path="M -100,200 C 0,350 250,100 200,300 C 150,500 0,400 50,600 C 100,800 250,750 200,900 C 150,1050 0,900 50,750"
           strokeWidth={22}
           viewBox="0 0 1000 1000"
@@ -114,7 +114,7 @@ export default function MissionSection() {
 
         <MissionBlockWithLine
           className="missionBlock reverse"
-          lineColor="#9967ff"
+          lineColor="#10b981"
           path="M 1100,200 C 1000,350 750,100 800,300 C 850,500 1000,400 950,600 C 900,800 750,750 800,900 C 850,1050 1000,900 950,750"
           strokeWidth={16}
           viewBox="0 0 1000 1000"

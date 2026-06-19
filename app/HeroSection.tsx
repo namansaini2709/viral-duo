@@ -182,7 +182,7 @@ export default function HeroSection() {
           <defs>
             <path id="ribbonPath" d="M 0 100 C 250 220, 250 220, 500 100 S 750 -20, 1000 100" />
           </defs>
-          <use href="#ribbonPath" fill="none" stroke="#F472B6" strokeWidth="28" strokeLinecap="round" />
+          <use href="#ribbonPath" fill="none" stroke="#a3e635" strokeWidth="28" strokeLinecap="round" />
           <text className="heroRibbonText" style={{ fontSize: '11px' }}>
             <textPath href="#ribbonPath" startOffset="0%">
               {Array(6).fill("SOCIAL MEDIA MANAGEMENT • SHORT FORM CONTENT • INFLUENCER MARKETING • ").join("")}
@@ -234,7 +234,7 @@ export default function HeroSection() {
 
       <div className="heroIntroCopy">
         <p>The Viral Duo helps brands create content that truly connects with their audience, consistently and strategically across social media.</p>
-        <ShiftButton dark dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' large leftIconColor="#A78BFA" rightIconColor="#F472B6">Book a call</ShiftButton>
+        <ShiftButton dark dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' large leftIconColor="#a3e635" rightIconColor="#10b981">Book a call</ShiftButton>
       </div>
     </section>
   );

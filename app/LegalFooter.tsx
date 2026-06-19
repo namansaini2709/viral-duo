@@ -12,9 +12,9 @@ export default function LegalFooter({ theme, currentPage }: LegalFooterProps) {
   const isDark = theme === "dark";
   
   const bgColor = isDark ? "var(--ink)" : "var(--paper)";
-  const textColor = isDark ? "#f4f0e8" : "var(--ink)";
-  const borderColor = isDark ? "rgba(244, 240, 232, 0.1)" : "rgba(11, 11, 10, 0.1)";
-  const linkColor = isDark ? "var(--lime)" : "#B4A9FF";
+  const textColor = isDark ? "var(--paper)" : "var(--ink)";
+  const borderColor = isDark ? "rgba(248, 250, 252, 0.1)" : "rgba(11, 11, 10, 0.1)";
+  const linkColor = "var(--lime)";
 
   return (
     <footer 

@@ -23,7 +23,7 @@ function TeamLineAnimation() {
       <svg viewBox="0 0 2000 600" fill="none" preserveAspectRatio="none" aria-hidden="true" style={{ width: '100%', height: '100%' }}>
         <motion.path
           d={path}
-          stroke="#fbb6ed"
+          stroke="#a3e635"
           strokeWidth="20"
           strokeLinecap="round"
           style={{ pathLength, opacity }}
@@ -64,7 +64,7 @@ export default function TeamSection() {
 
       <div className="teamFooter">
         <p>The Viral Duo helped us turn ideas into consistent, high-performing social content.</p>
-        <ShiftButton href="/about" dark large leftIconColor="#A78BFA" rightIconColor="#F472B6">More About Us</ShiftButton>
+        <ShiftButton href="/about" dark large leftIconColor="#a3e635" rightIconColor="#10b981">More About Us</ShiftButton>
       </div>
     </section>
   );

@@ -396,21 +396,21 @@ export default function EventCoveragePage() {
             </p>
             <div style={{ marginTop: '32px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ background: '#ffa8f2', color: '#000', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>✓</span>
+                <span style={{ background: 'var(--lime)', color: '#000', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>✓</span>
                 <div>
                   <h4 style={{ fontSize: '18px', fontWeight: '700', color: "var(--ink)" }}>Ramanujan College Josh Event</h4>
                   <p style={{ fontSize: '15px', color: 'var(--muted)', marginTop: '4px' }}>Two days of festival coverage. The artist reel crossed **150K+ views** and generated **500K+ overall reach**.</p>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ background: '#ffa8f2', color: '#000', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>✓</span>
+                <span style={{ background: 'var(--lime)', color: '#000', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>✓</span>
                 <div>
                   <h4 style={{ fontSize: '18px', fontWeight: '700', color: "var(--ink)" }}>Bharati College Sufi Night</h4>
                   <p style={{ fontSize: '15px', color: 'var(--muted)', marginTop: '4px' }}>Captured the magic and Sufi night vibe. The event recap reel went completely viral, hitting **2 Million+ views**.</p>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ background: '#ffa8f2', color: '#000', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>✓</span>
+                <span style={{ background: 'var(--lime)', color: '#000', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>✓</span>
                 <div>
                   <h4 style={{ fontSize: '18px', fontWeight: '700', color: "var(--ink)" }}>FOF Fitness Moto Mania</h4>
                   <p style={{ fontSize: '15px', color: 'var(--muted)', marginTop: '4px' }}>High-octane gym and bike event coverage. Gained **50K+ views** on reels and **250K+ reach** in dashboard analytics.</p>
@@ -429,11 +429,11 @@ export default function EventCoveragePage() {
           >
             {/* Dynamic Metric Display Panels */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              <div style={{ background: '#ffa8f2', borderRadius: '32px', padding: '40px 32px', boxShadow: '0 20px 40px rgba(0,0,0,0.04)' }}>
+              <div style={{ background: '#a3e635', borderRadius: '32px', padding: '40px 32px', boxShadow: '0 20px 40px rgba(0,0,0,0.04)' }}>
                 <strong style={{ display: 'block', fontSize: '72px', fontWeight: '900', lineHeight: 1, letterSpacing: '-0.03em', color: 'var(--ink)' }}>2.0M+</strong>
                 <span style={{ display: 'block', fontSize: '14px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: '8px', opacity: 0.7 }}>Bharati Sufi Night Views</span>
               </div>
-              <div style={{ background: '#B4A9FF', borderRadius: '32px', padding: '40px 32px', boxShadow: '0 20px 40px rgba(0,0,0,0.04)' }}>
+              <div style={{ background: '#10b981', borderRadius: '32px', padding: '40px 32px', boxShadow: '0 20px 40px rgba(0,0,0,0.04)' }}>
                 <strong style={{ display: 'block', fontSize: '72px', fontWeight: '900', lineHeight: 1, letterSpacing: '-0.03em', color: 'var(--ink)' }}>500K+</strong>
                 <span style={{ display: 'block', fontSize: '14px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: '8px', opacity: 0.7 }}>Josh Event Reach</span>
               </div>
@@ -452,7 +452,7 @@ export default function EventCoveragePage() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2>Make your next event go viral!</h2>
-          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' leftIconColor="#A78BFA" rightIconColor="#F472B6">Book a Call</ShiftButton>
+          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' leftIconColor="#a3e635" rightIconColor="#10b981">Book a Call</ShiftButton>
         </motion.div>
       </section>
     </main>

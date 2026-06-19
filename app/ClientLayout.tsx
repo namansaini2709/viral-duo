@@ -167,7 +167,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           pointerEvents: isModalOpen ? 'none' : 'auto',
           userSelect: isModalOpen ? 'none' : 'auto',
           filter: isModalOpen ? 'blur(4px)' : 'none',
-          backgroundColor: '#f4f0e8',
+          backgroundColor: '#f8fafc',
           minHeight: '100vh'
         }}
       >

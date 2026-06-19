@@ -242,7 +242,7 @@ export default function AboutPage() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2>Let’s grow through content!</h2>
-          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' leftIconColor="#A78BFA" rightIconColor="#F472B6">Book a Call</ShiftButton>
+          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' leftIconColor="#a3e635" rightIconColor="#10b981">Book a Call</ShiftButton>
         </motion.div>
       </section>
     </main>

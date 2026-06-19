@@ -386,7 +386,7 @@ export default function PhotoshootsPage() {
                 { title: "E-Commerce Sizing Optimization", desc: "All shots are rendered and exported in multiple aspect ratios (1:1, 4:5, 16:9)." }
               ].map((item, idx) => (
                 <div key={idx} style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                  <span style={{ background: "#ffa8f2", color: "#000", borderRadius: "50%", width: "26px", height: "26px", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "bold", fontSize: "12px", flexShrink: 0 }}>✓</span>
+                  <span style={{ background: "var(--lime)", color: "#000", borderRadius: "50%", width: "26px", height: "26px", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "bold", fontSize: "12px", flexShrink: 0 }}>✓</span>
                   <div>
                     <h4 style={{ fontSize: "18px", fontWeight: "700", color: "var(--ink)" }}>{item.title}</h4>
                     <p style={{ fontSize: "15px", color: "var(--muted)", marginTop: "4px", lineHeight: "1.4" }}>{item.desc}</p>
@@ -426,7 +426,7 @@ export default function PhotoshootsPage() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", marginBottom: "48px" }}>Let's build your brand portfolio.</h2>
-          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' leftIconColor="#A78BFA" rightIconColor="#F472B6">
+          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' leftIconColor="#a3e635" rightIconColor="#10b981">
             Book a Call
           </ShiftButton>
         </motion.div>

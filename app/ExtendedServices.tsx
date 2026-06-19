@@ -404,8 +404,8 @@ export default function ExtendedServices() {
                 href={slides[activeIdx].href} 
                 dark 
                 showIcon={true}
-                leftIconColor="#A78BFA"
-                rightIconColor="#F472B6"
+                leftIconColor="#a3e635"
+                rightIconColor="#10b981"
               >
                 Explore Projects
               </ShiftButton>

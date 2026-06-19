@@ -144,7 +144,7 @@ function NewsletterForm() {
 
   if (status === 'success') {
     return (
-      <div className="newsletterSuccess" style={{ color: '#fbb6ed', padding: '10px 0', fontWeight: 'bold' }}>
+      <div className="newsletterSuccess" style={{ color: '#10b981', padding: '10px 0', fontWeight: 'bold' }}>
         Thanks for subscribing! Stay viral. 🔥
       </div>
     );
