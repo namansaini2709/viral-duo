@@ -3623,13 +3623,13 @@ details p {
 .serviceCard.color3 .serviceTab { background: #14b8a6; left: 380px; }
 
 .serviceCard.color4 .serviceCardBody { background: #e2e8f0; }
-.serviceCard.color4 .serviceTab { background: #64748b; left: 550px; }
+.serviceCard.color4 .serviceTab { background: #64748b; left: 550px; color: #ffffff; }
 
 .serviceCard.color5 .serviceCardBody { background: #f1f5f9; }
 .serviceCard.color5 .serviceTab { background: #cbd5e1; left: 720px; }
 
 .serviceCard.color6 .serviceCardBody { background: #cbd5e1; }
-.serviceCard.color6 .serviceTab { background: #0f172a; left: 890px; }
+.serviceCard.color6 .serviceTab { background: #0f172a; left: 890px; color: #ffffff; }
 
 @media (max-width: 1024px) {
   .serviceContent { padding: 60px 40px; }
@@ -5550,12 +5550,12 @@ details p {
   }
 
   /* Soft luxury background variants matching the layout system */
-  .serviceCardMobile.color1 { background: #E6E4FF; } /* Lavender pastel */
-  .serviceCardMobile.color2 { background: #FFE4F2; } /* Pink pastel */
-  .serviceCardMobile.color3 { background: #EAE6E1; } /* Warm stone pastel */
-  .serviceCardMobile.color4 { background: #E0FAF5; } /* Mint pastel */
-  .serviceCardMobile.color5 { background: #FEF9C3; } /* Yellow pastel */
-  .serviceCardMobile.color6 { background: #FFE4E6; } /* Rose pastel */
+  .serviceCardMobile.color1 { background: #ecfccb; }
+  .serviceCardMobile.color2 { background: #d1fae5; }
+  .serviceCardMobile.color3 { background: #ccfbf1; }
+  .serviceCardMobile.color4 { background: #e2e8f0; }
+  .serviceCardMobile.color5 { background: #f1f5f9; }
+  .serviceCardMobile.color6 { background: #cbd5e1; }
 
   /* Large editorial outline watermarks in card backgrounds */
   .cardWatermark {
