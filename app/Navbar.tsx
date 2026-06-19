@@ -29,13 +29,13 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
         x: "-50%",
         left: "50%",
         background: isAtTop
-          ? "rgba(244, 240, 232, 0)"
-          : (navTheme === 'dark' ? "rgba(11, 11, 10, 0.95)" : "rgba(244, 240, 232, 0.95)"),
+          ? "rgba(248, 250, 252, 0)"
+          : (navTheme === 'dark' ? "rgba(11, 11, 10, 0.95)" : "rgba(248, 250, 252, 0.95)"),
         borderColor: isAtTop
           ? "rgba(0,0,0,0)"
           : (navTheme === 'dark' ? "rgba(255,255,255,0.1)" : "rgba(11, 11, 10, 0.1)"),
         padding: isAtTop ? "8px 24px" : "6px 12px 6px 20px",
-        color: isAtTop ? "#0b0b0a" : (navTheme === 'dark' ? "#f4f0e8" : "#0b0b0a"),
+        color: isAtTop ? "#0b0b0a" : (navTheme === 'dark' ? "#f8fafc" : "#0b0b0a"),
         opacity: isOverFooter ? 0 : (isHidden ? 0 : 1),
         pointerEvents: isOverFooter || isHidden ? 'none' : 'auto',
       }}
@@ -50,7 +50,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           window.scrollTo({ top: 0, behavior: 'smooth' }); 
         }
       }} style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+        <img src="/logo-v2.png?v=3" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
         The Viral Duo
       </Link>
       <div className="navLinks" style={{ color: 'inherit' }}>
@@ -105,7 +105,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
               }
               setIsMobileMenuOpen(false);
             }} style={{ fontWeight: 900, fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px', color: 'inherit', textDecoration: 'none' }}>
-              <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+              <img src="/logo-v2.png?v=3" alt="The Viral Duo Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
               The Viral Duo
             </Link>
             <button 

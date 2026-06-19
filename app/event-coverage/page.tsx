@@ -88,7 +88,7 @@ export default function EventCoveragePage() {
       "@type": "VideoObject",
       "name": `The Viral Duo Event Coverage Showreel ${idx + 1}`,
       "description": "High-energy event vertical video coverage showcase by The Viral Duo.",
-      "thumbnailUrl": video.poster || "https://theviralduo.com/logo-v2.png",
+      "thumbnailUrl": video.poster || "https://theviralduo.com/logo-v2.png?v=3",
       "contentUrl": `https://theviralduo.com${video.src}`,
       "uploadDate": "2026-06-10T00:00:00Z"
     }))

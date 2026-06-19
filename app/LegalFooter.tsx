@@ -46,7 +46,7 @@ export default function LegalFooter({ theme, currentPage }: LegalFooterProps) {
         {/* Left Side: Brand Logo and Title */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <div style={{ width: "28px", height: "28px", borderRadius: "50%", overflow: "hidden", border: `1px solid ${textColor}`, padding: "2px" }}>
-            <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "50%" }} />
+            <img src="/logo-v2.png?v=3" alt="The Viral Duo" style={{ width: "100%", height: "100%", objectFit: "contain", borderRadius: "50%" }} />
           </div>
           <span style={{ fontWeight: 800, fontSize: "14px", letterSpacing: "0.05em", textTransform: "uppercase" }}>The Viral Duo</span>
         </div>

@@ -12,9 +12,9 @@ const slides = [
     title: "Studio\nPhotoshoots",
     description: "We design high-end conceptual product shoots that showcase intricate texture, capture attention on feeds, and elevate your brand's visual identity across all digital platforms.",
     projectDetails: "Conceptual product showcases & creative studio photography",
-    sunBg: "radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.02) 65%, transparent 80%)",
-    glowColor: "rgba(212, 175, 55, 0.15)",
-    textColor: "#b45309",
+    sunBg: "radial-gradient(circle, rgba(163, 230, 53, 0.25) 0%, rgba(163, 230, 53, 0.02) 65%, transparent 80%)",
+    glowColor: "rgba(163, 230, 53, 0.15)",
+    textColor: "#4d7c0f",
     href: "/photoshoots"
   },
   {
@@ -22,9 +22,9 @@ const slides = [
     title: "Event\nCoverage",
     description: "We deploy high-energy content creation crews to capture live event excitement, musical festivals, and auto shows, driving organic reach and lasting social buzz.",
     projectDetails: "Live coverage campaigns & immersive event production highlights",
-    sunBg: "radial-gradient(circle, rgba(244, 63, 94, 0.22) 0%, rgba(244, 63, 94, 0.02) 65%, transparent 80%)",
-    glowColor: "rgba(244, 63, 94, 0.15)",
-    textColor: "#e11d48",
+    sunBg: "radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.02) 65%, transparent 80%)",
+    glowColor: "rgba(16, 185, 129, 0.15)",
+    textColor: "#047857",
     href: "/event-coverage"
   }
 ];
@@ -336,7 +336,7 @@ export default function ExtendedServices() {
           
           {/* Logo center */}
           <div style={{ display: "flex", alignItems: "center" }}>
-            <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '36px', height: '36px', objectFit: 'contain', borderRadius: '50%', border: '1px solid var(--line)', padding: '2px' }} />
+            <img src="/logo-v2.png?v=3" alt="The Viral Duo" style={{ width: '36px', height: '36px', objectFit: 'contain', borderRadius: '50%', border: '1px solid var(--line)', padding: '2px' }} />
           </div>
 
           <div className="glimpse-header-right">
