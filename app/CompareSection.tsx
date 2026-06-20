@@ -31,8 +31,23 @@ const comparisonPairs = [
 ];
 
 export default function CompareSection() {
-  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<null | 'agencies' | 'theViralDuo'>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeTab, setActiveTab] = useState<'agencies' | 'theViralDuo'>('theViralDuo');
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width / 2) {
+      setHoveredCard('agencies');
+    } else {
+      setHoveredCard('theViralDuo');
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+  };
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -127,54 +142,100 @@ export default function CompareSection() {
           ))}
         </div>
       ) : (
-        /* Sleek, Minimalist, Interactive Comparison Table */
-        <div className="compareTableContainer">
-          {/* Table Header */}
-          <div className="compareTableHeader">
-            <div className="compareHeaderCol badCol">
-              <h3>Other Agencies</h3>
-            </div>
-            <div className="compareHeaderCol goodCol">
-              <h3>
-                <div className="theViralDuoLogo">
-                  <img src="/logo-v2.png?v=5" alt="The Viral Duo Logo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                </div>
-                The Viral Duo
-              </h3>
-            </div>
-          </div>
-
-          {/* Table Body */}
-          <div className="compareTableBody">
-            {comparisonPairs.map((pair, index) => {
-              const isHovered = hoveredRow === index;
-              return (
-                <div
-                  key={index}
-                  className={`compareTableRow ${isHovered ? 'hovered' : ''}`}
-                  onMouseEnter={() => setHoveredRow(index)}
-                  onMouseLeave={() => setHoveredRow(null)}
+        /* Original Premium Desktop Sticky Layout */
+        <div className="compareGrid" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <AnimatePresence>
+            {!isMobile || activeTab === 'agencies' ? (
+              <div
+                key="agencies"
+                className="compareColWrapper left"
+                style={{ 
+                  position: 'relative', 
+                  zIndex: hoveredCard === 'agencies' ? 10 : 1, 
+                  width: '50%',
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  paddingRight: '24px'
+                }}
+              >
+                <motion.div
+                  style={{ position: 'relative' }}
+                  initial={isMobile ? { opacity: 0, x: -20 } : { opacity: 0, x: -50, rotate: 0 }}
+                  animate={{
+                    x: isMobile ? 0 : (hoveredCard === 'agencies' ? -20 : (hoveredCard === 'theViralDuo' ? -120 : 30)),
+                    rotate: isMobile ? 0 : (hoveredCard === 'agencies' ? 0 : -2),
+                    scale: hoveredCard === 'agencies' ? 1.02 : 1,
+                    opacity: 1,
+                    boxShadow: "none"
+                  }}
+                  exit={isMobile ? { opacity: 0, x: 20 } : undefined}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  {/* Bad Option */}
-                  <div className="compareCol badCol">
-                    <span className="compareIcon bad">✕</span>
-                    <span className="compareText bad">{pair.bad}</span>
+                  <div className="compareCard agencies">
+                    <h3>Other Agencies</h3>
+                    <div className="compareList" role="list">
+                      {["Ad-like, brand-heavy", "Posting volume", "Based on follower count", "Trend-chasing", "Basic metrics"].map(x => (
+                        <div key={x} className="compareItem" role="listitem">
+                          <span className="icon" aria-hidden="true">✕</span>
+                          {x}
+                        </div>
+                      ))}
+                    </div>
                   </div>
+                </motion.div>
+              </div>
+            ) : null}
 
-                  {/* Floating Center Label */}
-                  <div className="compareRowBadgeCenter">
-                    <span>{pair.label}</span>
+            {!isMobile || activeTab === 'theViralDuo' ? (
+              <div
+                key="theViralDuo"
+                className="compareColWrapper right"
+                style={{ 
+                  position: 'relative', 
+                  zIndex: hoveredCard === 'theViralDuo' ? 10 : 2, 
+                  width: '50%',
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  paddingLeft: '24px'
+                }}
+              >
+                <motion.div
+                  style={{ position: 'relative' }}
+                  initial={isMobile ? { opacity: 0, x: 20 } : { opacity: 0, x: 50, rotate: 0 }}
+                  animate={{
+                    x: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 20 : (hoveredCard === 'agencies' ? 120 : -30)),
+                    rotate: isMobile ? 0 : (hoveredCard === 'theViralDuo' ? 0 : 2),
+                    scale: hoveredCard === 'theViralDuo' ? 1.05 : 1,
+                    opacity: 1,
+                    boxShadow: "none"
+                  }}
+                  exit={isMobile ? { opacity: 0, x: -20 } : undefined}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div className="compareCard theViralDuo">
+                    <h3>
+                      <div className="theViralDuoLogo">
+                        <img src="/logo-v2.png?v=5" alt="The Viral Duo Logo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      </div>
+                      The Viral Duo
+                    </h3>
+                    <div className="compareList" role="list">
+                      {["Platform-native, organic-first", "Engagement & relevance", "Performance-based selection", "Strategic & brand-aligned", "Clear insights & learnings"].map(x => (
+                        <div key={x} className="compareItem" role="listitem">
+                          <span className="icon" aria-hidden="true">✓</span>
+                          {x}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-
-                  {/* Good Option */}
-                  <div className="compareCol goodCol">
-                    <span className="compareIcon good">✓</span>
-                    <span className="compareText good">{pair.good}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                </motion.div>
+              </div>
+            ) : null}
+          </AnimatePresence>
         </div>
       )}
     </section>

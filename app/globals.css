@@ -1327,178 +1327,107 @@ footer h2 {
   letter-spacing: -0.02em;
 }
 
-.compareTableContainer {
-  max-width: 900px;
-  margin: 0 auto;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.03);
-  border: 1px solid var(--line);
-  background: #ffffff;
-}
-
-.compareTableHeader {
+.compareGrid {
   display: flex;
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-}
-
-.compareHeaderCol {
-  width: 50%;
-  padding: 24px 40px;
-  display: flex;
-  align-items: center;
-}
-
-.compareHeaderCol.badCol {
-  justify-content: flex-start;
-  border-right: 1px solid var(--line);
-}
-
-.compareHeaderCol.goodCol {
-  justify-content: flex-end;
-  background: var(--ink);
-  color: #ffffff;
-}
-
-.compareHeaderCol h3 {
-  font-size: 22px;
-  font-weight: 800;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  letter-spacing: -0.02em;
-}
-
-.compareHeaderLogo {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
-.compareTableBody {
-  position: relative;
-}
-
-.compareTableRow {
-  display: flex;
-  border-bottom: 1px solid var(--line);
-  position: relative;
-  transition: background 0.25s ease;
-}
-
-.compareTableRow:last-child {
-  border-bottom: none;
-}
-
-.compareCol {
-  width: 50%;
-  padding: 28px 40px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  transition: all 0.25s ease;
-}
-
-.compareCol.badCol {
-  justify-content: flex-start;
-  border-right: 1px solid var(--line);
-}
-
-.compareCol.goodCol {
-  justify-content: flex-end;
-  background: #ffffff;
-  color: var(--ink);
-}
-
-/* Hover effects */
-.compareTableRow.hovered .compareCol.badCol {
-  opacity: 0.45;
-  background: rgba(11, 11, 10, 0.01);
-}
-
-.compareTableRow.hovered .compareCol.goodCol {
-  background: var(--ink);
-  color: #ffffff;
-}
-
-/* Central badge */
-.compareRowBadgeCenter {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  padding: 6px 16px;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-  z-index: 10;
-  transition: all 0.25s ease;
-  pointer-events: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-}
-
-.compareTableRow.hovered .compareRowBadgeCenter {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--ink);
-  box-shadow: 0 4px 12px rgba(163, 230, 53, 0.25);
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-/* Icons */
-.compareIcon {
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 11px;
-  font-weight: 900;
+  align-items: center;
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 0 150px;
+  position: relative;
+  perspective: 1000px;
 }
 
-.compareIcon.bad {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+.compareCard {
+  width: 380px;
+  padding: 40px;
+  border-radius: 40px;
+  border: none;
+  text-align: left;
+  position: relative;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
-.compareIcon.good {
-  color: var(--ink);
-  background: rgba(11, 11, 10, 0.06);
-  transition: all 0.25s ease;
+.compareCard.agencies {
+  background: #ffffff;
+  transform: rotate(-4deg) translateX(40px);
+  z-index: 1;
+  border: none;
+  box-shadow: none;
 }
 
-.compareTableRow.hovered .compareIcon.good {
-  color: var(--lime);
-  background: rgba(163, 230, 53, 0.15);
+.compareCard.theViralDuo {
+  background: var(--ink);
+  color: #ffffff;
+  transform: rotate(4deg) translateX(-40px);
+  z-index: 2;
+  box-shadow: 0 40px 100px rgba(163, 230, 53, 0.15);
+  border: 1px solid rgba(163, 230, 53, 0.2);
 }
 
-.compareText {
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.25s ease;
+.compareCard.theViralDuo h3 {
+  color: #ffffff;
 }
 
-.compareTableRow.hovered .compareText.good {
-  color: var(--lime);
-  font-weight: 700;
+.compareCard h3 {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .theViralDuoLogo {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.compareList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.compareItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.8);
+}
+
+.compareItem .icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 50%;
+}
+
+.agencies .icon {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.theViralDuo .compareItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.theViralDuo .icon {
+  color: var(--lime);
+  background: rgba(163, 230, 53, 0.15);
 }
 
 .process {
