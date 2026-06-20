@@ -395,7 +395,7 @@ img {
   align-items: center;
   backdrop-filter: blur(18px);
   display: flex;
-  gap: 24px;
+  gap: 16px;
   justify-content: space-between;
   left: 50%;
   position: fixed;
@@ -411,7 +411,7 @@ img {
 
 .navLinks {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   color: #393530;
   font-size: 14px;
 }
