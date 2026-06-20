@@ -336,7 +336,7 @@ export default function ExtendedServices() {
           
           {/* Logo center */}
           <div style={{ display: "flex", alignItems: "center" }}>
-            <img src="/logo-v2.png?v=4" alt="The Viral Duo" style={{ width: '36px', height: '36px', objectFit: 'contain', borderRadius: '50%', border: '1px solid var(--line)', padding: '2px' }} />
+            <img src="/logo-v2.png?v=5" alt="The Viral Duo" style={{ width: '36px', height: '36px', objectFit: 'contain', borderRadius: '50%', border: '1px solid var(--line)', padding: '2px' }} />
           </div>
 
           <div className="glimpse-header-right">

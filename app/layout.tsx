@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: "The Viral Duo",
     images: [
       {
-        url: "/logo-v2.png?v=4",
+        url: "/logo-v2.png?v=5",
         width: 800,
         height: 800,
       },
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Viral Duo | Social Media & UGC Growth Agency",
     description: "Built by people who won't ship content they'd skip.",
-    images: ["/logo-v2.png?v=4"],
+    images: ["/logo-v2.png?v=5"],
   },
   robots: {
     index: true,
     follow: true,
   },
   icons: {
-    icon: "/logo-v2.png?v=4",
-    apple: "/logo-v2.png?v=4",
+    icon: "/logo-v2.png?v=5",
+    apple: "/logo-v2.png?v=5",
   },
 };
 
@@ -56,8 +56,8 @@ export default function RootLayout({
     "@type": "ProfessionalService",
     "name": "The Viral Duo",
     "url": "https://theviralduo.com",
-    "logo": "https://theviralduo.com/logo-v2.png?v=4",
-    "image": "https://theviralduo.com/logo-v2.png?v=4",
+    "logo": "https://theviralduo.com/logo-v2.png?v=5",
+    "image": "https://theviralduo.com/logo-v2.png?v=5",
     "description": "The Viral Duo helps brands create content that earns attention, builds engagement, and drives real growth through explosive UGC and social media strategies.",
     "telephone": "+917701918603",
     "geo": {
