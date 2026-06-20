@@ -24,8 +24,8 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       animate={{
         width: isAtTop ? "92%" : "auto",
         maxWidth: isAtTop ? "1200px" : "700px",
-        borderRadius: isAtTop ? "20px" : "999px",
-        top: isAtTop ? "14px" : (isHidden ? "-100px" : "18px"),
+        borderRadius: isAtTop ? "0px 0px 20px 20px" : "999px",
+        top: isAtTop ? "0px" : (isHidden ? "-100px" : "18px"),
         x: "-50%",
         left: "50%",
         background: isAtTop
