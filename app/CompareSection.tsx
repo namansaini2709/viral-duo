@@ -209,7 +209,7 @@ export default function CompareSection() {
                   <div className="compareCard theViralDuo">
                     <h3>
                       <div className="theViralDuoLogo">
-                        <img src="/logo-v2.png?v=5" alt="The Viral Duo Logo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                        <img src="/logo-v2.png?v=5" alt="The Viral Duo Logo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                       </div>
                       The Viral Duo
                     </h3>

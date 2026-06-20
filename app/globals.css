@@ -1360,10 +1360,16 @@ footer h2 {
 }
 
 .compareCard.theViralDuo {
-  background: #EF96E0; /* Target Pink */
+  background: var(--ink);
+  color: #ffffff;
   transform: rotate(4deg) translateX(-40px);
   z-index: 2;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+  box-shadow: 0 40px 100px rgba(163, 230, 53, 0.15);
+  border: 1px solid rgba(163, 230, 53, 0.2);
+}
+
+.compareCard.theViralDuo h3 {
+  color: #ffffff;
 }
 
 .compareCard h3 {
@@ -1379,11 +1385,9 @@ footer h2 {
   width: 40px;
   height: 40px;
   background: transparent;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   flex-shrink: 0;
 }
 
@@ -1417,9 +1421,13 @@ footer h2 {
   background: rgba(255, 77, 77, 0.1);
 }
 
+.theViralDuo .compareItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .theViralDuo .icon {
-  color: #000;
-  background: rgba(0, 0, 0, 0.1);
+  color: var(--lime);
+  background: rgba(163, 230, 53, 0.15);
 }
 
 .process {
@@ -5358,7 +5366,7 @@ details p {
   }
 
   .compareLabelDivider {
-    color: #EF96E0;
+    color: var(--lime);
     opacity: 0.7;
   }
 
@@ -5391,13 +5399,13 @@ details p {
   }
 
   .compareRowCard.good {
-    background: #EF96E0;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: var(--ink);
+    background: var(--ink);
+    border: 1px solid rgba(163, 230, 53, 0.25);
+    color: #ffffff;
     font-weight: 700;
     width: 94%;
     align-self: flex-end;
-    box-shadow: 0 10px 25px rgba(239, 150, 224, 0.25);
+    box-shadow: 0 10px 25px rgba(163, 230, 53, 0.15);
     z-index: 2;
   }
 
@@ -5439,9 +5447,8 @@ details p {
   }
 
   .compareRowIcon.good {
-    background: rgba(255, 255, 255, 0.35);
-    color: var(--ink);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    background: rgba(163, 230, 53, 0.15);
+    color: var(--lime);
   }
 
   .compareRowText {
