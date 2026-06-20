@@ -2832,14 +2832,11 @@ footer h2 {
 
 .footerLogoIcon {
   background: transparent;
-  border: 1px solid #000;
-  border-radius: 50%;
   width: 80px;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   flex-shrink: 0;
 }
 
