@@ -29,13 +29,13 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
         x: "-50%",
         left: "50%",
         background: isAtTop
-          ? "rgba(248, 250, 252, 0)"
+          ? "rgba(11, 11, 10, 1)"
           : (navTheme === 'dark' ? "rgba(11, 11, 10, 0.95)" : "rgba(248, 250, 252, 0.95)"),
         borderColor: isAtTop
-          ? "rgba(0,0,0,0)"
+          ? "rgba(255, 255, 255, 0.1)"
           : (navTheme === 'dark' ? "rgba(255,255,255,0.1)" : "rgba(11, 11, 10, 0.1)"),
         padding: isAtTop ? "8px 24px" : "6px 12px 6px 20px",
-        color: isAtTop ? "#0b0b0a" : (navTheme === 'dark' ? "#f8fafc" : "#0b0b0a"),
+        color: isAtTop ? "#f8fafc" : (navTheme === 'dark' ? "#f8fafc" : "#0b0b0a"),
         opacity: isOverFooter ? 0 : (isHidden ? 0 : 1),
         pointerEvents: isOverFooter || isHidden ? 'none' : 'auto',
       }}
@@ -59,7 +59,16 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
         <Link href="/event-coverage">Event Coverage</Link>
         <Link href="/about">About Us</Link>
       </div>
-      <ShiftButton small={true} dark={isAtTop ? false : (navTheme === 'light')} dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' showIcon={false}>Book a call</ShiftButton>
+      <ShiftButton 
+        small={true} 
+        dark={isAtTop ? false : (navTheme === 'light')} 
+        light={isAtTop ? true : (navTheme === 'dark')}
+        dataCalLink="theviralduo/15min" 
+        dataCalConfig='{"layout":"month_view"}' 
+        showIcon={false}
+      >
+        Book a call
+      </ShiftButton>
       
       <button 
         className="menuToggle" 
