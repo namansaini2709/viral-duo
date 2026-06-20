@@ -22,10 +22,10 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       className="nav"
       initial={false}
       animate={{
-        width: isAtTop ? "100%" : "auto",
-        maxWidth: isAtTop ? "100%" : "620px",
-        borderRadius: isAtTop ? "0px" : "999px",
-        top: isAtTop ? "0px" : (isHidden ? "-100px" : "18px"),
+        width: isAtTop ? "92%" : "auto",
+        maxWidth: isAtTop ? "1200px" : "700px",
+        borderRadius: isAtTop ? "20px" : "999px",
+        top: isAtTop ? "14px" : (isHidden ? "-100px" : "18px"),
         x: "-50%",
         left: "50%",
         background: isAtTop
@@ -34,7 +34,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
         borderColor: isAtTop
           ? "rgba(255, 255, 255, 0.1)"
           : (navTheme === 'dark' ? "rgba(255,255,255,0.1)" : "rgba(11, 11, 10, 0.1)"),
-        padding: isAtTop ? "8px 24px" : "6px 12px 6px 20px",
+        padding: isAtTop ? "12px 28px" : "6px 12px 6px 20px",
         color: isAtTop ? "#f8fafc" : (navTheme === 'dark' ? "#f8fafc" : "#0b0b0a"),
         opacity: isOverFooter ? 0 : (isHidden ? 0 : 1),
         pointerEvents: isOverFooter || isHidden ? 'none' : 'auto',
