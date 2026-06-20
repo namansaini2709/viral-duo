@@ -50,7 +50,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           window.scrollTo({ top: 0, behavior: 'smooth' }); 
         }
       }} style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <img src="/logo-v2.png?v=3" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+        <img src="/logo-v2.png?v=3" alt="The Viral Duo" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
         The Viral Duo
       </Link>
       <div className="navLinks" style={{ color: 'inherit' }}>
@@ -105,7 +105,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
               }
               setIsMobileMenuOpen(false);
             }} style={{ fontWeight: 900, fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px', color: 'inherit', textDecoration: 'none' }}>
-              <img src="/logo-v2.png?v=3" alt="The Viral Duo Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
+              <img src="/logo-v2.png?v=3" alt="The Viral Duo Logo" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
               The Viral Duo
             </Link>
             <button 
