@@ -39,7 +39,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
         opacity: isOverFooter ? 0 : (isHidden ? 0 : 1),
         pointerEvents: isOverFooter || isHidden ? 'none' : 'auto',
       }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link className="brand" href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
         if (isAboutPage && pathname === '/about') {
