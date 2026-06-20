@@ -142,7 +142,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              <img src="/logo-v2.png?v=3" alt="The Viral Duo Small Logo" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
+              <img src="/logo-v2.png?v=4" alt="The Viral Duo Small Logo" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
               OUR VISION
             </span>
             <h2>What We Stand For</h2>
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 </div>
                 <div className="memberInfo">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <img src="/logo-v2.png?v=3" alt="The Viral Duo Small Logo" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
+                    <img src="/logo-v2.png?v=4" alt="The Viral Duo Small Logo" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
                     {teamData[i].name}
                   </h3>
                   <p>{teamData[i].role}</p>
