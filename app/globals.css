@@ -2826,8 +2826,15 @@ footer h2 {
 
 .footerLogoContainer {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 2vw;
+}
+
+.footerLogoImg {
+  height: clamp(32px, 4.5vw, 44px);
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .footerLogoIcon {

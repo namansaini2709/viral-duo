@@ -48,7 +48,7 @@ export default function LegalFooter({ theme, currentPage }: LegalFooterProps) {
           <div style={{ width: "28px", height: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <img src="/logo-v2.png?v=5" alt="The Viral Duo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </div>
-          <span style={{ fontWeight: 800, fontSize: "14px", letterSpacing: "0.05em", textTransform: "uppercase" }}>The Viral Duo</span>
+          <img src="/logo-text.png?v=1" alt="The Viral Duo" style={{ height: "14px", width: "auto", objectFit: "contain" }} />
         </div>
 
         {/* Center: Legal Toggle Links */}
