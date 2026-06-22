@@ -195,7 +195,7 @@ function MobileCard({
 
 export default function ServicesSection() {
   const [isMobile, setIsMobile] = useState(false);
-  const [stack, setStack] = useState([0, 1, 2, 3]);
+  const [stack, setStack] = useState([0, 1, 2, 3, 4, 5]);
   const [isTabSwitch, setIsTabSwitch] = useState(false);
   const currentIndex = stack[0];
 
@@ -264,6 +264,8 @@ export default function ServicesSection() {
               const isNext = index === stack[1];
               const isThird = index === stack[2];
               const isFourth = index === stack[3];
+              const isFifth = index === stack[4];
+              const isSixth = index === stack[5];
               
               return (
                 <MobileCard
@@ -273,7 +275,7 @@ export default function ServicesSection() {
                   isTop={isTop}
                   isNext={isNext}
                   isThird={isThird}
-                  isFourth={isFourth}
+                  isFourth={isFourth || isFifth || isSixth} // Render next preview layouts correctly
                   dragX={dragX}
                   rotateValue={rotateValue}
                   isTabSwitch={isTabSwitch}
@@ -313,14 +315,14 @@ export default function ServicesSection() {
                 className={`serviceCard ${service.color}`}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ margin: "0px", amount: 0.1, once: true }}
+                viewport={{ margin: "0px", amount: 0.1, once: false }}
                 transition={{ duration: 0.5 }}
               >
                 <motion.div
                   className="serviceTab"
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
                   Service / {service.id}
@@ -330,7 +332,7 @@ export default function ServicesSection() {
                   className="serviceCardBody"
                   initial={{ y: 60, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="serviceContent">
@@ -338,7 +340,7 @@ export default function ServicesSection() {
                       initial={{ opacity: 0, x: -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.4, duration: 0.6 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                     >
                       {service.title}
                     </motion.h2>
@@ -346,7 +348,7 @@ export default function ServicesSection() {
                       initial={{ opacity: 0, x: -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5, duration: 0.6 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                     >
                       {service.desc}
                     </motion.p>
@@ -356,7 +358,7 @@ export default function ServicesSection() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.6, type: "spring" }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                       >
                         {service.metric}
                       </motion.strong>
@@ -369,7 +371,7 @@ export default function ServicesSection() {
                       <motion.div
                         initial={{ opacity: 0, scale: 1.1 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ delay: 0.3, duration: 1 }}
                         style={{ width: '100%', height: '100%', borderRadius: '40px', overflow: 'hidden' }}
                       >
@@ -391,7 +393,7 @@ export default function ServicesSection() {
                         initial={{ opacity: 0, scale: 1.1 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.3, duration: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                       />
                     )}
                   </div>

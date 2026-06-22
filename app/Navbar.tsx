@@ -22,24 +22,24 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
       className="nav"
       initial={false}
       animate={{
-        width: isAtTop ? "100%" : "auto",
-        maxWidth: isAtTop ? "100%" : "700px",
-        borderRadius: isAtTop ? "0px" : "999px",
-        top: isAtTop ? "0px" : (isHidden ? "-100px" : "18px"),
+        width: "92%",
+        maxWidth: "960px",
+        borderRadius: isAtTop ? "0px 0px 20px 20px" : "20px",
+        top: isAtTop ? "0px" : (isHidden ? "-100px" : "14px"),
         x: "-50%",
         left: "50%",
         background: isAtTop
-          ? "rgba(244, 240, 232, 0)"
-          : (navTheme === 'dark' ? "rgba(11, 11, 10, 0.95)" : "rgba(244, 240, 232, 0.95)"),
+          ? "rgba(11, 11, 10, 1)"
+          : (navTheme === 'dark' ? "rgba(11, 11, 10, 0.95)" : "rgba(248, 250, 252, 0.95)"),
         borderColor: isAtTop
-          ? "rgba(0,0,0,0)"
+          ? "rgba(255, 255, 255, 0.1)"
           : (navTheme === 'dark' ? "rgba(255,255,255,0.1)" : "rgba(11, 11, 10, 0.1)"),
-        padding: isAtTop ? "8px 24px" : "6px 12px 6px 20px",
-        color: isAtTop ? "#0b0b0a" : (navTheme === 'dark' ? "#f4f0e8" : "#0b0b0a"),
+        padding: "8px 24px",
+        color: isAtTop ? "#f8fafc" : (navTheme === 'dark' ? "#f8fafc" : "#0b0b0a"),
         opacity: isOverFooter ? 0 : (isHidden ? 0 : 1),
         pointerEvents: isOverFooter || isHidden ? 'none' : 'auto',
       }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
       <Link className="brand" href={isAboutPage ? "/about" : "/"} onClick={(e) => { 
         if (isAboutPage && pathname === '/about') {
@@ -50,26 +50,24 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           window.scrollTo({ top: 0, behavior: 'smooth' }); 
         }
       }} style={{ color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <img src="/logo-v2.png" alt="The Viral Duo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
-        The Viral Duo
+        <img src="/logo-v2.png?v=5" alt="The Viral Duo" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
       </Link>
       <div className="navLinks" style={{ color: 'inherit' }}>
         <Link href="/">Home</Link>
-        {isAboutPage ? (
-          <>
-            <Link href="#vision">Vision</Link>
-            <Link href="#gallery">Glimpse</Link>
-            <Link href="#team">Team</Link>
-          </>
-        ) : (
-          <>
-            <Link href="/#work">Projects</Link>
-            <Link href="/#services">Services</Link>
-            <Link href="/about">About Us</Link>
-          </>
-        )}
+        <Link href="/photoshoots">Photoshoots</Link>
+        <Link href="/event-coverage">Event Coverage</Link>
+        <Link href="/about">About Us</Link>
       </div>
-      <ShiftButton small={true} dark={isAtTop ? false : (navTheme === 'light')} dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' showIcon={false}>Book a call</ShiftButton>
+      <ShiftButton 
+        small={true} 
+        dark={isAtTop ? false : (navTheme === 'light')} 
+        light={isAtTop ? true : (navTheme === 'dark')}
+        dataCalLink="theviralduo/15min" 
+        dataCalConfig='{"layout":"month_view"}' 
+        showIcon={false}
+      >
+        Book a call
+      </ShiftButton>
       
       <button 
         className="menuToggle" 
@@ -115,8 +113,7 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
               }
               setIsMobileMenuOpen(false);
             }} style={{ fontWeight: 900, fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px', color: 'inherit', textDecoration: 'none' }}>
-              <img src="/logo-v2.png" alt="The Viral Duo Logo" style={{ width: '32px', height: '32px', objectFit: 'contain', borderRadius: '50%', border: '1px solid currentColor', padding: '2px' }} />
-              The Viral Duo
+              <img src="/logo-v2.png?v=5" alt="The Viral Duo Logo" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
             </Link>
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
@@ -131,19 +128,9 @@ export default function Navbar({ isAtTop, isHidden, navTheme, isOverFooter }: Na
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', fontSize: '32px', fontWeight: 700 }}>
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-            {isAboutPage ? (
-              <>
-                <Link href="#vision" onClick={() => setIsMobileMenuOpen(false)}>Vision</Link>
-                <Link href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Glimpse</Link>
-                <Link href="#team" onClick={() => setIsMobileMenuOpen(false)}>Team</Link>
-              </>
-            ) : (
-              <>
-                <Link href="/#work" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
-                <Link href="/#services" onClick={() => setIsMobileMenuOpen(false)}>Services</Link>
-                <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
-              </>
-            )}
+            <Link href="/photoshoots" onClick={() => setIsMobileMenuOpen(false)}>Photoshoots</Link>
+            <Link href="/event-coverage" onClick={() => setIsMobileMenuOpen(false)}>Event Coverage</Link>
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
             <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
           </div>
         </motion.div>

@@ -20,7 +20,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg, 
         className="testimonialCard featured"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.6 }}
       >
         <div 
@@ -82,7 +82,7 @@ function TestimonialCard({ title, text, name, role, avatar, featured, videoImg, 
       className="testimonialCard"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ duration: 0.6 }}
     >
       <div className="stars" aria-label="5 out of 5 stars">

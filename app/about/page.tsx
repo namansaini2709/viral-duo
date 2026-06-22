@@ -47,6 +47,9 @@ export default function AboutPage() {
         isOverFooter={false} 
       />
 
+      {/* Our Goal Gallery */}
+      <AboutGallery />
+
       {/* Hero Section */}
       <section className="aboutHero">
         {/* Mobile-only Pill positioned above the video/container */}
@@ -55,7 +58,7 @@ export default function AboutPage() {
             className="pill pink"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             ABOUT US
@@ -69,7 +72,7 @@ export default function AboutPage() {
                 className="pill pink"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 ABOUT US
@@ -79,7 +82,7 @@ export default function AboutPage() {
               <motion.h1
                 initial={{ opacity: 0, scale: 0.8, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ 
                   type: "spring", 
                   stiffness: 45, 
@@ -95,7 +98,7 @@ export default function AboutPage() {
               <motion.h1
                 initial={{ opacity: 0, scale: 0.8, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ 
                   type: "spring", 
                   stiffness: 45, 
@@ -113,7 +116,7 @@ export default function AboutPage() {
             className="heroImageWrapper"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <LazyVideo
@@ -135,11 +138,11 @@ export default function AboutPage() {
             className="visionText"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="pill pink" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              <img src="/logo-v2.png" alt="" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
+              <img src="/logo-v2.png?v=5" alt="The Viral Duo Small Logo" style={{ width: '18px', height: '18px', objectFit: 'contain', borderRadius: '50%' }} />
               OUR VISION
             </span>
             <h2>What We Stand For</h2>
@@ -158,7 +161,7 @@ export default function AboutPage() {
             className="visionImage"
             initial={{ opacity: 0, scale: 0.6 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ 
               type: "spring", 
               stiffness: 90, 
@@ -172,9 +175,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Goal Gallery */}
-      <AboutGallery />
-
       {/* Team Section */}
       <section className="aboutTeam" id="team">
         <div className="teamHeader">
@@ -182,14 +182,14 @@ export default function AboutPage() {
             className="pill pink"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             OUR TEAM
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
             Small Team, Big Impact
@@ -209,7 +209,7 @@ export default function AboutPage() {
                 className="teamMember"
                 initial={{ opacity: 0, scale: 0.8, y: 30 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: false, amount: 0.2 }}
                 transition={{ 
                   duration: 0.6, 
                   delay: (i % 4) * 0.1, 
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 </div>
                 <div className="memberInfo">
                   <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <img src="/logo-v2.png" alt="" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
+                    <img src="/logo-v2.png?v=5" alt="The Viral Duo Small Logo" style={{ width: '20px', height: '20px', objectFit: 'contain', borderRadius: '50%' }} />
                     {teamData[i].name}
                   </h3>
                   <p>{teamData[i].role}</p>
@@ -238,11 +238,11 @@ export default function AboutPage() {
           className="ctaContent"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2>Let’s grow through content!</h2>
-          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}'>Book a Call</ShiftButton>
+          <ShiftButton dark large dataCalLink="theviralduo/15min" dataCalConfig='{"layout":"month_view"}' leftIconColor="#a3e635" rightIconColor="#10b981">Book a Call</ShiftButton>
         </motion.div>
       </section>
     </main>

@@ -34,10 +34,10 @@ interface FlyingIconsButtonProps {
 export default function FlyingIconsButton({
   label = "Subscribe",
   buttonColor = "#0b0b0a",
-  textColor = "#f4f0e8",
+  textColor = "#f8fafc",
   hoverButtonColor = "#222",
   hoverTextColor = "#fff",
-  iconColor = "#ffa8f2",
+  iconColor = "#a3e635",
   iconSize = 32,
   iconCount = 10,
   flySpeed = 5.0,

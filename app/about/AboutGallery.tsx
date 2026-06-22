@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import LazyVideo from "../LazyVideo";
 
@@ -13,17 +13,28 @@ const videos = [
 
 export default function AboutGallery() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  // Parallax offsets for different images
-  const yCenter = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const yTopLeft = useTransform(scrollYProgress, [0, 1], [150, -450]);
-  const yTopRight = useTransform(scrollYProgress, [0, 1], [80, -600]);
-  const yBottomLeft = useTransform(scrollYProgress, [0, 1], [200, -350]);
-  const yBottomRight = useTransform(scrollYProgress, [0, 1], [250, -700]);
+  // Parallax offsets for different images (tuned for mobile view to move upwards actively on scroll)
+  const yCenter = useTransform(scrollYProgress, [0, 1], isMobile ? [0, -100] : [0, -200]);
+  const yTopLeft = useTransform(scrollYProgress, [0, 1], isMobile ? [60, -200] : [150, -450]);
+  const yTopRight = useTransform(scrollYProgress, [0, 1], isMobile ? [40, -280] : [80, -600]);
+  const yBottomLeft = useTransform(scrollYProgress, [0, 1], isMobile ? [80, -160] : [200, -350]);
+  const yBottomRight = useTransform(scrollYProgress, [0, 1], isMobile ? [100, -300] : [250, -700]);
 
   return (
     <section className="aboutGallery" ref={containerRef} id="gallery">
@@ -32,7 +43,7 @@ export default function AboutGallery() {
           className="galleryHeader"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="pill dark">WHAT WE’RE HERE TO DO</span>
@@ -46,7 +57,7 @@ export default function AboutGallery() {
             style={{ y: yTopLeft }}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 1.2, delay: 0.1 }}
           >
             <LazyVideo src={videos[0]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -58,7 +69,7 @@ export default function AboutGallery() {
             style={{ y: yTopRight }}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 1.2, delay: 0.2 }}
           >
             <LazyVideo src={videos[1]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -70,7 +81,7 @@ export default function AboutGallery() {
             style={{ y: yCenter }}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 1.5 }}
           >
             <LazyVideo src={videos[2]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -82,7 +93,7 @@ export default function AboutGallery() {
             style={{ y: yBottomLeft }}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 1.2, delay: 0.3 }}
           >
             <LazyVideo src={videos[3]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -94,7 +105,7 @@ export default function AboutGallery() {
             style={{ y: yBottomRight }}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 1.2, delay: 0.4 }}
           >
             <LazyVideo src={videos[4]} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

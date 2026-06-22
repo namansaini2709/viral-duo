@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
@@ -7,28 +9,17 @@ interface WiggleButtonProps {
   href?: string;
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
+  style?: React.CSSProperties;
 }
 
-export default function WiggleButton({ children, href, className, onClick }: WiggleButtonProps) {
+export default function WiggleButton({ children, href, className, onClick, style }: WiggleButtonProps) {
   const [isExploding, setIsExploding] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 1024);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const handleClick = (e: React.MouseEvent) => {
     if (onClick) onClick(e);
     
     if (href) {
-      if (isMobile) {
-        // Native navigation on mobile to avoid any button delay or explosion jank
-        return;
-      }
       e.preventDefault();
       setIsExploding(true);
       
@@ -67,7 +58,8 @@ export default function WiggleButton({ children, href, className, onClick }: Wig
           cursor: 'pointer', 
           textDecoration: 'none',
           position: 'relative',
-          zIndex: 2
+          zIndex: 2,
+          ...style
         }}
         initial={{ rotate: 0, scale: 1, opacity: 1 }}
         animate={isExploding ? {
@@ -80,7 +72,7 @@ export default function WiggleButton({ children, href, className, onClick }: Wig
             ease: "easeInOut" 
           }
         } : { rotate: 0, scale: 1, opacity: 1 }}
-        whileHover={(!isMobile && !isExploding) ? {
+        whileHover={!isExploding ? {
           rotate: [0, -3, 3, -3, 3, 0],
           scale: 1.05,
           transition: { 
@@ -88,7 +80,7 @@ export default function WiggleButton({ children, href, className, onClick }: Wig
             ease: "easeInOut"
           }
         } : {}}
-        whileTap={(!isMobile && !isExploding) ? { scale: 0.95 } : {}}
+        whileTap={!isExploding ? { scale: 0.95 } : {}}
       >
         {children}
       </motion.a>

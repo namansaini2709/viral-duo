@@ -254,7 +254,7 @@ export default function ExploreMore() {
           className="seeMoreRow"
           initial="initial"
           whileHover="hover"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           <div className="seeMoreArrowWrap">
             <motion.div 

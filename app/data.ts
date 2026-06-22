@@ -71,15 +71,54 @@ export const services = [
     videoUrl: "/Ilustrated videos/Partnership.mp4",
     tabLabel: "Brands",
     highlights: ["🤝 500+ Creator Roster", "💼 Full Contract Licensing", "📈 End-to-End Tracking"]
+  },
+  {
+    id: "05",
+    title: "Studio Photoshoots",
+    desc: "We design high-end conceptual product shoots that showcase intricate texture, capture attention on feeds, and elevate your brand's visual identity across all digital platforms.",
+    metric: "100%",
+    unit: "Creative Delivery",
+    color: "color5",
+    img: "/studio_photoshoot.png",
+    videoUrl: "/Ilustrated videos/6th video.mp4",
+    tabLabel: "Studio",
+    highlights: ["📸 Custom Set Designs", "✨ High-End Texturing", "🎯 Commercial Licensing"]
+  },
+  {
+    id: "06",
+    title: "Event Coverage",
+    desc: "We deploy high-energy content creation crews to capture live event excitement, musical festivals, and auto shows, driving organic reach and lasting social buzz.",
+    metric: "2.7M+",
+    unit: "Event Reel Views",
+    color: "color6",
+    img: "/event_coverage.png",
+    videoUrl: "/Ilustrated videos/fifth card video.mp4",
+    tabLabel: "Events",
+    highlights: ["🎥 Live Mobile Crews", "⚡ Fast Same-Day Edits", "🔥 Immersive Sound Design"]
   }
 ];
 
 export const faqs = [
-  ["What does your social media agency do?", "We help brands grow on social media. We plan content, design posts, write captions, and manage accounts."],
-  ["Which social media platforms do you manage?", "Instagram, TikTok, X, LinkedIn, and Facebook. If your audience is there, we help you show up the right way."],
-  ["Do you create the content or do we need to provide it?", "We handle strategy, ideas, visuals, captions, and posting. Existing content can be optimized too."],
-  ["How long does it take to see results?", "Most clients see early growth in one to three months. Real results come from consistency, testing, and learning."],
-  ["Who is this service best for?", "Founders, startups, and brands that want to grow online without managing social media daily."],
+  [
+    "What does your social media agency do?",
+    "The Viral Duo is a professional UGC and social media growth agency. We help brands increase their ROI and gain viral reach by managing end-to-end campaigns, producing short-form vertical content (Reels, TikToks, Shorts), designing e-commerce posts, writing high-converting captions, and executing organic growth strategies."
+  ],
+  [
+    "Which social media platforms do you manage?",
+    "We manage five major social media platforms to help brands capture target audiences: 1. Instagram (Reels & Stories), 2. TikTok (organic vertical loops), 3. YouTube (Shorts & Community posts), 4. LinkedIn (thought-leadership & branding), and 5. Facebook. We tailormake content strategies specific to each platform's unique algorithm."
+  ],
+  [
+    "Do you create the content or do we need to provide it?",
+    "We handle 100% of the content creation lifecycle, meaning you do not need to provide pre-made files. Our service covers initial strategic research, copywriting hooks, scripting, shooting high-fidelity visuals (such as commercial product staging), editing, and final publishing. However, we can also optimize and edit your existing raw footage."
+  ],
+  [
+    "How long does it take to see results on social media?",
+    "Most clients see initial growth metrics (increased impressions and profile engagement) within 30 to 90 days. Real, compounding ROI—such as the 3x sales growth seen by our local restaurant client Sharma Ji Ke Bhature—comes from consistent posting, data mining, and continuous aesthetic testing over 3 to 6 months."
+  ],
+  [
+    "Who is this service best for?",
+    "Our social media management and UGC production services are designed specifically for e-commerce brands, high-growth startups, founders, and local businesses (like fitness gyms, restaurants, and jewelry brands) that want to scale their online presence, build community trust, and capture millions of views without managing social feeds daily."
+  ]
 ];
 
 export const brandLogos = [

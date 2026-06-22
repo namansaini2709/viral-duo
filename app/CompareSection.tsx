@@ -35,6 +35,20 @@ export default function CompareSection() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState<'agencies' | 'theViralDuo'>('theViralDuo');
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width / 2) {
+      setHoveredCard('agencies');
+    } else {
+      setHoveredCard('theViralDuo');
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+  };
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
@@ -51,7 +65,7 @@ export default function CompareSection() {
         }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
+        viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         Don't settle for less
@@ -66,7 +80,7 @@ export default function CompareSection() {
               className="compareMobileRow"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: false, margin: "-60px" }}
               variants={{
                 hidden: { opacity: 0 },
                 visible: {
@@ -129,14 +143,12 @@ export default function CompareSection() {
         </div>
       ) : (
         /* Original Premium Desktop Sticky Layout */
-        <div className="compareGrid">
+        <div className="compareGrid" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <AnimatePresence>
             {!isMobile || activeTab === 'agencies' ? (
               <div
                 key="agencies"
                 className="compareColWrapper left"
-                onMouseEnter={() => setHoveredCard('agencies')}
-                onMouseLeave={() => setHoveredCard(null)}
                 style={{ 
                   position: 'relative', 
                   zIndex: hoveredCard === 'agencies' ? 10 : 1, 
@@ -158,7 +170,7 @@ export default function CompareSection() {
                   }}
                   exit={isMobile ? { opacity: 0, x: 20 } : undefined}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: false, amount: 0.15 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="compareCard agencies">
@@ -180,8 +192,6 @@ export default function CompareSection() {
               <div
                 key="theViralDuo"
                 className="compareColWrapper right"
-                onMouseEnter={() => setHoveredCard('theViralDuo')}
-                onMouseLeave={() => setHoveredCard(null)}
                 style={{ 
                   position: 'relative', 
                   zIndex: hoveredCard === 'theViralDuo' ? 10 : 2, 
@@ -203,13 +213,13 @@ export default function CompareSection() {
                   }}
                   exit={isMobile ? { opacity: 0, x: -20 } : undefined}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: false, amount: 0.15 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="compareCard theViralDuo">
                     <h3>
                       <div className="theViralDuoLogo">
-                        <img src="/logo-v2.png" alt="The Viral Duo Logo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                        <img src="/logo-v2.png?v=5" alt="The Viral Duo Logo" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                       </div>
                       The Viral Duo
                     </h3>

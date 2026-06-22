@@ -23,13 +23,13 @@ export default function CtaSection() {
         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="ctaWavyDecor">
           <motion.path 
             d="M10 50 Q 30 10 50 50 T 90 50" 
-            stroke="#fbb6ed" 
+            stroke="#a3e635" 
             strokeWidth="8" 
             strokeLinecap="round" 
             variants={pathVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
           />
         </svg>
         <h2>UGC that grows your brand.</h2>
@@ -39,8 +39,8 @@ export default function CtaSection() {
           dataCalConfig='{"layout":"month_view"}'
           light 
           large 
-          leftIconColor="#E699FF" 
-          rightIconColor="#fbb6ed"
+          leftIconColor="#a3e635" 
+          rightIconColor="#10b981"
         >
           Book a call
         </ShiftButton>
