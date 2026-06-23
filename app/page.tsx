@@ -28,29 +28,43 @@ export default function Home() {
   const [footerHeight, setFooterHeight] = useState(0);
   const [isRevealFixed, setIsRevealFixed] = useState(false);
   const [isOverFooter, setIsOverFooter] = useState(false);
+  const [docHeight, setDocHeight] = useState(0);
 
   useEffect(() => {
+    const updateDimensions = () => {
+      if (footerRef.current) {
+        const height = footerRef.current.offsetHeight;
+        setFooterHeight(height);
+        // Disable fixed reveal on mobile/tablet for better UX
+        setIsRevealFixed(window.innerWidth > 1024);
+      }
+
+      const documentHeight = Math.max(
+        document.body?.scrollHeight || 0,
+        document.documentElement?.scrollHeight || 0
+      );
+      setDocHeight(documentHeight);
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+
+    // Initial timeout to ensure page components are fully mounted
+    const timer = setTimeout(updateDimensions, 150);
+
+    const resizeObserver = new ResizeObserver(updateDimensions);
     if (footerRef.current) {
-      const updateFooter = () => {
-        if (footerRef.current) {
-          const height = footerRef.current.offsetHeight;
-          setFooterHeight(height);
-          // Disable fixed reveal on mobile/tablet for better UX
-          setIsRevealFixed(window.innerWidth > 1024);
-        }
-      };
-
-      updateFooter();
-      window.addEventListener('resize', updateFooter);
-
-      const resizeObserver = new ResizeObserver(updateFooter);
       resizeObserver.observe(footerRef.current);
-
-      return () => {
-        window.removeEventListener('resize', updateFooter);
-        resizeObserver.disconnect();
-      };
     }
+    if (document.body) {
+      resizeObserver.observe(document.body);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+      resizeObserver.disconnect();
+      clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -70,10 +84,6 @@ export default function Home() {
       const blackStart = scrollPainStart + 800 * (vh / 100) * 0.28;
       const blackEnd = scrollPainStart + 800 * (vh / 100) * 0.70;
 
-      const docHeight = Math.max(
-        document.body?.scrollHeight || 0,
-        document.documentElement?.scrollHeight || 0
-      );
       const ctaStart = docHeight - vh - 200;
 
       if ((latest > blackStart && latest < blackEnd) || latest > ctaStart) {
@@ -97,7 +107,7 @@ export default function Home() {
     return () => {
       unsubscribe();
     };
-  }, [scrollY, footerHeight]);
+  }, [scrollY, footerHeight, docHeight]);
 
   return (
     <main>

@@ -2618,9 +2618,9 @@ footer h2 {
 }
 
 .footer {
-  background: linear-gradient(135deg, #a3e635 0%, #10b981 100%);
+  background: #000000;
   padding: 160px 40px 80px; /* Increased top padding significantly */
-  color: #000;
+  color: #fff;
   /* Ensure the footer content is visible during the reveal */
   position: relative;
   z-index: 1;
@@ -2680,7 +2680,7 @@ footer h2 {
   font-size: 22px;
   font-weight: 500;
   text-decoration: none;
-  color: #000;
+  color: #fff;
   margin-bottom: 12px;
 }
 
@@ -2695,8 +2695,8 @@ footer h2 {
   padding: 10px 20px;
   border-radius: 100px;
   width: fit-content;
-  border: 1px solid rgba(0,0,0,0.2);
-  color: #000;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
   font-weight: 500;
   font-size: 18px;
   transition: background 0.3s ease, border-color 0.3s ease;
@@ -2704,8 +2704,8 @@ footer h2 {
 }
 
 .footerNav a:hover {
-  background: rgba(0,0,0,0.05);
-  border-color: rgba(0,0,0,0.4);
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.4);
 }
 
 .footerSocials {
@@ -2730,11 +2730,11 @@ footer h2 {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
+  background: transparent;
   color: #fff;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2752,14 +2752,15 @@ footer h2 {
   right: 40px;
   bottom: 160px; /* Moved up to match other content */
   width: 300px; 
-  background: #ffffff; 
+  background: #111111; 
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px; 
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   z-index: 10;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   text-align: center; /* Centering everything */
 }
 
@@ -2768,12 +2769,12 @@ footer h2 {
   font-weight: 800;
   margin: 0;
   letter-spacing: -0.04em;
-  color: #000;
+  color: #fff;
 }
 
 .footerNewsletter p {
   font-size: 16px; /* Slightly reduced */
-  color: #666;
+  color: #888;
   line-height: 1.4;
   margin: 0;
   font-weight: 500;
@@ -2788,17 +2789,17 @@ footer h2 {
 
 .newsletterForm input {
   width: 100%;
-  background: #fff;
-  border: none;
+  background: #1c1c1c;
+  border: 1px solid rgba(255,255,255,0.1);
   padding: 24px;
   border-radius: 20px;
   font-size: 18px;
   outline: none;
-  color: #000;
+  color: #fff;
 }
 
 .newsletterForm input::placeholder {
-  color: #888;
+  color: #666;
 }
 
 .newsletterForm button {
@@ -2824,7 +2825,7 @@ footer h2 {
 }
 
 .footerBottom {
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 30px;
   display: flex;
   flex-direction: column;
